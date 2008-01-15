@@ -11,7 +11,6 @@
 		C12C7FEA05AECD9D0066E007 /* PatchbayDocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B4FDCFA73011CA2CEA /* PatchbayDocument.nib */; };
 		C12C7FEB05AECD9D0066E007 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
 		C12C7FEC05AECD9D0066E007 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = F5C0AB170331972E018C91A3 /* Credits.html */; };
-		C12C7FED05AECD9D0066E007 /* License.html in Resources */ = {isa = PBXBuildFile; fileRef = F5C0AB7503321C3B018C91A3 /* License.html */; };
 		C12C7FEE05AECD9D0066E007 /* Read Me.html in Resources */ = {isa = PBXBuildFile; fileRef = F5C0AB7703321C3B018C91A3 /* Read Me.html */; };
 		C12C7FEF05AECD9D0066E007 /* Plus.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F598A8BE0342EE1E01B9BE79 /* Plus.tiff */; };
 		C12C7FF105AECD9D0066E007 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -94,7 +93,6 @@
 		F5C0AB4203319CEA018C91A3 /* EndpointTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = EndpointTableDataSource.m; path = "Controller Classes/EndpointTableDataSource.m"; sourceTree = "<group>"; };
 		F5C0AB460331C79F018C91A3 /* KeyTableView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = KeyTableView.m; path = "View Classes/KeyTableView.m"; sourceTree = "<group>"; };
 		F5C0AB470331C79F018C91A3 /* KeyTableView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = KeyTableView.h; path = "View Classes/KeyTableView.h"; sourceTree = "<group>"; };
-		F5C0AB7503321C3B018C91A3 /* License.html */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.html; path = License.html; sourceTree = "<group>"; };
 		F5C0AB7603321C3B018C91A3 /* To Do.html */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.html; path = "To Do.html"; sourceTree = "<group>"; };
 		F5C0AB7703321C3B018C91A3 /* Read Me.html */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.html; path = "Read Me.html"; sourceTree = "<group>"; };
 		F5C0AB7803321C3B018C91A3 /* Bugs.html */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.html; path = Bugs.html; sourceTree = "<group>"; };
@@ -143,7 +141,6 @@
 			isa = PBXGroup;
 			children = (
 				F5C0AB7703321C3B018C91A3 /* Read Me.html */,
-				F5C0AB7503321C3B018C91A3 /* License.html */,
 				F5C0AB7803321C3B018C91A3 /* Bugs.html */,
 				F5C0AB7603321C3B018C91A3 /* To Do.html */,
 				F5C0AB3903319A9B018C91A3 /* Model Classes */,
@@ -305,7 +302,6 @@
 				C12C7FEA05AECD9D0066E007 /* PatchbayDocument.nib in Resources */,
 				C12C7FEB05AECD9D0066E007 /* InfoPlist.strings in Resources */,
 				C12C7FEC05AECD9D0066E007 /* Credits.html in Resources */,
-				C12C7FED05AECD9D0066E007 /* License.html in Resources */,
 				C12C7FEE05AECD9D0066E007 /* Read Me.html in Resources */,
 				C12C7FEF05AECD9D0066E007 /* Plus.tiff in Resources */,
 				C152A6EA07559AE9004FF49E /* AppIcon.icns in Resources */,

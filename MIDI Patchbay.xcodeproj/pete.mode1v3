@@ -255,7 +255,7 @@
 						<dict>
 							<key>PBXSmartGroupTreeModuleColumnWidthsKey</key>
 							<array>
-								<real>289</real>
+								<real>197</real>
 							</array>
 							<key>PBXSmartGroupTreeModuleColumnsKey_v4</key>
 							<array>
@@ -265,11 +265,18 @@
 						<key>PBXSmartGroupTreeModuleOutlineStateKey_v7</key>
 						<dict>
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
-							<array/>
+							<array>
+								<string>2A37F4AAFDCFA73011CA2CEA</string>
+								<string>1C37FBAC04509CD000000102</string>
+							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
-							<array/>
+							<array>
+								<array>
+									<integer>0</integer>
+								</array>
+							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {289, 751}}</string>
+							<string>{{0, 0}, {197, 751}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -281,11 +288,11 @@
 					<key>GeometryConfiguration</key>
 					<dict>
 						<key>Frame</key>
-						<string>{{0, 0}, {306, 769}}</string>
+						<string>{{0, 0}, {214, 769}}</string>
 						<key>GroupTreeTableConfiguration</key>
 						<array>
 							<string>MainColumn</string>
-							<real>289</real>
+							<real>197</real>
 						</array>
 						<key>RubberWindowFrame</key>
 						<string>285 68 1100 810 0 0 1440 878 </string>
@@ -293,7 +300,7 @@
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
 					<key>Proportion</key>
-					<string>306pt</string>
+					<string>214pt</string>
 				</dict>
 				<dict>
 					<key>Dock</key>
@@ -304,7 +311,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>PatchbayDocument.h</string>
+								<string>Bugs.html</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -312,11 +319,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>PatchbayDocument.h</string>
+										<string>Bugs.html</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>C146016A0D3CB4CA002E94E5</string>
+										<string>C1E1F99E0D3CD28F002E4593</string>
 										<key>history</key>
 										<array>
 											<string>C1F548C50CC2F37700000BD9</string>
@@ -330,10 +337,9 @@
 											<string>C14600F70D3CA5C7002E94E5</string>
 											<string>C14600F80D3CA5C7002E94E5</string>
 											<string>C146010C0D3CA694002E94E5</string>
-											<string>C146011A0D3CA77A002E94E5</string>
 											<string>C14601230D3CA85A002E94E5</string>
-											<string>C146012D0D3CAFF1002E94E5</string>
-											<string>C146012E0D3CAFF1002E94E5</string>
+											<string>C1E1F9890D3CD24C002E4593</string>
+											<string>C146011A0D3CA77A002E94E5</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -343,30 +349,14 @@
 											<string>C14600BC0D3CA38D002E94E5</string>
 											<string>C14600BD0D3CA38D002E94E5</string>
 											<string>C14600BE0D3CA38D002E94E5</string>
-											<string>C14600BF0D3CA38D002E94E5</string>
 											<string>C14600C00D3CA38D002E94E5</string>
 											<string>C14600C10D3CA38D002E94E5</string>
-											<string>C14600C20D3CA38D002E94E5</string>
-											<string>C14600C30D3CA38D002E94E5</string>
-											<string>C14600D00D3CA42E002E94E5</string>
 											<string>C14600E40D3CA461002E94E5</string>
-											<string>C14600F90D3CA5C7002E94E5</string>
-											<string>C14600FA0D3CA5C7002E94E5</string>
 											<string>C14600FB0D3CA5C7002E94E5</string>
-											<string>C14600FC0D3CA5C7002E94E5</string>
 											<string>C14600FD0D3CA5C7002E94E5</string>
 											<string>C14600FE0D3CA5C7002E94E5</string>
 											<string>C14600FF0D3CA5C7002E94E5</string>
-											<string>C14601000D3CA5C7002E94E5</string>
-											<string>C14601010D3CA5C7002E94E5</string>
-											<string>C14601020D3CA5C7002E94E5</string>
 											<string>C146010E0D3CA694002E94E5</string>
-											<string>C146011D0D3CA77A002E94E5</string>
-											<string>C146011E0D3CA77A002E94E5</string>
-											<string>C146011F0D3CA77A002E94E5</string>
-											<string>C14601200D3CA77A002E94E5</string>
-											<string>C14601250D3CA85A002E94E5</string>
-											<string>C146012F0D3CAFF1002E94E5</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -378,7 +368,7 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {789, 535}}</string>
+								<string>{{0, 0}, {881, 535}}</string>
 								<key>RubberWindowFrame</key>
 								<string>285 68 1100 810 0 0 1440 878 </string>
 							</dict>
@@ -398,7 +388,7 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 540}, {789, 229}}</string>
+								<string>{{0, 540}, {881, 229}}</string>
 								<key>RubberWindowFrame</key>
 								<string>285 68 1100 810 0 0 1440 878 </string>
 							</dict>
@@ -409,7 +399,7 @@
 						</dict>
 					</array>
 					<key>Proportion</key>
-					<string>789pt</string>
+					<string>881pt</string>
 				</dict>
 			</array>
 			<key>Name</key>
@@ -424,9 +414,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>C14600A30D3CA17D002E94E5</string>
+				<string>C1E1F99F0D3CD28F002E4593</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>C14600A40D3CA17D002E94E5</string>
+				<string>C1E1F9A00D3CD28F002E4593</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -558,11 +548,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C530D57069F1CE1000CFCEE</string>
-		<string>1C78EAAD065D492600B07095</string>
-		<string>1CD10A99069EF8BA00B06720</string>
-		<string>C14600C50D3CA38D002E94E5</string>
-		<string>/Users/pete/projects/midi_patchbay/MIDI Patchbay.xcodeproj</string>
+		<string>/Users/pete/projects/midi_patchbay/code/MIDI Patchbay.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>285 68 1100 810 0 0 1440 878 </string>

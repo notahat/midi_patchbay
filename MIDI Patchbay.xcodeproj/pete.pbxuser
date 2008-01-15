@@ -787,7 +787,7 @@
 		argumentStrings = (
 		);
 		autoAttachOnCrash = 1;
-		breakpointsEnabled = 0;
+		breakpointsEnabled = 1;
 		configStateDict = {
 		};
 		customDataFormattersEnabled = 1;
@@ -829,7 +829,7 @@
 		fRef = F5C0AB13033196D6018C91A3 /* PatchbayDocument.h */;
 		name = "PatchbayDocument.h: 18";
 		rLen = 26;
-		rLoc = 673;
+		rLoc = 26;
 		rType = 0;
 		vrLen = 1286;
 		vrLoc = 0;
@@ -909,7 +909,7 @@
 		fRef = F598A8A70342E28A01B9BE79 /* Patch.m */;
 		name = "Patch.m: 437";
 		rLen = 0;
-		rLoc = 9806;
+		rLoc = 9164;
 		rType = 0;
 		vrLen = 645;
 		vrLoc = 9403;
@@ -989,7 +989,7 @@
 		fRef = C183B43703E8F7C500BCF81F /* PatchbayController.m */;
 		name = "PatchbayController.m: 33";
 		rLen = 0;
-		rLoc = 1010;
+		rLoc = 361;
 		rType = 0;
 		vrLen = 1483;
 		vrLoc = 0;
@@ -999,7 +999,7 @@
 		fRef = C183B43703E8F7C500BCF81F /* PatchbayController.m */;
 		name = "PatchbayController.m: 33";
 		rLen = 0;
-		rLoc = 1010;
+		rLoc = 361;
 		rType = 0;
 		vrLen = 1483;
 		vrLoc = 0;
@@ -1026,16 +1026,17 @@
 	};
 	C183B43603E8F7C500BCF81F /* PatchbayController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {841, 776}}";
-			sepNavSelRange = "{841, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {820, 732}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 192}";
 			sepNavVisRect = "{{0, 0}, {841, 776}}";
 		};
 	};
 	C183B43703E8F7C500BCF81F /* PatchbayController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {743, 944}}";
-			sepNavSelRange = "{1565, 0}";
-			sepNavVisRange = "{926, 507}";
+			sepNavIntBoundsRect = "{{0, 0}, {820, 732}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 981}";
 			sepNavVisRect = "{{0, 0}, {754, 768}}";
 		};
 	};
@@ -1054,31 +1055,159 @@
 	};
 	C1CF52B90C5CF94900D2759D /* PYMIDI.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {728, 709}}";
+			sepNavIntBoundsRect = "{{0, 0}, {820, 732}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 971}";
+			sepNavVisRange = "{0, 338}";
+		};
+	};
+	C1CF52BA0C5CF94900D2759D /* PYMIDIEndpoint.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {820, 1280}}";
+			sepNavSelRange = "{103, 0}";
+			sepNavVisRange = "{0, 1028}";
 		};
 	};
 	C1CF52BB0C5CF94900D2759D /* PYMIDIEndpoint.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {804, 6816}}";
-			sepNavSelRange = "{8013, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {820, 6400}}";
+			sepNavSelRange = "{35, 0}";
+			sepNavVisRange = "{0, 764}";
 			sepNavVisRect = "{{0, 5319}, {744, 835}}";
+		};
+	};
+	C1CF52BC0C5CF94900D2759D /* PYMIDIEndpointDescriptor.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {820, 732}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 429}";
+		};
+	};
+	C1CF52BD0C5CF94900D2759D /* PYMIDIEndpointDescriptor.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {820, 864}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 871}";
+		};
+	};
+	C1CF52BE0C5CF94900D2759D /* PYMIDIEndpointSet.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {820, 732}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 533}";
+		};
+	};
+	C1CF52BF0C5CF94900D2759D /* PYMIDIEndpointSet.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {820, 1328}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 834}";
+		};
+	};
+	C1CF52C00C5CF94900D2759D /* PYMIDIManager.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {820, 752}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 980}";
+		};
+	};
+	C1CF52C10C5CF94900D2759D /* PYMIDIManager.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {820, 5008}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1085}";
+		};
+	};
+	C1CF52C20C5CF94900D2759D /* PYMIDIRealDestination.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {820, 732}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 323}";
 		};
 	};
 	C1CF52C30C5CF94900D2759D /* PYMIDIRealDestination.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {724, 1536}}";
+			sepNavIntBoundsRect = "{{0, 0}, {820, 1280}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{1431, 1152}";
+			sepNavVisRange = "{0, 1326}";
 			sepNavVisRect = "{{0, 701}, {744, 835}}";
+		};
+	};
+	C1CF52C40C5CF94900D2759D /* PYMIDIRealEndpoint.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {820, 732}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 466}";
 		};
 	};
 	C1CF52C50C5CF94900D2759D /* PYMIDIRealEndpoint.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {744, 976}}";
+			sepNavIntBoundsRect = "{{0, 0}, {820, 732}}";
 			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 667}";
 			sepNavVisRect = "{{0, 141}, {744, 835}}";
+		};
+	};
+	C1CF52C60C5CF94900D2759D /* PYMIDIRealSource.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {820, 732}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 318}";
+		};
+	};
+	C1CF52C70C5CF94900D2759D /* PYMIDIRealSource.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {820, 1648}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1281}";
+		};
+	};
+	C1CF52C80C5CF94900D2759D /* PYMIDIUtils.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {820, 732}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 816}";
+		};
+	};
+	C1CF52C90C5CF94900D2759D /* PYMIDIUtils.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {820, 3712}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1542}";
+		};
+	};
+	C1CF52CA0C5CF94900D2759D /* PYMIDIVirtualDestination.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {820, 732}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 270}";
+		};
+	};
+	C1CF52CB0C5CF94900D2759D /* PYMIDIVirtualDestination.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {855, 1280}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1471}";
+		};
+	};
+	C1CF52CC0C5CF94900D2759D /* PYMIDIVirtualEndpoint.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {820, 732}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 325}";
+		};
+	};
+	C1CF52CD0C5CF94900D2759D /* PYMIDIVirtualEndpoint.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {820, 1152}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 799}";
+		};
+	};
+	C1CF52CE0C5CF94900D2759D /* PYMIDIVirtualSource.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {820, 732}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 262}";
 		};
 	};
 	C1CF52CF0C5CF94900D2759D /* PYMIDIVirtualSource.m */ = {
@@ -1093,7 +1222,7 @@
 		fRef = F598A8A70342E28A01B9BE79 /* Patch.m */;
 		name = "Patch.m: setLowestAllowedNote:";
 		rLen = 0;
-		rLoc = 9806;
+		rLoc = 9164;
 		rType = 0;
 		vrLen = 771;
 		vrLoc = 9403;
@@ -1103,7 +1232,7 @@
 		fRef = F5C0AB13033196D6018C91A3 /* PatchbayDocument.h */;
 		name = "PatchbayDocument.h: 9";
 		rLen = 0;
-		rLoc = 420;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 930;
 		vrLoc = 2149;
@@ -1133,7 +1262,7 @@
 		fRef = C1CF52BB0C5CF94900D2759D /* PYMIDIEndpoint.m */;
 		name = "PYMIDIEndpoint.m: 358";
 		rLen = 0;
-		rLoc = 8013;
+		rLoc = 7371;
 		rType = 0;
 		vrLen = 1148;
 		vrLoc = 7618;
@@ -1153,7 +1282,7 @@
 		fRef = C1CF52BB0C5CF94900D2759D /* PYMIDIEndpoint.m */;
 		name = "externalID = ntohl(externalID);";
 		rLen = 35;
-		rLoc = 3365;
+		rLoc = 2723;
 		rType = 0;
 		vrLen = 2059;
 		vrLoc = 2611;
@@ -1170,75 +1299,82 @@
 	};
 	F598A8A70342E28A01B9BE79 /* Patch.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {728, 12752}}";
-			sepNavSelRange = "{9806, 0}";
-			sepNavVisRange = "{9403, 645}";
+			sepNavIntBoundsRect = "{{0, 0}, {827, 11200}}";
+			sepNavSelRange = "{321, 0}";
+			sepNavVisRange = "{0, 925}";
 			sepNavVisRect = "{{0, 6567}, {744, 835}}";
 		};
 	};
 	F598A8A90342E28A01B9BE79 /* Patch.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {728, 2016}}";
+			sepNavIntBoundsRect = "{{0, 0}, {820, 1760}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 1213}";
+			sepNavVisRange = "{0, 608}";
 			sepNavVisRect = "{{0, 0}, {754, 683}}";
 		};
 	};
 	F598A8B00342E47401B9BE79 /* PatchTableCellData.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {754, 1119}}";
+			sepNavIntBoundsRect = "{{0, 0}, {974, 1008}}";
 			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 943}";
 			sepNavVisRect = "{{0, 0}, {754, 683}}";
 		};
 	};
 	F598A8B10342E47401B9BE79 /* PatchTableCellData.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {754, 683}}";
-			sepNavSelRange = "{684, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {981, 732}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 588}";
 			sepNavVisRect = "{{0, 0}, {754, 683}}";
 		};
 	};
 	F598A8B20342E47401B9BE79 /* PatchTableCell.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {754, 683}}";
-			sepNavSelRange = "{584, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {820, 732}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 143}";
 			sepNavVisRect = "{{0, 0}, {754, 683}}";
 		};
 	};
 	F598A8B30342E47401B9BE79 /* PatchTableCell.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {754, 1637}}";
-			sepNavSelRange = "{4091, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {820, 1616}}";
+			sepNavSelRange = "{27, 0}";
+			sepNavVisRange = "{0, 1521}";
 			sepNavVisRect = "{{0, 546}, {754, 683}}";
 		};
 	};
 	F598A8BA0342E64501B9BE79 /* PatchTableDataSource.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {874, 1652}}";
-			sepNavSelRange = "{2937, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {820, 1664}}";
+			sepNavSelRange = "{81, 0}";
+			sepNavVisRange = "{0, 852}";
 			sepNavVisRect = "{{0, 876}, {841, 776}}";
 		};
 	};
 	F598A8BB0342E64501B9BE79 /* PatchTableDataSource.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {881, 776}}";
-			sepNavSelRange = "{690, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {869, 732}}";
+			sepNavSelRange = "{39, 0}";
+			sepNavVisRange = "{0, 711}";
 			sepNavVisRect = "{{0, 0}, {841, 776}}";
 		};
 	};
 	F5C0AB13033196D6018C91A3 /* PatchbayDocument.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {820, 3264}}";
-			sepNavSelRange = "{420, 0}";
-			sepNavVisRange = "{2149, 930}";
+			sepNavIntBoundsRect = "{{0, 0}, {820, 2976}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1300}";
 			sepNavVisRect = "{{0, 896}, {841, 776}}";
 			sepNavWindowFrame = "{{-862, -640}, {750, 558}}";
 		};
 	};
 	F5C0AB14033196D6018C91A3 /* PatchbayDocument.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {841, 15904}}";
-			sepNavSelRange = "{5693, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {820, 17824}}";
+			sepNavSelRange = "{99, 0}";
+			sepNavVisRange = "{0, 1440}";
 			sepNavVisRect = "{{0, 6927}, {841, 776}}";
 		};
 	};
@@ -1252,30 +1388,34 @@
 	};
 	F5C0AB4103319CEA018C91A3 /* EndpointTableDataSource.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1175, 776}}";
-			sepNavSelRange = "{585, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {1163, 732}}";
+			sepNavSelRange = "{24, 0}";
+			sepNavVisRange = "{0, 1297}";
 			sepNavVisRect = "{{0, 0}, {841, 776}}";
 		};
 	};
 	F5C0AB4203319CEA018C91A3 /* EndpointTableDataSource.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1175, 2926}}";
-			sepNavSelRange = "{651, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {1163, 3200}}";
+			sepNavSelRange = "{36, 0}";
+			sepNavVisRange = "{0, 970}";
 			sepNavVisRect = "{{0, 0}, {841, 776}}";
 			sepNavWindowFrame = "{{-1137, -563}, {750, 558}}";
 		};
 	};
 	F5C0AB460331C79F018C91A3 /* KeyTableView.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {841, 1484}}";
-			sepNavSelRange = "{1670, 15}";
+			sepNavIntBoundsRect = "{{0, 0}, {820, 1600}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 798}";
 			sepNavVisRect = "{{0, 73}, {841, 776}}";
 		};
 	};
 	F5C0AB470331C79F018C91A3 /* KeyTableView.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {841, 776}}";
-			sepNavSelRange = "{521, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {820, 732}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 375}";
 			sepNavVisRect = "{{0, 0}, {841, 776}}";
 		};
 	};
@@ -1289,9 +1429,9 @@
 	};
 	F5C0AB7703321C3B018C91A3 /* Read Me.html */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {728, 6000}}";
+			sepNavIntBoundsRect = "{{0, 0}, {820, 6208}}";
 			sepNavSelRange = "{15, 72}";
-			sepNavVisRange = "{0, 987}";
+			sepNavVisRange = "{0, 689}";
 			sepNavVisRect = "{{0, 3811}, {985, 682}}";
 		};
 	};
@@ -1299,7 +1439,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {820, 1264}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 889}";
+			sepNavVisRange = "{0, 1004}";
 			sepNavVisRect = "{{0, 56}, {697, 466}}";
 		};
 	};

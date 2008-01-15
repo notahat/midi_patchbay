@@ -1,72 +1,144 @@
-{
-    IBClasses = (
-        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
-        {
-            ACTIONS = {
-                clear = id; 
-                deleteBackward = id; 
-                deleteForward = id; 
-                moveDown = id; 
-                moveUp = id; 
-            }; 
-            CLASS = KeyTableView; 
-            LANGUAGE = ObjC; 
-            SUPERCLASS = NSTableView; 
-        }, 
-        {
-            ACTIONS = {
-                addPatchButtonPressed = id; 
-                endpointPanelButtonPressed = id; 
-                filterChannelMatrixChanged = id; 
-                filterChannelRadioButtonsChanged = id; 
-                filterRangeRadioButtonsChanged = id; 
-                highestAllowedNoteSliderChanged = id; 
-                highestAllowedNoteStepperChanged = id; 
-                inputPopUpChanged = id; 
-                lowestAllowedNoteSliderChanged = id; 
-                lowestAllowedNoteStepperChanged = id; 
-                newInputButtonPressed = id; 
-                newOutputButtonPressed = id; 
-                outputPopUpChanged = id; 
-                remapChannelButtonChanged = id; 
-                remapChannelPopUpChanged = id; 
-                transmitClockButtonChanged = id; 
-                transposeButtonChanged = id; 
-                transposeDistanceSliderChanged = id; 
-                transposeDistanceStepperChanged = id; 
-            }; 
-            CLASS = PatchbayDocument; 
-            LANGUAGE = ObjC; 
-            OUTLETS = {
-                addPatchButton = NSButton; 
-                documentWindow = NSWindow; 
-                filterChannelMatrix = NSMatrix; 
-                filterChannelRadioButtons = NSMatrix; 
-                filterRangeLabelField = NSTextField; 
-                filterRangeRadioButtons = NSMatrix; 
-                highestAllowedNoteField = NSTextField; 
-                highestAllowedNoteSlider = NSSlider; 
-                highestAllowedNoteStepper = NSStepper; 
-                inputPopUp = NSPopUpButton; 
-                inputTable = NSTableView; 
-                lowestAllowedNoteField = NSTextField; 
-                lowestAllowedNoteSlider = NSSlider; 
-                lowestAllowedNoteStepper = NSStepper; 
-                outputPopUp = NSPopUpButton; 
-                outputTable = NSTableView; 
-                patchTable = NSTableView; 
-                remapChannelButton = NSButton; 
-                remapChannelPopUp = NSPopUpButton; 
-                transmitClockButton = NSButton; 
-                transposeButton = NSButton; 
-                transposeDistanceField = NSTextField; 
-                transposeDistanceSlider = NSSlider; 
-                transposeDistanceStepper = NSStepper; 
-                virtualEndpointPanel = NSPanel; 
-                virtualEndpointTabView = NSTabView; 
-            }; 
-            SUPERCLASS = NSDocument; 
-        }
-    ); 
-    IBVersion = 1; 
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IBClasses</key>
+	<array>
+		<dict>
+			<key>ACTIONS</key>
+			<dict>
+				<key>addPatchButtonPressed</key>
+				<string>id</string>
+				<key>endpointPanelButtonPressed</key>
+				<string>id</string>
+				<key>filterChannelMatrixChanged</key>
+				<string>id</string>
+				<key>filterChannelRadioButtonsChanged</key>
+				<string>id</string>
+				<key>filterRangeRadioButtonsChanged</key>
+				<string>id</string>
+				<key>highestAllowedNoteSliderChanged</key>
+				<string>id</string>
+				<key>highestAllowedNoteStepperChanged</key>
+				<string>id</string>
+				<key>inputPopUpChanged</key>
+				<string>id</string>
+				<key>lowestAllowedNoteSliderChanged</key>
+				<string>id</string>
+				<key>lowestAllowedNoteStepperChanged</key>
+				<string>id</string>
+				<key>newInputButtonPressed</key>
+				<string>id</string>
+				<key>newOutputButtonPressed</key>
+				<string>id</string>
+				<key>outputPopUpChanged</key>
+				<string>id</string>
+				<key>remapChannelButtonChanged</key>
+				<string>id</string>
+				<key>remapChannelPopUpChanged</key>
+				<string>id</string>
+				<key>transmitClockButtonChanged</key>
+				<string>id</string>
+				<key>transposeButtonChanged</key>
+				<string>id</string>
+				<key>transposeDistanceSliderChanged</key>
+				<string>id</string>
+				<key>transposeDistanceStepperChanged</key>
+				<string>id</string>
+			</dict>
+			<key>CLASS</key>
+			<string>PatchbayDocument</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>OUTLETS</key>
+			<dict>
+				<key>addPatchButton</key>
+				<string>NSButton</string>
+				<key>documentWindow</key>
+				<string>NSWindow</string>
+				<key>filterChannelMatrix</key>
+				<string>NSMatrix</string>
+				<key>filterChannelRadioButtons</key>
+				<string>NSMatrix</string>
+				<key>filterRangeLabelField</key>
+				<string>NSTextField</string>
+				<key>filterRangeRadioButtons</key>
+				<string>NSMatrix</string>
+				<key>highestAllowedNoteField</key>
+				<string>NSTextField</string>
+				<key>highestAllowedNoteSlider</key>
+				<string>NSSlider</string>
+				<key>highestAllowedNoteStepper</key>
+				<string>NSStepper</string>
+				<key>inputPopUp</key>
+				<string>NSPopUpButton</string>
+				<key>inputTable</key>
+				<string>NSTableView</string>
+				<key>lowestAllowedNoteField</key>
+				<string>NSTextField</string>
+				<key>lowestAllowedNoteSlider</key>
+				<string>NSSlider</string>
+				<key>lowestAllowedNoteStepper</key>
+				<string>NSStepper</string>
+				<key>outputPopUp</key>
+				<string>NSPopUpButton</string>
+				<key>outputTable</key>
+				<string>NSTableView</string>
+				<key>patchTable</key>
+				<string>NSTableView</string>
+				<key>remapChannelButton</key>
+				<string>NSButton</string>
+				<key>remapChannelPopUp</key>
+				<string>NSPopUpButton</string>
+				<key>transmitClockButton</key>
+				<string>NSButton</string>
+				<key>transposeButton</key>
+				<string>NSButton</string>
+				<key>transposeDistanceField</key>
+				<string>NSTextField</string>
+				<key>transposeDistanceSlider</key>
+				<string>NSSlider</string>
+				<key>transposeDistanceStepper</key>
+				<string>NSStepper</string>
+				<key>virtualEndpointPanel</key>
+				<string>NSPanel</string>
+				<key>virtualEndpointTabView</key>
+				<string>NSTabView</string>
+			</dict>
+			<key>SUPERCLASS</key>
+			<string>NSDocument</string>
+		</dict>
+		<dict>
+			<key>ACTIONS</key>
+			<dict>
+				<key>clear</key>
+				<string>id</string>
+				<key>deleteBackward</key>
+				<string>id</string>
+				<key>deleteForward</key>
+				<string>id</string>
+				<key>moveDown</key>
+				<string>id</string>
+				<key>moveUp</key>
+				<string>id</string>
+			</dict>
+			<key>CLASS</key>
+			<string>KeyTableView</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSTableView</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
+			<string>FirstResponder</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSObject</string>
+		</dict>
+	</array>
+	<key>IBVersion</key>
+	<string>1</string>
+</dict>
+</plist>

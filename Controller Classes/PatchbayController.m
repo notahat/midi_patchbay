@@ -4,17 +4,9 @@
 @implementation PatchbayController
 
 
-- (IBAction)displayLicense:(id)sender
-{
-    [[NSWorkspace sharedWorkspace]
-        openFile:[[NSBundle mainBundle] pathForResource:@"License" ofType:@"html"]
-    ];
-}
-
-
 - (IBAction)visitWebSite:(id)sender
 {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://notahat.com/"]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://notahat.com/midi_patchbay"]];
 }
 
 
@@ -28,7 +20,7 @@
    
     [[NSWorkspace sharedWorkspace] openURL:[NSURL
         URLWithString:[NSString
-            stringWithFormat:@"mailto:pete@notahat.com?subject=%@%%20%@", name, version
+            stringWithFormat:@"mailto:midi_patchbay@notahat.com?subject=%@%%20%@", name, version
         ]
     ]];
 }

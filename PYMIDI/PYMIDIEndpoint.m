@@ -65,6 +65,11 @@
     [super dealloc];
 }
 
+- (void)finalize {
+	[self stopIO];
+	[super finalize];
+}
+
 
 
 #pragma mark ARCHIVING

@@ -1,30 +1,36 @@
 #import <PYMIDI/PYMIDIVirtualEndpoint.h>
 #import <PYMIDI/PYMIDIManager.h>
 
-
 @implementation PYMIDIVirtualEndpoint
 
 
-- (id)initWithName:(NSString*)newName
-{
+- (id)initWithName:(NSString*)newName {
     return self;
 }
 
 
-- (void)dealloc
-{
-    PYMIDIManager* manager = [PYMIDIManager sharedInstance];
-    
+- (void)invalidate {
+	PYMIDIManager* manager = [PYMIDIManager sharedInstance];
     [manager disableNotifications];
-    MIDIEndpointDispose (midiEndpointRef);
+    if (midiEndpointRef != nil) MIDIEndpointDispose(midiEndpointRef);
+	midiEndpointRef = nil;
     [manager enableNotifications];
-    
+}
+
+
+- (void)dealloc {
+	[self invalidate];
     [super dealloc];
 }
 
 
-- (id)initWithCoder:(NSCoder*)coder
-{
+- (void)finalize {
+	[self invalidate];
+	[super finalize];
+}
+
+
+- (id)initWithCoder:(NSCoder*)coder {
     NSString*		newName;
     SInt32			newUniqueID;
     
@@ -40,39 +46,34 @@
 }
 
 
-- (BOOL)isPrivate
-{
+- (BOOL)isPrivate {
+	if (midiEndpointRef == nil) return NO;
+	
     OSStatus result;
     SInt32 isPrivate;
     
-    result = MIDIObjectGetIntegerProperty (midiEndpointRef, kMIDIPropertyPrivate, &isPrivate);
-    if (result == noErr)
-        return isPrivate != 0;
-    else
-        return NO;
+	result = MIDIObjectGetIntegerProperty (midiEndpointRef, kMIDIPropertyPrivate, &isPrivate);
+	if (result == noErr)
+		return isPrivate != 0;
+	else
+		return NO;
+}
+
+- (void)makePrivate:(BOOL)isPrivate {
+	if (midiEndpointRef == nil) return;
+	MIDIObjectSetIntegerProperty (midiEndpointRef, kMIDIPropertyPrivate, isPrivate ? 1 : 0);
 }
 
 
-- (void)makePrivate:(BOOL)isPrivate
-{
-    MIDIObjectSetIntegerProperty (midiEndpointRef, kMIDIPropertyPrivate, isPrivate ? 1 : 0);
-}
-
-
-- (BOOL)ioIsRunning
-{
+- (BOOL)ioIsRunning {
     return ioIsRunning;
 }
 
-
-- (void)startIO
-{
+- (void)startIO {
     ioIsRunning = YES;
 }
 
-
-- (void)stopIO
-{
+- (void)stopIO {
 	ioIsRunning = NO;
 }
 

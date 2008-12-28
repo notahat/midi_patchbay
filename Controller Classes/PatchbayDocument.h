@@ -50,6 +50,8 @@
     IBOutlet NSPopUpButton*		remapChannelPopUp;
     
     IBOutlet NSButton*			transmitClockButton;
+    
+    IBOutlet NSTextView*		scriptTextField;
 
     IBOutlet NSPopUpButton*		outputPopUp;
     
@@ -154,6 +156,12 @@
 - (void)setTransmitClockControls;
 - (IBAction)transmitClockButtonChanged:(id)sender;
 - (void)setShouldTransmitClock:(BOOL)state forPatch:(Patch*)patch;
+
+#pragma mark Patch editing - Scripts
+
+- (void)setScriptControls;
+- (IBAction)scriptChanged:(id)sender;
+- (void)setScript:(NSString*)script forPatch:(Patch*)patch;
 
 #pragma mark Patch editing - MIDI Output
 

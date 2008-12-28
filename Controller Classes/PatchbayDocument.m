@@ -59,6 +59,8 @@
     [virtualEndpointPanel setDelegate:self];
     
     
+    [scriptTextField setFont:[NSFont fontWithName:@"Monaco" size:12]];
+    
     // Set up the patch related stuff
     
     buttonCell = [[NSButtonCell alloc] init];
@@ -251,6 +253,7 @@
     [self setFilterRangeControls];
     [self setTransposeControls];
     [self setTransmitClockControls];
+    [self setScriptControls];
     [self setOutputPopUp];
 }
 
@@ -933,6 +936,38 @@
     
     [[undoManager prepareWithInvocationTarget:self]
         setShouldTransmitClock:oldState forPatch:patch
+    ];
+}
+
+
+#pragma mark Patch editing - Scripts
+
+- (void)setScriptControls {
+    if (selectedPatch != nil) {
+	// [scriptTextField setEnabled:YES];
+	[scriptTextField setString:[selectedPatch script]];
+    }
+    else {
+	// [scriptTextField setEnabled:NO];
+	[scriptTextField setString:@""];
+    }
+}
+
+- (IBAction)scriptChanged:(id)sender {
+    [self setScript:[scriptTextField string] forPatch:selectedPatch];
+}
+
+- (void)setScript:(NSString*)script forPatch:(Patch*)patch {
+    NSUndoManager* undoManager = [self undoManager];
+    NSString* oldScript;
+    
+    oldScript = [patch script];
+    
+    [patch setScript:[scriptTextField string]];
+    if (patch == selectedPatch) [self setScriptControls];
+    
+    [[undoManager prepareWithInvocationTarget:self]
+	setScript:oldScript forPatch:patch
     ];
 }
 

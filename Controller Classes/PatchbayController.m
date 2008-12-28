@@ -1,12 +1,7 @@
 #import "PatchbayController.h"
-#import <MacRuby/MacRuby.h>
 
 
 @implementation PatchbayController
-
-- (void)awakeFromNib {
-	[MacRuby sharedRuntime];
-}
 
 
 - (IBAction)visitWebSite:(id)sender {

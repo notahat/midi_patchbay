@@ -3,6 +3,7 @@
 
 #import <PYMIDI/PYMIDIEndpoint.h>
 
+@class MIDIFilter;
 
 @interface Patch : NSObject <NSCoding> {
     BOOL			isInLimbo;
@@ -26,6 +27,10 @@
     int				remappingChannel;
     
     BOOL			shouldTransmitClock;
+    
+    NSString*		script;
+    
+    id                  midiFilter;
     
     PYMIDIEndpoint*	output;
 }
@@ -98,6 +103,11 @@
 
 - (BOOL)shouldTransmitClock;
 - (void)setShouldTransmitClock:(BOOL)newShouldTransmitClock;
+
+#pragma mark Filters - Script
+
+- (NSString*)script;
+- (void)setScript:(NSString*)newScript;
 
 #pragma mark Output
 

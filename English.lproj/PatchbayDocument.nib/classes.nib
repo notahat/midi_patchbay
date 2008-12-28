@@ -37,6 +37,8 @@
 				<string>id</string>
 				<key>remapChannelPopUpChanged</key>
 				<string>id</string>
+				<key>scriptChanged</key>
+				<string>id</string>
 				<key>transmitClockButtonChanged</key>
 				<string>id</string>
 				<key>transposeButtonChanged</key>
@@ -90,6 +92,8 @@
 				<string>NSButton</string>
 				<key>remapChannelPopUp</key>
 				<string>NSPopUpButton</string>
+				<key>scriptTextField</key>
+				<string>NSTextView</string>
 				<key>transmitClockButton</key>
 				<string>NSButton</string>
 				<key>transposeButton</key>

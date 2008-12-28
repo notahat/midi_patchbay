@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C11A8C0F0ECFB0020069DBFC /* RubyWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = C11A8C0E0ECFB0020069DBFC /* RubyWrapper.m */; };
+		C11A8C430ECFC4CF0069DBFC /* NSDataByteAccessors.m in Sources */ = {isa = PBXBuildFile; fileRef = C11A8C420ECFC4CF0069DBFC /* NSDataByteAccessors.m */; };
 		C12C7FE905AECD9D0066E007 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
 		C12C7FEA05AECD9D0066E007 /* PatchbayDocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B4FDCFA73011CA2CEA /* PatchbayDocument.nib */; };
 		C12C7FEB05AECD9D0066E007 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
@@ -24,8 +26,10 @@
 		C12C7FFD05AECD9D0066E007 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1B5CCF203D55FDC00317084 /* CoreMIDI.framework */; };
 		C152A6EA07559AE9004FF49E /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = C152A6E907559AE9004FF49E /* AppIcon.icns */; };
 		C152A70C07559BB9004FF49E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C152A70B07559BB9004FF49E /* Cocoa.framework */; };
-		C16EE9F80ECBBA9400C48B4E /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C16EE9F70ECBBA9400C48B4E /* MacRuby.framework */; };
-		C16EE9FF0ECBBAB200C48B4E /* MacRuby.framework in Resources */ = {isa = PBXBuildFile; fileRef = C16EE9F70ECBBA9400C48B4E /* MacRuby.framework */; };
+		C16EEA320ECBBEDC00C48B4E /* midi in Resources */ = {isa = PBXBuildFile; fileRef = C16EEA2C0ECBBEDC00C48B4E /* midi */; };
+		C16EEA340ECBBEEF00C48B4E /* midi.rb in Resources */ = {isa = PBXBuildFile; fileRef = C16EEA330ECBBEEF00C48B4E /* midi.rb */; };
+		C16EEA360ECBBEFA00C48B4E /* midi_filter.rb in Resources */ = {isa = PBXBuildFile; fileRef = C16EEA350ECBBEFA00C48B4E /* midi_filter.rb */; };
+		C17853500F08479700034F57 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C178534F0F08479700034F57 /* MacRuby.framework */; };
 		C1AB8C7C075DAF9B00C4B27B /* DocIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = C1AB8C7B075DAF9B00C4B27B /* DocIcon.icns */; };
 		C1CF52D20C5CF94900D2759D /* PYMIDIEndpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = C1CF52BB0C5CF94900D2759D /* PYMIDIEndpoint.m */; };
 		C1CF52D40C5CF94900D2759D /* PYMIDIEndpointDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = C1CF52BD0C5CF94900D2759D /* PYMIDIEndpointDescriptor.m */; };
@@ -47,11 +51,18 @@
 		2A37F4B7FDCFA73011CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		C11A8C0D0ECFB0020069DBFC /* RubyWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RubyWrapper.h; sourceTree = "<group>"; };
+		C11A8C0E0ECFB0020069DBFC /* RubyWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RubyWrapper.m; sourceTree = "<group>"; };
+		C11A8C410ECFC4CF0069DBFC /* NSDataByteAccessors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDataByteAccessors.h; sourceTree = "<group>"; };
+		C11A8C420ECFC4CF0069DBFC /* NSDataByteAccessors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDataByteAccessors.m; sourceTree = "<group>"; };
 		C12C800205AECD9D0066E007 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C12C800305AECD9D0066E007 /* MIDI Patchbay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MIDI Patchbay.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C152A6E907559AE9004FF49E /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
 		C152A70B07559BB9004FF49E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		C16EE9F70ECBBA9400C48B4E /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MacRuby.framework; sourceTree = "<group>"; };
+		C16EEA2C0ECBBEDC00C48B4E /* midi */ = {isa = PBXFileReference; lastKnownFileType = folder; name = midi; path = rbmidi/midi; sourceTree = "<group>"; };
+		C16EEA330ECBBEEF00C48B4E /* midi.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = midi.rb; path = rbmidi/midi.rb; sourceTree = "<group>"; };
+		C16EEA350ECBBEFA00C48B4E /* midi_filter.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = midi_filter.rb; sourceTree = "<group>"; };
+		C178534F0F08479700034F57 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = /Library/Frameworks/MacRuby.framework; sourceTree = "<absolute>"; };
 		C183B43603E8F7C500BCF81F /* PatchbayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PatchbayController.h; path = "Controller Classes/PatchbayController.h"; sourceTree = "<group>"; };
 		C183B43703E8F7C500BCF81F /* PatchbayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PatchbayController.m; path = "Controller Classes/PatchbayController.m"; sourceTree = "<group>"; };
 		C1AB8C7B075DAF9B00C4B27B /* DocIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = DocIcon.icns; sourceTree = "<group>"; };
@@ -104,7 +115,7 @@
 			files = (
 				C12C7FFD05AECD9D0066E007 /* CoreMIDI.framework in Frameworks */,
 				C152A70C07559BB9004FF49E /* Cocoa.framework in Frameworks */,
-				C16EE9F80ECBBA9400C48B4E /* MacRuby.framework in Frameworks */,
+				C17853500F08479700034F57 /* MacRuby.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,7 +125,7 @@
 		1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C16EE9F70ECBBA9400C48B4E /* MacRuby.framework */,
+				C178534F0F08479700034F57 /* MacRuby.framework */,
 				C152A70B07559BB9004FF49E /* Cocoa.framework */,
 				C1B5CCF203D55FDC00317084 /* CoreMIDI.framework */,
 			);
@@ -149,6 +160,9 @@
 				2A37F4B8FDCFA73011CA2CEA /* Resources */,
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
+				C16EEA2C0ECBBEDC00C48B4E /* midi */,
+				C16EEA330ECBBEEF00C48B4E /* midi.rb */,
+				C16EEA350ECBBEFA00C48B4E /* midi_filter.rb */,
 			);
 			name = "MIDI Patchbay";
 			sourceTree = "<group>";
@@ -235,6 +249,10 @@
 			children = (
 				F598A8A90342E28A01B9BE79 /* Patch.h */,
 				F598A8A70342E28A01B9BE79 /* Patch.m */,
+				C11A8C0D0ECFB0020069DBFC /* RubyWrapper.h */,
+				C11A8C0E0ECFB0020069DBFC /* RubyWrapper.m */,
+				C11A8C410ECFC4CF0069DBFC /* NSDataByteAccessors.h */,
+				C11A8C420ECFC4CF0069DBFC /* NSDataByteAccessors.m */,
 			);
 			name = "Model Classes";
 			sourceTree = "<group>";
@@ -296,7 +314,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C16EE9FF0ECBBAB200C48B4E /* MacRuby.framework in Resources */,
 				C12C7FE905AECD9D0066E007 /* MainMenu.nib in Resources */,
 				C12C7FEA05AECD9D0066E007 /* PatchbayDocument.nib in Resources */,
 				C12C7FEB05AECD9D0066E007 /* InfoPlist.strings in Resources */,
@@ -304,6 +321,9 @@
 				C12C7FEF05AECD9D0066E007 /* Plus.tiff in Resources */,
 				C152A6EA07559AE9004FF49E /* AppIcon.icns in Resources */,
 				C1AB8C7C075DAF9B00C4B27B /* DocIcon.icns in Resources */,
+				C16EEA320ECBBEDC00C48B4E /* midi in Resources */,
+				C16EEA340ECBBEEF00C48B4E /* midi.rb in Resources */,
+				C16EEA360ECBBEFA00C48B4E /* midi_filter.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +370,8 @@
 				C1CF52E20C5CF94900D2759D /* PYMIDIVirtualDestination.m in Sources */,
 				C1CF52E40C5CF94900D2759D /* PYMIDIVirtualEndpoint.m in Sources */,
 				C1CF52E60C5CF94900D2759D /* PYMIDIVirtualSource.m in Sources */,
+				C11A8C0F0ECFB0020069DBFC /* RubyWrapper.m in Sources */,
+				C11A8C430ECFC4CF0069DBFC /* NSDataByteAccessors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,7 +475,10 @@
 				GCC_ENABLE_OBJC_GC = required;
 				HEADER_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.2;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+				"SDKROOT[arch=i386]" = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+				"SDKROOT[arch=ppc]" = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
 				USER_HEADER_SEARCH_PATHS = .;
 			};
 			name = Debug;
@@ -470,6 +495,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.2;
 				"MACOSX_DEPLOYMENT_TARGET[arch=i386]" = 10.4;
 				"MACOSX_DEPLOYMENT_TARGET[arch=ppc]" = 10.3;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
 				"SDKROOT[arch=i386]" = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
 				"SDKROOT[arch=ppc]" = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";

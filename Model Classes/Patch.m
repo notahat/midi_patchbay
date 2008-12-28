@@ -1,5 +1,7 @@
 #import "Patch.h"
+#import "RubyWrapper.h"
 #import <PYMIDI/PYMIDI.h>
+#include <time.h>
 
 
 @interface Patch (private)
@@ -39,6 +41,9 @@
     transposeDistance	= 0;
     
     shouldTransmitClock = NO;
+    
+    script = @"message";
+    midiFilter = nil;
     
     output = [newOutput retain];
     [output addSender:self];
@@ -117,6 +122,8 @@
     
     shouldTransmitClock = [coder decodeBoolForKey:@"ShouldTransmitClock"];
     
+    script = [coder decodeObjectForKey:@"Script"];
+    
     return self;
 }
 
@@ -140,6 +147,8 @@
     [coder encodeInt:transposeDistance forKey:@"TransposeDistance"];
     
     [coder encodeBool:shouldTransmitClock forKey:@"ShouldTransmitClock"];
+    
+    [coder encodeObject:script forKey:@"Script"];
     
     [coder encodeObject:output forKey:@"Output"];
 }
@@ -463,6 +472,17 @@
 }
 
 
+#pragma mark Filters - Script
+
+- (NSString*)script {
+    return script;
+}
+
+- (void)setScript:(NSString*)newScript {
+    script = newScript;
+    NSLog(@"%@", script);
+}
+
 
 #pragma mark Output
 
@@ -664,13 +684,22 @@ findEndOfMessage (const MIDIPacket* packet, unsigned int startIndex)
     if (shouldRemapChannel) {
         message[0] = (message[0] & 0xF0) | (remappingChannel - 1);
     }
+	
+    NSLog(@"a");
+    // if (midiFilter == nil)
+    midiFilter = [RubyWrapper evalString:@"MIDIFilter.new"];
+    NSLog(@"%@", script);
+    NSLog(@"%@", midiFilter);
+    [midiFilter define_instance_method:@"process" code:script];
+    NSLog(@"%@", midiFilter);
+    NSData* data = [NSData dataWithBytes:message length:length];
+    data = [midiFilter filter:data];
+    length = [data length];
+    [data getBytes:message];
+    NSLog(@"b");
     
     return length;
 }
-
-
-
-
 
 
 

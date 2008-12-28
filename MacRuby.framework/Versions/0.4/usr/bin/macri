@@ -1,6 +1,0 @@
-#!/Library/Frameworks/MacRuby.framework/Versions/0.4/usr/bin/macruby
-
-require 'rdoc/ri/driver'
-
-RDoc::RI::Driver.run ARGV
-

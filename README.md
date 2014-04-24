@@ -14,7 +14,7 @@ made very simple.
 * [Credits](#credits)
 * [Version History](#history)
 
-<a name="license">License</a>
+<a name="license"></a>License
 -----------------------------
 
 This software is distributed under the terms of [Pete's Public
@@ -28,7 +28,7 @@ to see in future versions, etc.
 
 For other ways to reward me for producing this, see[my web site](#http://www.notahat.com/software/).
 
-<a name="requirements">Requirements</a>
+<a name="requirements"></a>Requirements
 ---------------------------------------
 
 * Mac OS X 10.2 or later
@@ -39,7 +39,7 @@ If you're looking for MIDI interface drivers or audio and MIDI applications
 for Mac OS X, check out my [links page](#http://pete.yandell.com/links/).
 
 
-<a name="usage">Using MIDI Patchbay</a>
+<a name="usage"></a>Using MIDI Patchbay
 ---------------------------------------
 
 Each MIDI Patchbay document window is divided into two parts: a patch list
@@ -99,7 +99,7 @@ Now any notes up to A4 will be sent your synth software's MIDI channel 1
 and notes above A4 will go to channel 2.
 
 
-<a name="problems">Known Problems</a>
+<a name="problems"></a>Known Problems
 -------------------------------------
 
 ### Creating a MIDI routing loop can crash OS X
@@ -147,7 +147,7 @@ be deleted even when it isn't. Saving, closing and re-opening the
 document will fix this.
 
 
-<a name="future">Future Additions</a>
+<a name="future"></a>Future Additions
 -------------------------------------
 
 This is what's currently on my to do list for MIDI Patchbay in rough order
@@ -168,7 +168,7 @@ shortcuts to enable or disable groups for live use
 has neat ways of doing things like keyboard splits or
 arpeggiation
 
-<a name="credits">Credits</a></h2>
+<a name="credits"></a>Credits
 ----------------------------------
 
 The software was designed and written by
@@ -181,7 +181,7 @@ Many, many thanks to Kurt Revis both for writing
 this thing would have been a nightmare, and for answering a million of my questions.
 Without his help I would have struggled over the code for a lot longer.
 
-<a name="history">Version History</a>
+<a name="history"></a>Version History
 -------------------------------------
 
 ### Version 1.0.2 (???)

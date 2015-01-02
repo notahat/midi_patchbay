@@ -25,7 +25,7 @@ static void midiReadProc (const MIDIPacketList* packetList, void* createRefCon, 
     descriptor = [PYMIDIEndpointDescriptor descriptorWithName:newName uniqueID:newUniqueID];
     
     [self release];
-    return [[manager realSourceWithDescriptor:descriptor] retain];
+    return (PYMIDIRealSource *)[[manager realSourceWithDescriptor:descriptor] retain];
 }
 
 
@@ -39,8 +39,8 @@ static void midiReadProc (const MIDIPacketList* packetList, void* createRefCon, 
     else
         newEndpointRef = NULL;
 
-    if (newEndpointRef == NULL)  newEndpointRef = PYMIDIGetSourceByUniqueID (uniqueID);
-    if (newEndpointRef == NULL)  newEndpointRef = PYMIDIGetSourceByName (name);
+    if (!newEndpointRef)  newEndpointRef = PYMIDIGetSourceByUniqueID (uniqueID);
+    if (!newEndpointRef)  newEndpointRef = PYMIDIGetSourceByName (name);
 
     if (midiEndpointRef != newEndpointRef) {
         [self stopIO];
@@ -54,7 +54,7 @@ static void midiReadProc (const MIDIPacketList* packetList, void* createRefCon, 
 
 - (void)startIO
 {
-    if (midiEndpointRef == nil || midiPortRef != nil) return;
+    if (!midiEndpointRef || midiPortRef ) return;
 
     MIDIInputPortCreate (
         [[PYMIDIManager sharedInstance] midiClientRef], CFSTR("PYMIDIRealSource"),
@@ -66,7 +66,7 @@ static void midiReadProc (const MIDIPacketList* packetList, void* createRefCon, 
 
 - (void)stopIO
 {
-    if (midiPortRef == nil) return;
+    if (!midiPortRef) return;
     
     MIDIPortDisconnectSource (midiPortRef, midiEndpointRef);
     MIDIPortDispose (midiPortRef);
@@ -86,7 +86,7 @@ static void midiReadProc (const MIDIPacketList* packetList, void* createRefCon, 
     NSEnumerator* enumerator = [receivers objectEnumerator];
     id receiver;
 
-    while (receiver = [[enumerator nextObject] nonretainedObjectValue])
+    while ((receiver = [[enumerator nextObject] nonretainedObjectValue]))
         [receiver processMIDIPacketList:packetList sender:self];
         
     [pool release];

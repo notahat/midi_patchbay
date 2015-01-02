@@ -41,7 +41,7 @@
     // Uncomment the following line for debugging if you want to
     // disable undo, which makes tracking retain/release issues easier.
     //[self setUndoManager:nil];
-
+    selectedIndex = -1;
     return self;
 }
 
@@ -50,7 +50,7 @@
 {
     NSButtonCell*		buttonCell;
     PatchTableCell*		patchTableCell;
-    
+
     [super windowControllerDidLoadNib:windowController];
 
     // These are so that our window and panel use the correct undo manager
@@ -112,7 +112,6 @@
     
     // See the comment on tabView:shouldSelectTabViewItem; in EndpointTableDataSource
     [virtualEndpointTabView setDelegate:inputTableDataSource];
-    
     
     [self syncWithLoadedData];
 }
@@ -192,7 +191,7 @@
     [patchTable reloadData];
 
     if ([patchArray count] > 0)
-        [patchTable selectRow:0 byExtendingSelection:NO];
+        [patchTable selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
     else
         [patchTable deselectAll:self];
     
@@ -252,15 +251,17 @@
     [self setTransposeControls];
     [self setTransmitClockControls];
     [self setOutputPopUp];
+    
+    selectedIndex = patchIndex;
 }
 
 
-- (IBAction)addPatchButtonPressed:(id)sender
+- (IBAction) addPatchButtonPressed:(id)sender
 {
-    Patch* patch;
-    
     if (selectedPatch != nil) {
-        patch = [[Patch alloc] initFromPatch:selectedPatch];
+        Patch *patch = [[Patch alloc] initFromPatch:selectedPatch];
+        [self addPatch:patch atIndex:[patchArray count]];
+        [patch release];
     }
     else {
         // Pick a default input and output for a blank patch
@@ -276,14 +277,20 @@
         PYMIDIEndpoint* output;
         do { output = [enumerator nextObject]; } while ([output isIACBus]);
 
-        patch = [[Patch alloc] initWithInput:input output:output];
+        Patch *patch = [[Patch alloc] initWithInput:input output:output];
+        [self addPatch:patch atIndex:[patchArray count]];
+        [patch release];
     }
-    
-    [self addPatch:patch atIndex:[patchArray count]];
-    
-    [patch release];
+
 }
 
+- (IBAction)removePatchButtonPressed:(id)sender
+{
+    if (selectedIndex >= 0) {
+        [self removePatchAtIndex: selectedIndex];
+    }
+    
+}
 
 - (void)addPatch:(Patch*)patch atIndex:(int)index
 {
@@ -293,7 +300,7 @@
     [patchArray insertObject:patch atIndex:index];
     
     [patchTable reloadData];
-    [patchTable selectRow:index byExtendingSelection:NO];
+    [patchTable selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:NO];
 
     [[undoManager prepareWithInvocationTarget:self]
         removePatchAtIndex:index
@@ -1021,13 +1028,15 @@
     
     panelWasOpenedToInputs = YES;
     
+    [documentWindow beginSheet: virtualEndpointPanel completionHandler: nil];
+    /*
     [[NSApplication sharedApplication]
         beginSheet:virtualEndpointPanel
         modalForWindow:documentWindow
         modalDelegate:self
         didEndSelector:@selector(endpointPanelDidEnd:returnCode:contextInfo:)
         contextInfo:nil
-    ];
+    ];*/
 }
 
 
@@ -1041,14 +1050,15 @@
     [[self undoManager] beginUndoGrouping];
 
     panelWasOpenedToInputs = NO;
-    
+    [documentWindow beginSheet:virtualEndpointPanel completionHandler: nil];
+    /*
     [[NSApplication sharedApplication]
         beginSheet:virtualEndpointPanel
         modalForWindow:documentWindow
         modalDelegate:self
         didEndSelector:@selector(endpointPanelDidEnd:returnCode:contextInfo:)
         contextInfo:nil
-    ];
+    ];*/
 }
 
 
@@ -1058,10 +1068,11 @@
         [[[self displayName] lastPathComponent] stringByDeletingPathExtension]
     ];
     
-    [[inputTable dataSource] tableView:inputTable newEndpointWithName:baseName];
+    [(EndpointTableDataSource *)[inputTable dataSource] tableView:inputTable newEndpointWithName:baseName];
     
     // Set up the newly created endpoint for editing
-    [inputTable selectRow:[inputTable numberOfRows]-1 byExtendingSelection:NO];
+
+    [inputTable selectRowIndexes:[NSIndexSet indexSetWithIndex:[inputTable numberOfRows]-1] byExtendingSelection:NO];
     [inputTable editColumn:0 row:[inputTable selectedRow] withEvent:nil select:YES];
 }
     
@@ -1073,10 +1084,11 @@
         [[[self displayName] lastPathComponent] stringByDeletingPathExtension]
     ];
 
-    [[outputTable dataSource] tableView:outputTable newEndpointWithName:baseName];
+    [(EndpointTableDataSource *)[outputTable dataSource] tableView:outputTable newEndpointWithName:baseName];
 
     // Set up the newly created endpoint for editing
-    [outputTable selectRow:[outputTable numberOfRows]-1 byExtendingSelection:NO];
+    [outputTable selectRowIndexes:[NSIndexSet indexSetWithIndex:[outputTable numberOfRows]-1] byExtendingSelection:NO];
+
     [outputTable editColumn:0 row:[outputTable selectedRow] withEvent:nil select:YES];
 }
 
@@ -1086,7 +1098,7 @@
 {
     if ([virtualEndpointPanel makeFirstResponder:nil]) {        
         [virtualEndpointPanel orderOut:self];
-        [[NSApplication sharedApplication] endSheet:virtualEndpointPanel returnCode:0];
+        [documentWindow endSheet:virtualEndpointPanel returnCode:0];
     }
 }
 

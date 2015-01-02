@@ -27,15 +27,11 @@ PYMIDIGetEndpointName (MIDIEndpointRef midiEndpointRef)
 
     // Stick the two names together, handling all the cases where one or the other doesn't exist
     NSString* name;
-    
     if (endpointName != nil) {
         if (deviceName != nil) {
-            bool endpointNameBeginsWithDeviceName = 
-                CFStringCompareWithOptions (
-                    endpointName, deviceName,
-                    CFRangeMake(0, CFStringGetLength (deviceName)),
-                    kCFCompareCaseInsensitive
-                ) == kCFCompareEqualTo;
+            NSString *endpointNameNS = (NSString *)endpointName;
+            NSString *deviceNameNS = (NSString *)deviceName;
+            bool endpointNameBeginsWithDeviceName = [endpointNameNS compare:deviceNameNS options:NSCaseInsensitiveSearch] == NSOrderedSame;
                 
             if (endpointNameBeginsWithDeviceName)
                 name = [NSString stringWithString:(NSString*)endpointName];
@@ -215,8 +211,8 @@ PYMIDIAllocateUniqueID (void)
 Boolean
 PYMIDIIsEndpointNameTaken (NSString* name)
 {
-    return PYMIDIGetSourceByName      (name) != NULL ||
-           PYMIDIGetDestinationByName (name) != NULL;
+    return PYMIDIGetSourceByName      (name) ||
+           PYMIDIGetDestinationByName (name) ;
 }
 
 

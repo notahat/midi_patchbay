@@ -4,7 +4,7 @@
 @class PatchbayDocument;
 
 
-@interface PatchTableDataSource : NSObject {
+@interface PatchTableDataSource : NSObject <NSTableViewDataSource, NSTableViewDelegate>  {
     PatchbayDocument*	document;
     NSMutableArray*		patchArray;
 }

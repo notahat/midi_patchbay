@@ -1,7 +1,7 @@
 #import <Cocoa/Cocoa.h>
+#import <AppKit/AppKit.h>
 
-
-@interface KeyTableView : NSTableView {
+@interface KeyTableView : NSTableView  {
 
 }
 
@@ -11,7 +11,7 @@
 - (void)moveUp:(id)sender;
 - (void)moveDown:(id)sender;
 
-- (BOOL)validateMenuItem:(id <NSMenuItem>)menuItem;
+- (BOOL)validateUserInterfaceItem:(id<NSValidatedUserInterfaceItem>) menuItem;
 - (void)clear:(id)sender;
 
 - (void)textDidEndEditing:(NSNotification*)notification;

@@ -3,7 +3,7 @@
 @class PYMIDIEndpointDescriptor;
 @class PYMIDIEndpoint;
 
-@interface PYMIDIEndpointSet : NSObject {
+@interface PYMIDIEndpointSet : NSObject <NSKeyedArchiverDelegate, NSKeyedUnarchiverDelegate> {
     NSArray*		endpointArray;
 }
 

@@ -2,7 +2,7 @@
 #import <PYMIDI/PYMIDI.h>
 
 
-@interface EndpointTableDataSource : NSObject {
+@interface EndpointTableDataSource : NSObject <NSTableViewDataSource, NSTabViewDelegate, NSTableViewDelegate> {
     Class			endpointClass;
     NSMutableArray*	endpointArray;
     NSUndoManager*  undoManager;

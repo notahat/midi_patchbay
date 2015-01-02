@@ -54,11 +54,13 @@
 - (BOOL)control:(NSControl*)control isValidObject:(id)value
 {
     if (PYMIDIIsEndpointNameTaken (value)) {
-        NSRunAlertPanel (
-            [NSString stringWithFormat:@"The name \"%@\" is already taken.", value],
-            @"Please choose a different name.",
-            nil, nil, nil
-        );
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"OK"];
+        [alert setMessageText: [NSString stringWithFormat:@"The name \"%@\" is already taken.", value]];
+        [alert setInformativeText:@"Please choose a different name."];
+        [alert setAlertStyle:NSWarningAlertStyle];
+        [alert runModal];
+
         return NO;
     }
     else
@@ -72,11 +74,13 @@
 
     if (![value isEqualToString:@""] && ![value isEqualToString:[endpoint name]]) {
         if (PYMIDIIsEndpointNameTaken (value)) {
-            NSRunAlertPanel (
-                [NSString stringWithFormat:@"The name \"%@\" is already taken.", value],
-                @"Please choose a different name.",
-                nil, nil, nil
-            );
+            NSAlert *alert = [[NSAlert alloc] init];
+            [alert addButtonWithTitle:@"OK"];
+            [alert setMessageText: [NSString stringWithFormat:@"The name \"%@\" is already taken.", value]];
+            [alert setInformativeText:@"Please choose a different name."];
+            [alert setAlertStyle:NSWarningAlertStyle];
+            [alert runModal];
+
         }
         else {
             [self tableView:tableView setName:(NSString*)value forEndpointAtIndex:rowIndex];
@@ -90,11 +94,14 @@
     PYMIDIVirtualEndpoint* endpoint = [endpointArray objectAtIndex:[tableView selectedRow]];
     
     if ([endpoint isInUse]) {
-        NSRunAlertPanel (
-            @"The selection is in use by one or more patches and cannot be deleted.",
-            @"",
-            nil, nil, nil
-        );
+        NSAlert *alert = [[NSAlert alloc] init];
+
+        [alert addButtonWithTitle:@"OK"];
+        [alert setMessageText:@"The selection is in use by one or more patches and cannot be deleted."];
+        [alert setInformativeText:@""];
+        [alert setAlertStyle:NSWarningAlertStyle];
+        [alert runModal];
+
     }
     else {
         [self tableView:tableView removeEndpointAtIndex:[tableView selectedRow]];

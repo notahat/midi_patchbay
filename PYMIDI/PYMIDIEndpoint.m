@@ -113,7 +113,7 @@
 - (void)setNameFromMIDIEndpoint
 {
     [name release];
-    name = [PYMIDIGetEndpointName (midiEndpointRef) retain];
+    name = [[PYMIDIGetEndpointName (midiEndpointRef) retain] mutableCopy];
 }
 
 
@@ -177,12 +177,12 @@
     
     // Generate the display name from the info we've gathered
     if ([names count] > 0)
-        displayName = [names componentsJoinedByString:@", "];
+        displayName = [[names componentsJoinedByString:@", "] mutableCopy];
     else {
         if (name != nil)
             displayName = name;
         else
-            displayName = @"UNKNOWN DEVICE";
+            displayName = [@"UNKNOWN DEVICE" mutableCopy];
     }
     
     [displayName retain];
@@ -195,7 +195,7 @@
 }
 
 
-- (BOOL)setName:(NSString*)newName
+- (BOOL)setName:(NSMutableString*)newName
 {	
     PYMIDIManager* manager = [PYMIDIManager sharedInstance];
     OSStatus result;
@@ -217,10 +217,10 @@
 }
 
 
-- (NSString*)displayName
+- (NSMutableString*)displayName
 {
     if ([self isOffline])
-        return [NSString stringWithFormat:@"%@ (offline)", displayName];
+        return [NSMutableString stringWithFormat:@"%@ (offline)", displayName];
     else
         return displayName;
 }

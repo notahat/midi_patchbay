@@ -154,6 +154,15 @@ midiNotifyProc (const MIDINotification* message, void* refCon)
             [self realSourceWithMIDIEndpointRef:midiEndpointRef] == nil)
         {
             endpoint = [[PYMIDIRealSource alloc] initWithMIDIEndpointRef:midiEndpointRef];
+            int dups;
+            NSArray* filteredArray;
+            NSPredicate *bPredicate = [NSPredicate predicateWithFormat:@"SELF.displayName beginswith[c] %@",endpoint.displayName];
+            filteredArray = [realSourceArray filteredArrayUsingPredicate:bPredicate];
+            dups = [filteredArray count];
+            if(dups>0) {
+                [[endpoint displayName] appendString:[NSString stringWithFormat:@" %d",dups+1]];
+            }
+            
             [realSourceArray addObject:endpoint];
         }
     }
@@ -231,6 +240,15 @@ midiNotifyProc (const MIDINotification* message, void* refCon)
             [self realDestinationWithMIDIEndpointRef:midiEndpointRef] == nil)
         {
             endpoint = [[PYMIDIRealDestination alloc] initWithMIDIEndpointRef:midiEndpointRef];
+            int dups;
+            NSArray* filteredArray;
+            NSPredicate *bPredicate = [NSPredicate predicateWithFormat:@"SELF.displayName beginswith[c] %@",endpoint.displayName];
+            filteredArray = [realDestinationArray filteredArrayUsingPredicate:bPredicate];
+            dups = [filteredArray count];
+            if(dups>0) {
+                [[endpoint displayName] appendString:[NSString stringWithFormat:@" %d",dups+1]];
+            }
+
             [realDestinationArray addObject:endpoint];
         }
     }

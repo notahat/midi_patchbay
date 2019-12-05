@@ -172,4 +172,4 @@ Many, many thanks to Kurt Revis both for writing [MIDI Monitor](http://www.snoiz
 
 ***
 
-*Copyright &copy; 2003-2004 [Peter Yandell](mailto:pete@notahat.com).* All Rights Reserved.
+*Copyright &copy; 2003-2019 [Peter Yandell](mailto:pete@notahat.com).* All Rights Reserved.

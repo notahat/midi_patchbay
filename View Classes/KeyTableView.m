@@ -1,5 +1,5 @@
 #import "KeyTableView.h"
-
+#import "TableDataSource.h"
 
 @implementation KeyTableView
 
@@ -51,11 +51,10 @@
 - (void)clear:(id)sender
 {
     if ([self selectedRow] == -1) return;
-    
-    if ([[self dataSource] respondsToSelector:@selector(deleteSelection:)]) {
-        [[self dataSource] performSelector:@selector(deleteSelection:) withObject:self];
+	if ([[self dataSource] isKindOfClass:[TableDataSource class]]) {
+		[(TableDataSource *)[self dataSource] deleteSelection:self];
         [self deselectAll:self];
-        [self reloadData];
+		[self reloadData];
     }
 }
 

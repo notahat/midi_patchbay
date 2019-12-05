@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3092FEA6239969AF0057E329 /* TableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3092FEA5239969AF0057E329 /* TableDataSource.m */; };
 		C12C7FE905AECD9D0066E007 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
 		C12C7FEA05AECD9D0066E007 /* PatchbayDocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B4FDCFA73011CA2CEA /* PatchbayDocument.nib */; };
 		C12C7FEB05AECD9D0066E007 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
@@ -45,6 +46,8 @@
 		3092FEA123995FA60057E329 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		3092FEA223995FA60057E329 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/PatchbayDocument.nib; sourceTree = "<group>"; };
 		3092FEA323995FA90057E329 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3092FEA4239968090057E329 /* TableDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TableDataSource.h; path = "Controller Classes/TableDataSource.h"; sourceTree = "<group>"; };
+		3092FEA5239969AF0057E329 /* TableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableDataSource.m; path = "Controller Classes/TableDataSource.m"; sourceTree = "<group>"; };
 		C12C800205AECD9D0066E007 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C12C800305AECD9D0066E007 /* MIDI Patchbay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MIDI Patchbay.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C152A6E907559AE9004FF49E /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
@@ -159,6 +162,8 @@
 				F5C0AB14033196D6018C91A3 /* PatchbayDocument.m */,
 				C183B43603E8F7C500BCF81F /* PatchbayController.h */,
 				C183B43703E8F7C500BCF81F /* PatchbayController.m */,
+				3092FEA4239968090057E329 /* TableDataSource.h */,
+				3092FEA5239969AF0057E329 /* TableDataSource.m */,
 			);
 			name = "Controller Classes";
 			sourceTree = "<group>";
@@ -318,6 +323,7 @@
 				C12C7FF105AECD9D0066E007 /* main.m in Sources */,
 				C12C7FF205AECD9D0066E007 /* PatchbayDocument.m in Sources */,
 				C12C7FF305AECD9D0066E007 /* EndpointTableDataSource.m in Sources */,
+				3092FEA6239969AF0057E329 /* TableDataSource.m in Sources */,
 				C12C7FF405AECD9D0066E007 /* KeyTableView.m in Sources */,
 				C12C7FF505AECD9D0066E007 /* Patch.m in Sources */,
 				C12C7FF605AECD9D0066E007 /* PatchTableCellData.m in Sources */,

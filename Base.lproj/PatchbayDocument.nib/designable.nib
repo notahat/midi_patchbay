@@ -249,35 +249,6 @@
                                                 <action selector="filterChannelRadioButtonsChanged:" target="-2" id="203"/>
                                             </connections>
                                         </matrix>
-                                        <popUpButton verticalHuggingPriority="750" id="3re-Yk-FkA">
-                                            <rect key="frame" x="284" y="72" width="97" height="26"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <popUpButtonCell key="cell" type="push" title="Item1" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="Sms-js-DCk" id="mzq-eV-L4y">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="menu"/>
-                                                <menu key="menu" title="OtherViews" id="hVR-VB-S2C">
-                                                    <items>
-                                                        <menuItem title="Item1" state="on" id="Sms-js-DCk"/>
-                                                        <menuItem title="Item2" id="MkR-kd-aul"/>
-                                                        <menuItem title="Item3" id="Ln5-Y7-Sfe"/>
-                                                    </items>
-                                                </menu>
-                                            </popUpButtonCell>
-                                            <connections>
-                                                <action selector="remapChannelPopUpChanged:" target="-2" id="SNy-Px-LPg"/>
-                                            </connections>
-                                        </popUpButton>
-                                        <button id="Ngx-AK-SKd">
-                                            <rect key="frame" x="18" y="76" width="257" height="18"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="check" title="Sysex only pass ID" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="sn3-k2-dRc">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="remapChannelButtonChanged:" target="-2" id="1Je-gR-wrk"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                 </view>
                             </tabViewItem>
@@ -554,7 +525,7 @@ DQ
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <clipView key="contentView" id="AEk-dY-XP3">
                                                 <rect key="frame" x="1" y="1" width="318" height="226"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <autoresizingMask key="autoresizingMask"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" id="31" customClass="KeyTableView">
                                                         <rect key="frame" x="0.0" y="0.0" width="318" height="226"/>

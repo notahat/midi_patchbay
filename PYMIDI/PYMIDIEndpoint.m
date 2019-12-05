@@ -36,7 +36,7 @@
 {
     self = [self init];
     
-    name = [newName retain];
+    name = newName.mutableCopy;
     uniqueID = newUniqueID;
     
     return self;

@@ -158,7 +158,7 @@ midiNotifyProc (const MIDINotification* message, void* refCon)
             NSArray* filteredArray;
             NSPredicate *bPredicate = [NSPredicate predicateWithFormat:@"SELF.displayName beginswith[c] %@",endpoint.displayName];
             filteredArray = [realSourceArray filteredArrayUsingPredicate:bPredicate];
-            dups = [filteredArray count];
+            dups = (int)[filteredArray count];
             if(dups>0) {
                 [[endpoint displayName] appendString:[NSString stringWithFormat:@" %d",dups+1]];
             }
@@ -244,7 +244,7 @@ midiNotifyProc (const MIDINotification* message, void* refCon)
             NSArray* filteredArray;
             NSPredicate *bPredicate = [NSPredicate predicateWithFormat:@"SELF.displayName beginswith[c] %@",endpoint.displayName];
             filteredArray = [realDestinationArray filteredArrayUsingPredicate:bPredicate];
-            dups = [filteredArray count];
+            dups = (int)[filteredArray count];
             if(dups>0) {
                 [[endpoint displayName] appendString:[NSString stringWithFormat:@" %d",dups+1]];
             }

@@ -112,6 +112,8 @@ static void midiNotifyProc (const MIDINotification* message, void* refCon);
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"PYMIDISetupChanged" object:self];
             }
             break;
+		default:
+			break;
         }
         
         isHandlingNotification = NO;
@@ -143,7 +145,7 @@ midiNotifyProc (const MIDINotification* message, void* refCon)
     
     // Find any non-virtual endpoints that we don't already know about
     int i;
-    int count = MIDIGetNumberOfSources();
+    int count = (int)MIDIGetNumberOfSources();
     for (i = 0; i < count; i++) {
         MIDIEndpointRef midiEndpointRef = MIDIGetSource (i);
         
@@ -220,7 +222,7 @@ midiNotifyProc (const MIDINotification* message, void* refCon)
     
     // Find any non-virtual endpoints that we don't already know about
     int i;
-    int count = MIDIGetNumberOfDestinations();
+    int count = (int)MIDIGetNumberOfDestinations();
     for (i = 0; i < count; i++) {
         MIDIEndpointRef midiEndpointRef = MIDIGetDestination (i);
         

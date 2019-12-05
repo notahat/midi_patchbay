@@ -33,7 +33,7 @@
     if (midiEndpointRef && PYMIDIDoesDestinationStillExist (midiEndpointRef))
         newEndpointRef = midiEndpointRef;
     else
-        newEndpointRef = NULL;
+        newEndpointRef = 0;
 
     if (!newEndpointRef) newEndpointRef = PYMIDIGetDestinationByUniqueID (uniqueID);
     if (!newEndpointRef) newEndpointRef = PYMIDIGetDestinationByName (name);
@@ -64,7 +64,7 @@
     if (!midiPortRef) return;
     
     MIDIPortDispose (midiPortRef);
-    midiPortRef = nil;
+    midiPortRef = 0;
 }
 
 

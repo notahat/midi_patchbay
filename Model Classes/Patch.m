@@ -504,7 +504,7 @@ midiPacketListSize (const MIDIPacketList* packetList)
     for (i = 0; i < packetList->numPackets; i++)
         packet = MIDIPacketNext (packet);
         
-    return (void*)packet - (void*)packetList;
+    return (unsigned int)((void*)packet - (void*)packetList);
 }
 
 

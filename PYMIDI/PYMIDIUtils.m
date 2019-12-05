@@ -91,7 +91,7 @@ PYMIDIGetSourceByUniqueID (SInt32 uniqueIDToMatch)
             return endpoint;
     }
     
-    return NULL;
+    return 0;
 }
 
 
@@ -109,7 +109,7 @@ PYMIDIGetSourceByName (NSString* nameToMatch)
         if (name != nil && [name isEqualToString:nameToMatch]) return endpoint;
     }
     
-    return NULL;
+    return 0;
 }
 
 
@@ -147,7 +147,7 @@ PYMIDIGetDestinationByUniqueID (SInt32 uniqueIDToMatch)
             return endpoint;
     }
     
-    return NULL;
+    return 0;
 }
 
 
@@ -164,7 +164,7 @@ PYMIDIGetDestinationByName (NSString* nameToMatch)
         if (name != nil && [name isEqualToString:nameToMatch]) return endpoint;
     }
     
-    return NULL;
+    return 0;
 }
     
     
@@ -176,14 +176,14 @@ PYMIDIIsUniqueIDInUse (SInt32 uniqueID)
     MIDIEndpointRef endpoint;
     SInt32 usedID;
     
-    count = MIDIGetNumberOfSources();
+    count = (int)MIDIGetNumberOfSources();
     for (index = 0; index < count; index++) {
         endpoint = MIDIGetSource (index);
         MIDIObjectGetIntegerProperty (endpoint, kMIDIPropertyUniqueID, &usedID);
         if (usedID == uniqueID) return true;
     }
     
-    count = MIDIGetNumberOfDestinations();
+    count = (int)MIDIGetNumberOfDestinations();
     for (index = 0; index < count; index++) {
         endpoint = MIDIGetDestination (index);
         MIDIObjectGetIntegerProperty (endpoint, kMIDIPropertyUniqueID, &usedID);
@@ -201,7 +201,7 @@ PYMIDIAllocateUniqueID (void)
     static SInt32 sequence = 0;
     
     do {
-        uniqueID = time (NULL) + sequence++;
+        uniqueID = (SInt32)time(NULL) + sequence++;
     } while (PYMIDIIsUniqueIDInUse (uniqueID));
     
     return uniqueID;

@@ -38,7 +38,7 @@
 
 - (int)numberOfRowsInTableView:(NSTableView*)tableView
 {
-    return [endpointArray count];
+    return (int)[endpointArray count];
 }
 
 
@@ -104,7 +104,7 @@
 
     }
     else {
-        [self tableView:tableView removeEndpointAtIndex:[tableView selectedRow]];
+        [self tableView:tableView removeEndpointAtIndex:(int)[tableView selectedRow]];
     }
 }
 
@@ -136,7 +136,7 @@
     // Allocate the new endpoint and add it to the endpoint array
     newEndpoint = [[endpointClass alloc] initWithName:newName];
     
-    [self tableView:tableView addEndpoint:newEndpoint atIndex:[endpointArray count]];
+    [self tableView:tableView addEndpoint:newEndpoint atIndex:(int)[endpointArray count]];
     
     [newEndpoint release];
 }

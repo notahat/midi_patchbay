@@ -38,7 +38,7 @@
 
 - (int)numberOfRowsInTableView:(NSTableView*)tableView
 {
-    return [patchArray count];
+    return (int)[patchArray count];
 }
 
 
@@ -91,7 +91,7 @@
 
 - (void)deleteSelection:(NSTableView*)tableView
 {
-    [document removePatchAtIndex:[tableView selectedRow]];
+    [document removePatchAtIndex:(int)[tableView selectedRow]];
 }
 
 

@@ -37,7 +37,7 @@ static void midiReadProc (const MIDIPacketList* packetList, void* createRefCon, 
     if (midiEndpointRef && PYMIDIDoesSourceStillExist (midiEndpointRef))
         newEndpointRef = midiEndpointRef;
     else
-        newEndpointRef = NULL;
+        newEndpointRef = 0;
 
     if (!newEndpointRef)  newEndpointRef = PYMIDIGetSourceByUniqueID (uniqueID);
     if (!newEndpointRef)  newEndpointRef = PYMIDIGetSourceByName (name);
@@ -70,7 +70,7 @@ static void midiReadProc (const MIDIPacketList* packetList, void* createRefCon, 
     
     MIDIPortDisconnectSource (midiPortRef, midiEndpointRef);
     MIDIPortDispose (midiPortRef);
-    midiPortRef = nil;
+    midiPortRef = 0;
 }
 
 

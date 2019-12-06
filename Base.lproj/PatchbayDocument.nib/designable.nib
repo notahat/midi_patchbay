@@ -152,7 +152,7 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <tabView id="141">
+                    <tabView initialItem="143" id="141">
                         <rect key="frame" x="468" y="89" width="472" height="291"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <font key="font" metaFont="message"/>

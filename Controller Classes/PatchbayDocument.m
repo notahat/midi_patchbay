@@ -1000,16 +1000,10 @@
     [[self undoManager] beginUndoGrouping];
     
     panelWasOpenedToInputs = YES;
-    
-    [documentWindow beginSheet: virtualEndpointPanel completionHandler: nil];
-    /*
-    [[NSApplication sharedApplication]
-        beginSheet:virtualEndpointPanel
-        modalForWindow:documentWindow
-        modalDelegate:self
-        didEndSelector:@selector(endpointPanelDidEnd:returnCode:contextInfo:)
-        contextInfo:nil
-    ];*/
+
+	[documentWindow beginSheet:virtualEndpointPanel completionHandler:^(NSModalResponse returnCode) {
+		[self endpointPanelDidEnd:self->virtualEndpointPanel returnCode:returnCode contextInfo:nil];
+	}];
 }
 
 
@@ -1023,15 +1017,9 @@
     [[self undoManager] beginUndoGrouping];
 
     panelWasOpenedToInputs = NO;
-    [documentWindow beginSheet:virtualEndpointPanel completionHandler: nil];
-    /*
-    [[NSApplication sharedApplication]
-        beginSheet:virtualEndpointPanel
-        modalForWindow:documentWindow
-        modalDelegate:self
-        didEndSelector:@selector(endpointPanelDidEnd:returnCode:contextInfo:)
-        contextInfo:nil
-    ];*/
+	[documentWindow beginSheet:virtualEndpointPanel completionHandler:^(NSModalResponse returnCode) {
+		[self endpointPanelDidEnd:self->virtualEndpointPanel returnCode:returnCode contextInfo:nil];
+	}];
 }
 
 
@@ -1076,7 +1064,7 @@
 }
 
 
-- (void)endpointPanelDidEnd:(NSWindow*)sheet returnCode:(int)returnCode contextInfo:(void*)contextInfo
+- (void)endpointPanelDidEnd:(NSWindow*)sheet returnCode:(NSModalResponse)returnCode contextInfo:(void*)contextInfo
 {
     int tab = (int)[virtualEndpointTabView indexOfTabViewItem:[virtualEndpointTabView selectedTabViewItem]];
     

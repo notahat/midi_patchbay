@@ -172,7 +172,7 @@
 
 - (IBAction)endpointPanelButtonPressed:(id)sender;
 
-- (void)endpointPanelDidEnd:(NSWindow*)sheet returnCode:(int)returnCode contextInfo:(void*)contextInfo;
+- (void)endpointPanelDidEnd:(NSWindow*)sheet returnCode:(NSModalResponse)returnCode contextInfo:(void*)contextInfo;
 
 
 @end

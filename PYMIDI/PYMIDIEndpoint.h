@@ -7,9 +7,9 @@
 
 @interface PYMIDIEndpoint : NSObject <NSCoding> {
     MIDIEndpointRef		midiEndpointRef;
-    NSString*			name;
+    NSMutableString*			name;
     SInt32				uniqueID;
-    NSString*			displayName;
+    NSMutableString*			displayName;
     
     NSMutableSet*		receivers;
     NSMutableSet*		senders;
@@ -37,10 +37,10 @@
 /* Resets the name and uniqueID from the MIDIEndpointRef */
 - (void)setPropertiesFromMIDIEndpoint;
 
-- (NSString*)name;
+- (NSMutableString*)name;
 - (BOOL)setName:(NSString*)newName;
 
-- (NSString*)displayName;
+- (NSMutableString*)displayName;
 - (NSComparisonResult)compareByDisplayName:(PYMIDIEndpoint*)endpoint;
 
 - (SInt32)uniqueID;

@@ -11,34 +11,23 @@
     
     if (self != nil) {
         endpointClass = newEndpointClass;
-        endpointArray = [newEndpointArray retain];
-        undoManager = [newUndoManager retain];
+        endpointArray = newEndpointArray;
+        undoManager = newUndoManager;
     }
     
     return self;
 }
 
 
-- (void)dealloc
-{
-    [endpointArray release];
-    [undoManager release];
-    
-    [super dealloc];
-}
-
-
 - (void)setEndpointArray:(NSMutableArray*)newEndpointArray
 {
-    [newEndpointArray retain];
-    [endpointArray release];
     endpointArray = newEndpointArray;
 }
 
 
 - (int)numberOfRowsInTableView:(NSTableView*)tableView
 {
-    return [endpointArray count];
+    return (int)[endpointArray count];
 }
 
 
@@ -54,11 +43,13 @@
 - (BOOL)control:(NSControl*)control isValidObject:(id)value
 {
     if (PYMIDIIsEndpointNameTaken (value)) {
-        NSRunAlertPanel (
-            [NSString stringWithFormat:@"The name \"%@\" is already taken.", value],
-            @"Please choose a different name.",
-            nil, nil, nil
-        );
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"OK"];
+        [alert setMessageText: [NSString stringWithFormat:@"The name \"%@\" is already taken.", value]];
+        [alert setInformativeText:@"Please choose a different name."];
+        [alert setAlertStyle:NSWarningAlertStyle];
+        [alert runModal];
+
         return NO;
     }
     else
@@ -72,11 +63,13 @@
 
     if (![value isEqualToString:@""] && ![value isEqualToString:[endpoint name]]) {
         if (PYMIDIIsEndpointNameTaken (value)) {
-            NSRunAlertPanel (
-                [NSString stringWithFormat:@"The name \"%@\" is already taken.", value],
-                @"Please choose a different name.",
-                nil, nil, nil
-            );
+            NSAlert *alert = [[NSAlert alloc] init];
+            [alert addButtonWithTitle:@"OK"];
+            [alert setMessageText: [NSString stringWithFormat:@"The name \"%@\" is already taken.", value]];
+            [alert setInformativeText:@"Please choose a different name."];
+            [alert setAlertStyle:NSWarningAlertStyle];
+            [alert runModal];
+
         }
         else {
             [self tableView:tableView setName:(NSString*)value forEndpointAtIndex:rowIndex];
@@ -90,14 +83,17 @@
     PYMIDIVirtualEndpoint* endpoint = [endpointArray objectAtIndex:[tableView selectedRow]];
     
     if ([endpoint isInUse]) {
-        NSRunAlertPanel (
-            @"The selection is in use by one or more patches and cannot be deleted.",
-            @"",
-            nil, nil, nil
-        );
+        NSAlert *alert = [[NSAlert alloc] init];
+
+        [alert addButtonWithTitle:@"OK"];
+        [alert setMessageText:@"The selection is in use by one or more patches and cannot be deleted."];
+        [alert setInformativeText:@""];
+        [alert setAlertStyle:NSWarningAlertStyle];
+        [alert runModal];
+
     }
     else {
-        [self tableView:tableView removeEndpointAtIndex:[tableView selectedRow]];
+        [self tableView:tableView removeEndpointAtIndex:(int)[tableView selectedRow]];
     }
 }
 
@@ -129,9 +125,7 @@
     // Allocate the new endpoint and add it to the endpoint array
     newEndpoint = [[endpointClass alloc] initWithName:newName];
     
-    [self tableView:tableView addEndpoint:newEndpoint atIndex:[endpointArray count]];
-    
-    [newEndpoint release];
+    [self tableView:tableView addEndpoint:newEndpoint atIndex:(int)[endpointArray count]];
 }
 
 
@@ -157,7 +151,7 @@
     NSWindow* window = [tableView window];
     if ([window isKeyWindow] && ![window makeFirstResponder:nil]) return;
     
-    PYMIDIVirtualEndpoint* endpoint = [[endpointArray objectAtIndex:index] retain];
+    PYMIDIVirtualEndpoint* endpoint = [endpointArray objectAtIndex:index];
     
     [endpoint makePrivate:YES];
     [endpointArray removeObjectAtIndex:index];
@@ -168,15 +162,13 @@
     [[undoManager prepareWithInvocationTarget:self]
         tableView:tableView addEndpoint:endpoint atIndex:index
     ];
-    
-    [endpoint release];
 }
 
 
 - (void)tableView:(NSTableView*)tableView setName:(NSString*)name forEndpointAtIndex:(int)index
 {
     PYMIDIVirtualEndpoint* endpoint = [endpointArray objectAtIndex:index];
-    NSString* oldName = [[endpoint name] retain];
+    NSString* oldName = [endpoint name];
     
     [endpoint setName:name];
     [tableView reloadData];

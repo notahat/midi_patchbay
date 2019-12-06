@@ -1,15 +1,14 @@
 #import <Cocoa/Cocoa.h>
 #import <PYMIDI/PYMIDI.h>
+#import "TableDataSource.h"
 
-
-@interface EndpointTableDataSource : NSObject {
+@interface EndpointTableDataSource : TableDataSource <NSTabViewDelegate> {
     Class			endpointClass;
     NSMutableArray*	endpointArray;
     NSUndoManager*  undoManager;
 }
 
 - (EndpointTableDataSource*)initWithEndpointClass:(Class)newEndpointClass endpointArray:(NSMutableArray*)newEndpointArray undoManager:(NSUndoManager*)newUndoManager;
-- (void)dealloc;
 
 - (void)setEndpointArray:(NSMutableArray*)newEndpointArray;
 
@@ -17,7 +16,6 @@
 - (id)tableView:(NSTableView*)tableView objectValueForTableColumn:(NSTableColumn*)column row:(int)rowIndex;
 - (BOOL)control:(NSControl*)control isValidObject:(id)value;
 - (void)tableView:(NSTableView*)tableView setObjectValue:(id)value forTableColumn:(NSTableColumn*)column row:(int)rowIndex;
-- (void)deleteSelection:(NSTableView*)tableView;
 
 - (BOOL)tabView:(NSTabView*)tabView shouldSelectTabViewItem:(NSTabViewItem*)tabViewItem;
 

@@ -27,28 +27,24 @@ PYMIDIGetEndpointName (MIDIEndpointRef midiEndpointRef)
 
     // Stick the two names together, handling all the cases where one or the other doesn't exist
     NSString* name;
-    
     if (endpointName != nil) {
         if (deviceName != nil) {
-            bool endpointNameBeginsWithDeviceName = 
-                CFStringCompareWithOptions (
-                    endpointName, deviceName,
-                    CFRangeMake(0, CFStringGetLength (deviceName)),
-                    kCFCompareCaseInsensitive
-                ) == kCFCompareEqualTo;
+			NSString *endpointNameNS = (__bridge NSString *)endpointName;
+			NSString *deviceNameNS = (__bridge NSString *)deviceName;
+            bool endpointNameBeginsWithDeviceName = [endpointNameNS compare:deviceNameNS options:NSCaseInsensitiveSearch] == NSOrderedSame;
                 
             if (endpointNameBeginsWithDeviceName)
-                name = [NSString stringWithString:(NSString*)endpointName];
+				name = [NSString stringWithString:(__bridge NSString*)endpointName];
             else
                 name = [NSString stringWithFormat:@"%@ %@", deviceName, endpointName];
         }
         else
-            name = [NSString stringWithString:(NSString*)endpointName];
+			name = [NSString stringWithString:(__bridge NSString*)endpointName];
     }
     
     else {
         if (deviceName != nil)
-            name = [NSString stringWithString:(NSString*)deviceName];
+			name = [NSString stringWithString:(__bridge NSString*)deviceName];
         else
             name = nil;   // Hopefully we'll never get here!
     }
@@ -95,7 +91,7 @@ PYMIDIGetSourceByUniqueID (SInt32 uniqueIDToMatch)
             return endpoint;
     }
     
-    return NULL;
+    return 0;
 }
 
 
@@ -113,7 +109,7 @@ PYMIDIGetSourceByName (NSString* nameToMatch)
         if (name != nil && [name isEqualToString:nameToMatch]) return endpoint;
     }
     
-    return NULL;
+    return 0;
 }
 
 
@@ -151,7 +147,7 @@ PYMIDIGetDestinationByUniqueID (SInt32 uniqueIDToMatch)
             return endpoint;
     }
     
-    return NULL;
+    return 0;
 }
 
 
@@ -168,7 +164,7 @@ PYMIDIGetDestinationByName (NSString* nameToMatch)
         if (name != nil && [name isEqualToString:nameToMatch]) return endpoint;
     }
     
-    return NULL;
+    return 0;
 }
     
     
@@ -180,14 +176,14 @@ PYMIDIIsUniqueIDInUse (SInt32 uniqueID)
     MIDIEndpointRef endpoint;
     SInt32 usedID;
     
-    count = MIDIGetNumberOfSources();
+    count = (int)MIDIGetNumberOfSources();
     for (index = 0; index < count; index++) {
         endpoint = MIDIGetSource (index);
         MIDIObjectGetIntegerProperty (endpoint, kMIDIPropertyUniqueID, &usedID);
         if (usedID == uniqueID) return true;
     }
     
-    count = MIDIGetNumberOfDestinations();
+    count = (int)MIDIGetNumberOfDestinations();
     for (index = 0; index < count; index++) {
         endpoint = MIDIGetDestination (index);
         MIDIObjectGetIntegerProperty (endpoint, kMIDIPropertyUniqueID, &usedID);
@@ -205,7 +201,7 @@ PYMIDIAllocateUniqueID (void)
     static SInt32 sequence = 0;
     
     do {
-        uniqueID = time (NULL) + sequence++;
+        uniqueID = (SInt32)time(NULL) + sequence++;
     } while (PYMIDIIsUniqueIDInUse (uniqueID));
     
     return uniqueID;
@@ -215,8 +211,8 @@ PYMIDIAllocateUniqueID (void)
 Boolean
 PYMIDIIsEndpointNameTaken (NSString* name)
 {
-    return PYMIDIGetSourceByName      (name) != NULL ||
-           PYMIDIGetDestinationByName (name) != NULL;
+    return PYMIDIGetSourceByName      (name) ||
+           PYMIDIGetDestinationByName (name) ;
 }
 
 

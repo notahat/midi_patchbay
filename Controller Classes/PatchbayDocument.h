@@ -11,7 +11,7 @@
 @class EndpointTableDataSource;
 
 
-@interface PatchbayDocument : NSDocument {
+@interface PatchbayDocument : NSDocument <NSWindowDelegate> {
     IBOutlet NSWindow*			documentWindow;
     
     // Stuff related to the table of patches
@@ -19,11 +19,9 @@
     IBOutlet NSTableView*		patchTable;
     PatchTableDataSource*		patchTableDataSource;
     
-    IBOutlet NSButton*			addPatchButton;
-    
     NSMutableArray*				patchArray;
     Patch*						selectedPatch;
-    
+    int                         selectedIndex;
     
     // Stuff related to editing a patch
     
@@ -84,11 +82,12 @@
 
 - (void)midiSetupChanged:(NSNotification*)notification;
 
-
 #pragma mark Patch table
 
 - (void)selectedPatchChanged:(NSNotification*)notification;
-- (IBAction)addPatchButtonPressed:(id)sender;
+- (IBAction)addRemovePatchButtonPressed:(NSSegmentedControl*)sender;
+- (void)addPatchButtonPressed:(id)sender;
+- (void)removePatchButtonPressed:(id)sender;
 
 - (void)addPatch:(Patch*)patch atIndex:(int)index;
 - (void)addPatchFromArchive:(NSData*)data atIndex:(int)index;
@@ -97,7 +96,6 @@
 
 - (NSData*)archivePatchForPasteBoard:(Patch*)patch;
 - (Patch*)unarchivePatchFromPasteBoard:(NSData*)data;
-
 
 #pragma mark Patch editing - MIDI Input
 
@@ -162,15 +160,18 @@
 - (IBAction)outputPopUpChanged:(id)sender;
 - (void)setOutput:(PYMIDIEndpoint*)output forPatch:(Patch*)patch;
 
-
 #pragma mark Virtual endpoints
 
-- (IBAction)newInputButtonPressed:(id)sender;
-- (IBAction)newOutputButtonPressed:(id)sender;
+- (IBAction)addRemoveInputButtonPressed:(NSSegmentedControl*)sender;
+- (void)addInputButtonPressed:(id)sender;
+- (void)removeInputButtonPressed:(id)sender;
+
+- (IBAction)addRemoveOutputButtonPressed:(NSSegmentedControl*)sender;
+- (void)addOutputButtonPressed:(id)sender;
+- (void)removeOutputButtonPressed:(id)sender;
 
 - (IBAction)endpointPanelButtonPressed:(id)sender;
 
-- (void)endpointPanelDidEnd:(NSWindow*)sheet returnCode:(int)returnCode contextInfo:(void*)contextInfo;
-
+- (void)endpointPanelDidEnd:(NSWindow*)sheet returnCode:(NSModalResponse)returnCode contextInfo:(void*)contextInfo;
 
 @end

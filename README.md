@@ -128,7 +128,7 @@ Many, many thanks to Kurt Revis both for writing [MIDI Monitor](http://www.snoiz
 
 * Modernization for macOS 10.10+ (Dan Wilcox & Anthony Lauzon)
 * Allow more then a single MIDI interface with the same name (Joshua Bates)
-* Ported Read Me.html to README.md markdown (Martin Delille)
+* Ported Read Me.html to README.md markdown (Martin Delille) as well as BUGS.md and TODO.md
 
 ### Version 1.0.3 (5 June 2008)
 
@@ -137,7 +137,7 @@ Many, many thanks to Kurt Revis both for writing [MIDI Monitor](http://www.snoiz
 
 ### Version 1.0.2 (31 May 2008)
 
-* Added an icon generously provided by Kevan Staples.
+* Added an icon generously provided by Kevan Staples
 
 ### Version 1.0.1 (13 January 2004)
 

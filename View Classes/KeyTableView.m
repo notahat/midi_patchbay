@@ -22,6 +22,12 @@
 }
 
 
+// remove focus from table view on Esc so Ok button can respond to Enter
+- (void)cancelOperation:(id)sender {
+	[[self window] makeFirstResponder:self.window.contentView];
+}
+
+
 - (void)moveUp:(id)sender
 {
     if ([self selectedRow] > 0) {
@@ -59,30 +65,31 @@
 }
 
 
-- (void)textDidEndEditing:(NSNotification*)notification
-{
-    // This is a hack to make the return key end editing and leave the selection
-    // on the current row rather than begin editing the next row.  It works by
-    // substituting a dodgy key code in place of the return key.
-    
-    if ([[[notification userInfo] objectForKey:@"NSTextMovement"] intValue] == NSReturnTextMovement) {
-        NSMutableDictionary *newUserInfo =
-            [NSMutableDictionary dictionaryWithDictionary:[notification userInfo]];
-        [newUserInfo setObject:[NSNumber numberWithInt:NSIllegalTextMovement] forKey:@"NSTextMovement"];
-        
-        NSNotification *newNotification = [NSNotification
-            notificationWithName:[notification name]
-            object:[notification object]
-            userInfo:newUserInfo
-        ];
-        
-        [super textDidEndEditing:newNotification];
-
-        [[self window] makeFirstResponder:self];
-    }
-    else 
-        [super textDidEndEditing:notification];
-}
+// UPDATE: this isn't needed anymore in 10.10+ as the current selection appears to no longer change
+//- (void)textDidEndEditing:(NSNotification*)notification
+//{
+//    // This is a hack to make the return key end editing and leave the selection
+//    // on the current row rather than begin editing the next row.  It works by
+//    // substituting a dodgy key code in place of the return key.
+//
+//    if ([[[notification userInfo] objectForKey:@"NSTextMovement"] intValue] == NSReturnTextMovement) {
+//        NSMutableDictionary *newUserInfo =
+//            [NSMutableDictionary dictionaryWithDictionary:[notification userInfo]];
+//        [newUserInfo setObject:[NSNumber numberWithInt:NSIllegalTextMovement] forKey:@"NSTextMovement"];
+//
+//        NSNotification *newNotification = [NSNotification
+//            notificationWithName:[notification name]
+//            object:[notification object]
+//            userInfo:newUserInfo
+//        ];
+//
+//        [super textDidEndEditing:newNotification];
+//
+//        [[self window] makeFirstResponder:self];
+//    }
+//    else
+//        [super textDidEndEditing:notification];
+//}
 
 
 @end

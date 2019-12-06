@@ -13,25 +13,15 @@
     
     if (self != nil) {
         document = newDocument;
-        patchArray = [newPatchArray retain];
+        patchArray = newPatchArray;
     }
     
     return self;
 }
 
 
-- (void)dealloc
-{
-    [patchArray release];
-    
-    [super dealloc];
-}
-
-
 - (void)setPatchArray:(NSMutableArray*)newPatchArray
 {
-    [newPatchArray retain];
-    [patchArray release];
     patchArray = newPatchArray;
 }
 

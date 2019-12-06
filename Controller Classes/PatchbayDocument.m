@@ -32,7 +32,6 @@
     selectedPatch = [[Patch alloc] initWithInput:input output:output];
     [selectedPatch rescueFromLimbo];
     patchArray = [[NSMutableArray alloc] initWithObjects:selectedPatch, nil];
-    [selectedPatch release];
 
     // Virtual endpoint related initialisation
     virtualSourceArray      = [[NSMutableArray alloc] init];
@@ -65,11 +64,9 @@
     [buttonCell setButtonType:NSSwitchButton];
     [buttonCell setTitle:@""];
     [[patchTable tableColumnWithIdentifier:@"enabled"] setDataCell:buttonCell];
-    [buttonCell release];
     
     patchTableCell = [[PatchTableCell alloc] init];
     [[patchTable tableColumnWithIdentifier:@"patch"] setDataCell:patchTableCell];
-    [patchTableCell release];
     
     patchTableDataSource = [[PatchTableDataSource alloc] initWithDocument:self patchArray:patchArray];
     [patchTable setDataSource:patchTableDataSource];
@@ -120,17 +117,6 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-
-    [patchTableDataSource release];
-    [patchArray release];
-    
-    [inputTableDataSource release];
-    [outputTableDataSource release];
-    
-    [virtualSourceArray release];
-    [virtualDestinationArray release];
-    
-    [super dealloc];
 }
 
 
@@ -149,7 +135,6 @@
     [archiver encodeObject:patchArray              forKey:@"patchArray"];
     
     [archiver finishEncoding];
-    [archiver release];
     
     return data;
 }
@@ -157,21 +142,16 @@
 
 - (BOOL)loadDataRepresentation:(NSData*)data ofType:(NSString*)type
 {
-    [patchArray release];
-    [virtualDestinationArray release];
-    [virtualSourceArray release];
-
     NSKeyedUnarchiver* unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
     
-    virtualDestinationArray = [[unarchiver decodeObjectForKey:@"virtualDestinationArray"] retain];
+    virtualDestinationArray = [unarchiver decodeObjectForKey:@"virtualDestinationArray"];
     
-    virtualSourceArray = [[unarchiver decodeObjectForKey:@"virtualSourceArray"] retain];
+    virtualSourceArray = [unarchiver decodeObjectForKey:@"virtualSourceArray"];
     
-    patchArray = [[unarchiver decodeObjectForKey:@"patchArray"] retain];
+    patchArray = [unarchiver decodeObjectForKey:@"patchArray"];
     [patchArray makeObjectsPerformSelector:@selector(rescueFromLimbo)];
     
     [unarchiver finishDecoding];
-    [unarchiver release];
     
     // We need to do this to handle redisplay of the new data when a Revert is done
     [self syncWithLoadedData];
@@ -261,7 +241,6 @@
     if (selectedPatch != nil) {
         Patch *patch = [[Patch alloc] initFromPatch:selectedPatch];
         [self addPatch:patch atIndex:(int)[patchArray count]];
-        [patch release];
     }
     else {
         // Pick a default input and output for a blank patch
@@ -279,7 +258,6 @@
 
         Patch *patch = [[Patch alloc] initWithInput:input output:output];
         [self addPatch:patch atIndex:(int)[patchArray count]];
-        [patch release];
     }
 
 }
@@ -320,7 +298,7 @@
 - (void)removePatchAtIndex:(int)index
 {
     NSUndoManager* undoManager = [self undoManager];
-    Patch* patch = [[patchArray objectAtIndex:index] retain];
+    Patch* patch = [patchArray objectAtIndex:index];
     
     [patch banishToLimbo];
     [patchArray removeObjectAtIndex:index];
@@ -330,8 +308,6 @@
     [[undoManager prepareWithInvocationTarget:self]
         addPatch:patch atIndex:index
     ];
-    
-    [patch release];
 }
 
 
@@ -369,7 +345,6 @@
     [archiver encodeObject:patch forKey:@"patch"];
     
     [archiver finishEncoding];
-    [archiver release];
 
     return data;
 }
@@ -391,7 +366,6 @@
     patch = [unarchiver decodeObjectForKey:@"patch"];
     
     [unarchiver finishDecoding];
-    [unarchiver release];
     
     return patch;
 }
@@ -487,7 +461,6 @@
     [filterChannelMatrix setIntercellSpacing:NSMakeSize(5,4)];
     [filterChannelMatrix setMode:NSTrackModeMatrix];
     [filterChannelMatrix renewRows:2 columns:8];
-    [buttonCell release];
     
     for (i = 0; i < 8; i++) {
         buttonCell = [filterChannelMatrix cellAtRow:0 column:i];

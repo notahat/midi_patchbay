@@ -11,7 +11,6 @@
 }
 
 - (PatchTableDataSource*)initWithDocument:(PatchbayDocument*)newDocument patchArray:(NSMutableArray*)newPatchArray;
-- (void)dealloc;
 
 - (void)setPatchArray:(NSMutableArray*)newPatchArray;
 

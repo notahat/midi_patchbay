@@ -20,9 +20,8 @@
     newUniqueID = [coder decodeInt32ForKey:@"uniqueID"];
     
     descriptor = [PYMIDIEndpointDescriptor descriptorWithName:newName uniqueID:newUniqueID];
-    
-    [self release];
-    return [(PYMIDIRealDestination *)[manager realDestinationWithDescriptor:descriptor] retain];
+
+    return (PYMIDIRealDestination *)[manager realDestinationWithDescriptor:descriptor];
 }    
 
 

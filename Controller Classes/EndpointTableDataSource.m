@@ -11,27 +11,16 @@
     
     if (self != nil) {
         endpointClass = newEndpointClass;
-        endpointArray = [newEndpointArray retain];
-        undoManager = [newUndoManager retain];
+        endpointArray = newEndpointArray;
+        undoManager = newUndoManager;
     }
     
     return self;
 }
 
 
-- (void)dealloc
-{
-    [endpointArray release];
-    [undoManager release];
-    
-    [super dealloc];
-}
-
-
 - (void)setEndpointArray:(NSMutableArray*)newEndpointArray
 {
-    [newEndpointArray retain];
-    [endpointArray release];
     endpointArray = newEndpointArray;
 }
 
@@ -137,8 +126,6 @@
     newEndpoint = [[endpointClass alloc] initWithName:newName];
     
     [self tableView:tableView addEndpoint:newEndpoint atIndex:(int)[endpointArray count]];
-    
-    [newEndpoint release];
 }
 
 
@@ -164,7 +151,7 @@
     NSWindow* window = [tableView window];
     if ([window isKeyWindow] && ![window makeFirstResponder:nil]) return;
     
-    PYMIDIVirtualEndpoint* endpoint = [[endpointArray objectAtIndex:index] retain];
+    PYMIDIVirtualEndpoint* endpoint = [endpointArray objectAtIndex:index];
     
     [endpoint makePrivate:YES];
     [endpointArray removeObjectAtIndex:index];
@@ -175,15 +162,13 @@
     [[undoManager prepareWithInvocationTarget:self]
         tableView:tableView addEndpoint:endpoint atIndex:index
     ];
-    
-    [endpoint release];
 }
 
 
 - (void)tableView:(NSTableView*)tableView setName:(NSString*)name forEndpointAtIndex:(int)index
 {
     PYMIDIVirtualEndpoint* endpoint = [endpointArray objectAtIndex:index];
-    NSString* oldName = [[endpoint name] retain];
+    NSString* oldName = [endpoint name];
     
     [endpoint setName:name];
     [tableView reloadData];

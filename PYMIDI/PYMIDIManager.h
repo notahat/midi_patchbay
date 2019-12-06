@@ -18,7 +18,6 @@
 + (PYMIDIManager*)sharedInstance;
 
 - (PYMIDIManager*)init;
-- (void)dealloc;
 
 - (MIDIClientRef)midiClientRef;
 

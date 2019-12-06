@@ -17,11 +17,11 @@
 
 #pragma mark Initialisation
 
-- (Patch*)initWithInput:(PYMIDIEndpoint*)newInput output:(PYMIDIEndpoint*)newOutput
+- (void)setupInput:(PYMIDIEndpoint*)newInput output:(PYMIDIEndpoint*)newOutput
 {
     isInLimbo = YES;
     
-    input  = [newInput retain];
+    input  = newInput;
     [input addReceiver:self];
     
     shouldFilterChannel = NO;
@@ -40,45 +40,53 @@
     
     shouldTransmitClock = NO;
     
-    output = [newOutput retain];
+    output = newOutput;
     [output addSender:self];
     
     isEnabled = YES;
-    
+}
 
-    return self;
+- (Patch*)initWithInput:(PYMIDIEndpoint*)newInput output:(PYMIDIEndpoint*)newOutput
+{
+	self = [super init];
+	if (self) {
+		[self setupInput:newInput output:newOutput];
+	}
+	return self;
 }
 
 
 - (Patch*)initFromPatch:(Patch*)patch
 {
-    BOOL useNextMIDIChannel = NO;
-    
-    [self initWithInput:[patch input] output:[patch output]];
-    
-    if ([patch shouldFilterChannel]) {
-        [self setShouldFilterChannel:YES];
-        channelMask = [patch channelMask];
-    }
-    
-    [self setShouldAllowNotes:[patch shouldAllowNotes]];
-    
-    if ([patch shouldFilterRange]) {
-        [self setShouldFilterRange:YES];
-        if ([patch highestAllowedNote] < 127)
-            [self setLowestAllowedNote:[patch highestAllowedNote] + 1];
-        useNextMIDIChannel = YES;
-    }
-    
-    if ([patch shouldRemapChannel]) {
-        [self setShouldRemapChannel:YES];
-        // *** Need to bounds check this:
-        if (useNextMIDIChannel)
-            [self setRemappingChannel:[patch remappingChannel] + 1];
-        else
-            [self setRemappingChannel:[patch remappingChannel]];
-    }
+	self = [super init];
+	if (self) {
+		[self setupInput:[patch input] output:[patch output]];
 
+		BOOL useNextMIDIChannel = NO;
+
+		if ([patch shouldFilterChannel]) {
+			[self setShouldFilterChannel:YES];
+			channelMask = [patch channelMask];
+		}
+
+		[self setShouldAllowNotes:[patch shouldAllowNotes]];
+
+		if ([patch shouldFilterRange]) {
+			[self setShouldFilterRange:YES];
+			if ([patch highestAllowedNote] < 127)
+				[self setLowestAllowedNote:[patch highestAllowedNote] + 1];
+			useNextMIDIChannel = YES;
+		}
+
+		if ([patch shouldRemapChannel]) {
+			[self setShouldRemapChannel:YES];
+			// *** Need to bounds check this:
+			if (useNextMIDIChannel)
+				[self setRemappingChannel:[patch remappingChannel] + 1];
+			else
+				[self setRemappingChannel:[patch remappingChannel]];
+		}
+	}
     return self;
 }
 
@@ -86,12 +94,7 @@
 - (void)dealloc
 {
     [input removeReceiver:self];
-    [input  release];
-    
     [output removeSender:self];
-    [output release];
-    
-    [super dealloc];
 }
 
 
@@ -315,10 +318,7 @@
 - (void)setInput:(PYMIDIEndpoint*)newInput
 {
     [input removeReceiver:self];
-    
-    [input autorelease];
-    input = [newInput retain];
-    
+    input = newInput;
     [input addReceiver:self];
 }
 
@@ -477,10 +477,7 @@
 - (void)setOutput:(PYMIDIEndpoint*)newOutput
 {
     [output removeSender:self];
-    
-    [output autorelease];
-    output = [newOutput retain];
-    
+    output = newOutput;
     [output addSender:self];
 }
 

@@ -9,27 +9,17 @@
     PatchTableCellData* data = [[PatchTableCellData alloc]
     	initWithInputName:newInputName outputName:newOutputName description:newDescription
     ];
-    return [data autorelease];
+	return data;
 }
 
 
 - (PatchTableCellData*)initWithInputName:(NSString*)newInputName outputName:(NSString*)newOutputName description:(NSString*)newDescription
 {
-    inputName	= [newInputName retain];
-    outputName	= [newOutputName retain];
-    description	= [newDescription retain];
+	inputName	= newInputName;
+	outputName	= newOutputName;
+	description	= newDescription;
     
     return self;
-}
-
-
-- (void)dealloc
-{
-    [inputName release];
-    [outputName release];
-    [description release];
-    
-    [super dealloc];
 }
 
 
@@ -52,9 +42,7 @@
 - (id)copyWithZone:(NSZone *)zone
 {
     PatchTableCellData* copy = [[self class] allocWithZone:zone];
-    [copy initWithInputName:inputName outputName:outputName description:description];
-    
-    return copy;
+	return [copy initWithInputName:inputName outputName:outputName description:description];
 }
 
 

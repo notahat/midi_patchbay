@@ -57,12 +57,6 @@
 - (void)dealloc
 {
     [self stopIO];
-    [name release];
-    [displayName release];
-    [receivers release];
-    [senders release];
-    
-    [super dealloc];
 }
 
 
@@ -112,8 +106,7 @@
 
 - (void)setNameFromMIDIEndpoint
 {
-    [name release];
-    name = [[PYMIDIGetEndpointName (midiEndpointRef) retain] mutableCopy];
+    name = [PYMIDIGetEndpointName (midiEndpointRef) mutableCopy];
 }
 
 
@@ -121,8 +114,6 @@
 {
     CFDataRef externalIDs;
     OSStatus result;
-
-    [displayName release];
     
     NSMutableArray* names = [NSMutableArray arrayWithCapacity:0];
         
@@ -158,7 +149,7 @@
                         CFStringRef externalName;
                         result = MIDIObjectGetStringProperty (externalDevice, kMIDIPropertyName, &externalName);
                         if (result == noErr) {
-                            [names addObject:[NSString stringWithString:(NSString*)externalName]];
+							[names addObject:[NSString stringWithString:(__bridge NSString*)externalName]];
                             CFRelease (externalName);
                         }
                     }
@@ -184,8 +175,6 @@
         else
             displayName = [@"UNKNOWN DEVICE" mutableCopy];
     }
-    
-    [displayName retain];
 }
 
 
@@ -202,14 +191,13 @@
     
     [manager disableNotifications];
     
-    result = MIDIObjectSetStringProperty (midiEndpointRef, kMIDIPropertyName, (CFStringRef)newName);
+	result = MIDIObjectSetStringProperty (midiEndpointRef, kMIDIPropertyName, (__bridge CFStringRef)newName);
 
     [manager enableNotifications];
     
     if (result == noErr) {
-        [name autorelease];
-        name = [newName retain];
-        displayName = [newName retain];
+        name = newName;
+        displayName = newName;
         return YES;
     }
     else
@@ -282,7 +270,7 @@
 
     BOOL isIACBus = 
         driverName != nil &&
-        [@"com.apple.AppleMIDIIACDriver" isEqualToString:(NSString*)driverName];
+	[@"com.apple.AppleMIDIIACDriver" isEqualToString:(__bridge NSString*)driverName];
         
     if (driverName != nil) CFRelease (driverName);
     

@@ -19,9 +19,6 @@
     IBOutlet NSTableView*		patchTable;
     PatchTableDataSource*		patchTableDataSource;
     
-    IBOutlet NSButton*			addPatchButton;
-    IBOutlet NSButton*          removePatchButton;
-    
     NSMutableArray*				patchArray;
     Patch*						selectedPatch;
     int                         selectedIndex;
@@ -85,12 +82,12 @@
 
 - (void)midiSetupChanged:(NSNotification*)notification;
 
-
 #pragma mark Patch table
 
 - (void)selectedPatchChanged:(NSNotification*)notification;
-- (IBAction)addPatchButtonPressed:(id)sender;
-- (IBAction)removePatchButtonPressed:(id)sender;
+- (IBAction)addRemovePatchButtonPressed:(NSSegmentedControl*)sender;
+- (void)addPatchButtonPressed:(id)sender;
+- (void)removePatchButtonPressed:(id)sender;
 
 - (void)addPatch:(Patch*)patch atIndex:(int)index;
 - (void)addPatchFromArchive:(NSData*)data atIndex:(int)index;
@@ -99,7 +96,6 @@
 
 - (NSData*)archivePatchForPasteBoard:(Patch*)patch;
 - (Patch*)unarchivePatchFromPasteBoard:(NSData*)data;
-
 
 #pragma mark Patch editing - MIDI Input
 
@@ -164,15 +160,18 @@
 - (IBAction)outputPopUpChanged:(id)sender;
 - (void)setOutput:(PYMIDIEndpoint*)output forPatch:(Patch*)patch;
 
-
 #pragma mark Virtual endpoints
 
-- (IBAction)newInputButtonPressed:(id)sender;
-- (IBAction)newOutputButtonPressed:(id)sender;
+- (IBAction)addRemoveInputButtonPressed:(NSSegmentedControl*)sender;
+- (void)addInputButtonPressed:(id)sender;
+- (void)removeInputButtonPressed:(id)sender;
+
+- (IBAction)addRemoveOutputButtonPressed:(NSSegmentedControl*)sender;
+- (void)addOutputButtonPressed:(id)sender;
+- (void)removeOutputButtonPressed:(id)sender;
 
 - (IBAction)endpointPanelButtonPressed:(id)sender;
 
 - (void)endpointPanelDidEnd:(NSWindow*)sheet returnCode:(int)returnCode contextInfo:(void*)contextInfo;
-
 
 @end

@@ -255,8 +255,21 @@
     selectedIndex = patchIndex;
 }
 
+- (IBAction)addRemovePatchButtonPressed:(NSSegmentedControl*)sender
+{
+	switch(sender.selectedSegment) {
+		case 0:
+			[self addPatchButtonPressed:sender];
+			break;
+		case 1:
+			[self removePatchButtonPressed:sender];
+			break;
+		default:
+			break;
+	}
+}
 
-- (IBAction) addPatchButtonPressed:(id)sender
+- (void)addPatchButtonPressed:(id)sender
 {
     if (selectedPatch != nil) {
         Patch *patch = [[Patch alloc] initFromPatch:selectedPatch];
@@ -281,15 +294,21 @@
         [self addPatch:patch atIndex:(int)[patchArray count]];
         [patch release];
     }
-
 }
 
-- (IBAction)removePatchButtonPressed:(id)sender
+- (void)removePatchButtonPressed:(id)sender
 {
     if (selectedIndex >= 0) {
+		NSInteger row = selectedIndex;
         [self removePatchAtIndex: selectedIndex];
+
+		// Try to re-select previous row
+		row--;
+		if (row >= 0) {
+			[patchTable selectRowIndexes:[NSIndexSet indexSetWithIndex:row]
+					byExtendingSelection:NO];
+		}
     }
-    
 }
 
 - (void)addPatch:(Patch*)patch atIndex:(int)index
@@ -758,7 +777,6 @@
 }
 
 
-
 - (IBAction)lowestAllowedNoteSliderChanged:(id)sender
 {
     [self setLowestAllowedNote:[lowestAllowedNoteSlider intValue] forPatch:selectedPatch];
@@ -1062,7 +1080,22 @@
 }
 
 
-- (IBAction)newInputButtonPressed:(id)sender
+- (IBAction)addRemoveInputButtonPressed:(NSSegmentedControl*)sender
+{
+	switch(sender.selectedSegment) {
+		case 0:
+			[self addInputButtonPressed:sender];
+			break;
+		case 1:
+			[self removeInputButtonPressed:sender];
+			break;
+		default:
+			break;
+	}
+}
+
+
+- (void)addInputButtonPressed:(id)sender
 {
     NSString* baseName = [NSString stringWithFormat:@"%@ input",
         [[[self displayName] lastPathComponent] stringByDeletingPathExtension]
@@ -1075,10 +1108,39 @@
     [inputTable selectRowIndexes:[NSIndexSet indexSetWithIndex:[inputTable numberOfRows]-1] byExtendingSelection:NO];
     [inputTable editColumn:0 row:[inputTable selectedRow] withEvent:nil select:YES];
 }
-    
 
 
-- (IBAction)newOutputButtonPressed:(id)sender
+- (void)removeInputButtonPressed:(id)sender
+{
+	NSInteger row = inputTable.selectedRow;
+	if (row < 0) {return;}
+	[(EndpointTableDataSource *)[inputTable dataSource] deleteSelection:inputTable];
+
+	// Try to re-select previous row
+	row--;
+	if (row >= 0) {
+		[inputTable selectRowIndexes:[NSIndexSet indexSetWithIndex:row]
+				byExtendingSelection:NO];
+	}
+}
+
+
+- (IBAction)addRemoveOutputButtonPressed:(NSSegmentedControl*)sender
+{
+	switch(sender.selectedSegment) {
+		case 0:
+			[self addOutputButtonPressed:sender];
+			break;
+		case 1:
+			[self removeOutputButtonPressed:sender];
+			break;
+		default:
+			break;
+	}
+}
+
+
+- (void)addOutputButtonPressed:(id)sender
 {
     NSString* baseName = [NSString stringWithFormat:@"%@ output",
         [[[self displayName] lastPathComponent] stringByDeletingPathExtension]
@@ -1092,6 +1154,20 @@
     [outputTable editColumn:0 row:[outputTable selectedRow] withEvent:nil select:YES];
 }
 
+
+- (void)removeOutputButtonPressed:(id)sender
+{
+	NSInteger row = outputTable.selectedRow;
+	if (row < 0) {return;}
+	[(EndpointTableDataSource *)[outputTable dataSource] deleteSelection:outputTable];
+
+	// Try to re-select previous row
+	row--;
+	if (row >= 0) {
+		[outputTable selectRowIndexes:[NSIndexSet indexSetWithIndex:row]
+				 byExtendingSelection:NO];
+	}
+}
 
 
 - (IBAction)endpointPanelButtonPressed:(id)sender

@@ -11,7 +11,6 @@
 + (id)endpointSetWithArray:(NSArray*)newEndpointArray;
 
 - (id)initWithEndpointArray:(NSArray*)newEndpointArray;
-- (void)dealloc;
 
 - (id)archiver:(NSKeyedArchiver*)archiver willEncodeObject:(id)object;
 - (id)unarchiver:(NSKeyedUnarchiver*)unarchiver didDecodeObject:(id)object;

@@ -9,7 +9,6 @@
 }
 
 - (EndpointTableDataSource*)initWithEndpointClass:(Class)newEndpointClass endpointArray:(NSMutableArray*)newEndpointArray undoManager:(NSUndoManager*)newUndoManager;
-- (void)dealloc;
 
 - (void)setEndpointArray:(NSMutableArray*)newEndpointArray;
 

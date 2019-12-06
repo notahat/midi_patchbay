@@ -8,7 +8,7 @@
 
 + (id)endpointSetWithArray:(NSArray*)newEndpointArray
 {
-    return [[[PYMIDIEndpointSet alloc] initWithEndpointArray:newEndpointArray] retain];
+    return [[PYMIDIEndpointSet alloc] initWithEndpointArray:newEndpointArray];
 }
 
 
@@ -17,18 +17,10 @@
     self = [super init];
     
     if (self != nil) {
-        endpointArray = [newEndpointArray retain];
+        endpointArray = newEndpointArray;
     }
     
     return self;
-}
-
-
-- (void)dealloc
-{
-    [endpointArray release];
-    
-    [super dealloc];
 }
 
 
@@ -44,7 +36,7 @@
 - (id)unarchiver:(NSKeyedUnarchiver*)unarchiver didDecodeObject:(id)object
 {
     if ([object isMemberOfClass:[PYMIDIEndpointDescriptor class]])
-        object = [[self endpointWithDescriptor:object] retain];
+        object = [self endpointWithDescriptor:object];
         
     // Note that we DON'T need to release the original object when doing a
     // subsitution.  This is the opposite of what happens when we do it in

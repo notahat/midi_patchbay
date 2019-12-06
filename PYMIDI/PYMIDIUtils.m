@@ -29,22 +29,22 @@ PYMIDIGetEndpointName (MIDIEndpointRef midiEndpointRef)
     NSString* name;
     if (endpointName != nil) {
         if (deviceName != nil) {
-            NSString *endpointNameNS = (NSString *)endpointName;
-            NSString *deviceNameNS = (NSString *)deviceName;
+			NSString *endpointNameNS = (__bridge NSString *)endpointName;
+			NSString *deviceNameNS = (__bridge NSString *)deviceName;
             bool endpointNameBeginsWithDeviceName = [endpointNameNS compare:deviceNameNS options:NSCaseInsensitiveSearch] == NSOrderedSame;
                 
             if (endpointNameBeginsWithDeviceName)
-                name = [NSString stringWithString:(NSString*)endpointName];
+				name = [NSString stringWithString:(__bridge NSString*)endpointName];
             else
                 name = [NSString stringWithFormat:@"%@ %@", deviceName, endpointName];
         }
         else
-            name = [NSString stringWithString:(NSString*)endpointName];
+			name = [NSString stringWithString:(__bridge NSString*)endpointName];
     }
     
     else {
         if (deviceName != nil)
-            name = [NSString stringWithString:(NSString*)deviceName];
+			name = [NSString stringWithString:(__bridge NSString*)deviceName];
         else
             name = nil;   // Hopefully we'll never get here!
     }

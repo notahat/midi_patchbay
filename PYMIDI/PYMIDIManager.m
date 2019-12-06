@@ -41,7 +41,7 @@ static void midiNotifyProc (const MIDINotification* message, void* refCon);
 {
     notificationsEnabled = NO;
     
-    MIDIClientCreate (CFSTR("PYMIDIManager"), midiNotifyProc, (void*)self, &midiClientRef);
+	MIDIClientCreate (CFSTR("PYMIDIManager"), midiNotifyProc, (__bridge void*)self, &midiClientRef);
 
     realSourceArray = [[NSMutableArray alloc] init];
     realDestinationArray = [[NSMutableArray alloc] init];
@@ -54,17 +54,6 @@ static void midiNotifyProc (const MIDINotification* message, void* refCon);
     notificationsEnabled = YES;
             
     return self;
-}
-
-
-- (void)dealloc
-{
-    [realSourceArray release];
-    [realDestinationArray release];
-    
-    [noteNamesArray release];
-    
-    [super dealloc];
 }
 
 
@@ -124,7 +113,7 @@ static void midiNotifyProc (const MIDINotification* message, void* refCon);
 static void
 midiNotifyProc (const MIDINotification* message, void* refCon)
 {
-    PYMIDIManager* manager = (PYMIDIManager*)refCon;
+	PYMIDIManager* manager = (__bridge PYMIDIManager*)refCon;
     [manager processMIDINotification:message];
 }
 
@@ -208,7 +197,6 @@ midiNotifyProc (const MIDINotification* message, void* refCon)
     if (endpoint == nil) {
         endpoint = [[PYMIDIRealSource alloc] initWithDescriptor:descriptor];
         [realSourceArray addObject:endpoint];
-        [endpoint release];
     }
     
     return endpoint;
@@ -294,7 +282,6 @@ midiNotifyProc (const MIDINotification* message, void* refCon)
     if (endpoint == nil) {
         endpoint = [[PYMIDIRealDestination alloc] initWithDescriptor:descriptor];
         [realDestinationArray addObject:endpoint];
-        [endpoint release];
     }
     
     return endpoint;

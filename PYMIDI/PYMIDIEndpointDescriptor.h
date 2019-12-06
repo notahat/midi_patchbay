@@ -10,8 +10,6 @@
 
 - (id)initWithName:(NSString*)newName uniqueID:(SInt32)newUniqueID;
 
-- (void)dealloc;
-
 - (id)initWithCoder:(NSCoder*)coder;
 - (void)encodeWithCoder:(NSCoder*)coder;
 

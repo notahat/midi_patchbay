@@ -20,7 +20,7 @@ static void midiReadProc (const MIDIPacketList* packetList, void* createRefCon, 
     // we're done creating it.
     [manager disableNotifications];
     
-    MIDIDestinationCreate ([manager midiClientRef], (CFStringRef)newName, midiReadProc, self, &newEndpoint);
+	MIDIDestinationCreate ([manager midiClientRef], (__bridge CFStringRef)newName, midiReadProc, (__bridge void * _Nullable)(self), &newEndpoint);
     
     // This code works around a bug in OS X 10.1 that causes
     // new sources/destinations to be created without unique IDs.
@@ -44,7 +44,6 @@ static void midiReadProc (const MIDIPacketList* packetList, void* createRefCon, 
 
 - (void)processMIDIPacketList:(const MIDIPacketList*)packetList sender:(id)sender
 {
-    NSAutoreleasePool* pool;
     NSEnumerator* enumerator;
     id receiver;
 
@@ -55,20 +54,18 @@ static void midiReadProc (const MIDIPacketList* packetList, void* createRefCon, 
     // means that we can do memory allocation freely in the processing and
     // it will all get automatically cleaned up once we've passed the data
     // on, which is a win.
-    pool = [[NSAutoreleasePool alloc] init];
-    
-    enumerator = [receivers objectEnumerator];
-    while ((receiver = [[enumerator nextObject] nonretainedObjectValue]))
-        [receiver processMIDIPacketList:packetList sender:self];
-        
-    [pool release];
+	@autoreleasepool {
+		enumerator = [receivers objectEnumerator];
+		while ((receiver = [[enumerator nextObject] nonretainedObjectValue]))
+			[receiver processMIDIPacketList:packetList sender:self];
+	}
 }
 
 
 static void
 midiReadProc (const MIDIPacketList* packetList, void* createRefCon, void* connectRefConn)
 {
-    PYMIDIVirtualDestination* destination = (PYMIDIVirtualDestination*)createRefCon;
+	PYMIDIVirtualDestination* destination = (__bridge PYMIDIVirtualDestination*)createRefCon;
     [destination processMIDIPacketList:packetList sender:destination];
 }
 

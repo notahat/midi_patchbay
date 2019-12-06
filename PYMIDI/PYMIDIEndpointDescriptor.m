@@ -6,7 +6,7 @@
 
 + (id)descriptorWithName:(NSString*)newName uniqueID:(SInt32)newUniqueID;
 {
-    return [[[PYMIDIEndpointDescriptor alloc] initWithName:newName uniqueID:newUniqueID] autorelease];
+    return [[PYMIDIEndpointDescriptor alloc] initWithName:newName uniqueID:newUniqueID];
 }
 
 
@@ -14,18 +14,10 @@
 {
     self = [super init];
     
-    name = [newName retain];
+    name = newName;
     uniqueID = newUniqueID;
     
     return self;
-}
-
-
-- (void)dealloc
-{
-    [name release];
-    
-    [super dealloc];
 }
 
 
@@ -33,7 +25,7 @@
 {
     self = [super init];
     
-    name = [[coder decodeObjectForKey:@"name"] retain];
+    name = [coder decodeObjectForKey:@"name"];
     uniqueID = [coder decodeInt32ForKey:@"uniqueID"];
     
     return self;

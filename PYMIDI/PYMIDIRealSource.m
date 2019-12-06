@@ -23,9 +23,8 @@ static void midiReadProc (const MIDIPacketList* packetList, void* createRefCon, 
     newUniqueID = [coder decodeInt32ForKey:@"uniqueID"];
     
     descriptor = [PYMIDIEndpointDescriptor descriptorWithName:newName uniqueID:newUniqueID];
-    
-    [self release];
-    return (PYMIDIRealSource *)[[manager realSourceWithDescriptor:descriptor] retain];
+
+    return (PYMIDIRealSource *)[manager realSourceWithDescriptor:descriptor];
 }
 
 
@@ -58,7 +57,7 @@ static void midiReadProc (const MIDIPacketList* packetList, void* createRefCon, 
 
     MIDIInputPortCreate (
         [[PYMIDIManager sharedInstance] midiClientRef], CFSTR("PYMIDIRealSource"),
-        midiReadProc, (void*)self, &midiPortRef
+						 midiReadProc, (__bridge void*)self, &midiPortRef
     );
     MIDIPortConnectSource (midiPortRef, midiEndpointRef, nil);
 }
@@ -81,22 +80,21 @@ static void midiReadProc (const MIDIPacketList* packetList, void* createRefCon, 
     // means that we can do memory allocation freely in the processing and
     // it will all get automatically cleaned up once we've passed the data
     // on, which is a win.
-    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-    
-    NSEnumerator* enumerator = [receivers objectEnumerator];
-    id receiver;
+	@autoreleasepool {
+		NSEnumerator* enumerator = [receivers objectEnumerator];
+		id receiver;
 
-    while ((receiver = [[enumerator nextObject] nonretainedObjectValue]))
-        [receiver processMIDIPacketList:packetList sender:self];
-        
-    [pool release];
+		while ((receiver = [[enumerator nextObject] nonretainedObjectValue]))
+			[receiver processMIDIPacketList:packetList sender:self];
+
+	}
 }
 
 
 static void
 midiReadProc (const MIDIPacketList* packetList, void* createRefCon, void* connectRefConn)
 {
-    PYMIDIRealSource* source = (PYMIDIRealSource*)createRefCon;
+	PYMIDIRealSource* source = (__bridge PYMIDIRealSource*)createRefCon;
     [source processMIDIPacketList:packetList sender:source];
 }
 

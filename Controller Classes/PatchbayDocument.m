@@ -1071,13 +1071,17 @@
     if (panelWasOpenedToInputs) {
         if (tab == 0 && [inputTable selectedRow] != -1) {
             PYMIDIEndpoint* input = [virtualDestinationArray objectAtIndex:[inputTable selectedRow]];
-            [self setInput:input forPatch:selectedPatch];
+			if (selectedPatch.input != input) {
+				[self setInput:input forPatch:selectedPatch];
+			}
         }
     }
     else {
         if (tab == 1 && [outputTable selectedRow] != -1) {
             PYMIDIEndpoint* output = [virtualSourceArray objectAtIndex:[outputTable selectedRow]];
-            [self setOutput:output forPatch:selectedPatch];;
+			if (selectedPatch.output != output) {
+				[self setOutput:output forPatch:selectedPatch];
+			}
         }
     }
 

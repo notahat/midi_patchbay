@@ -12,7 +12,6 @@
 		C12C7FEA05AECD9D0066E007 /* PatchbayDocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B4FDCFA73011CA2CEA /* PatchbayDocument.nib */; };
 		C12C7FEB05AECD9D0066E007 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
 		C12C7FEC05AECD9D0066E007 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = F5C0AB170331972E018C91A3 /* Credits.html */; };
-		C12C7FEF05AECD9D0066E007 /* Plus.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F598A8BE0342EE1E01B9BE79 /* Plus.tiff */; };
 		C12C7FF105AECD9D0066E007 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		C12C7FF205AECD9D0066E007 /* PatchbayDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C0AB14033196D6018C91A3 /* PatchbayDocument.m */; };
 		C12C7FF305AECD9D0066E007 /* EndpointTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C0AB4203319CEA018C91A3 /* EndpointTableDataSource.m */; };
@@ -87,7 +86,6 @@
 		F598A8B30342E47401B9BE79 /* PatchTableCell.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PatchTableCell.m; path = "View Classes/PatchTableCell.m"; sourceTree = "<group>"; };
 		F598A8BA0342E64501B9BE79 /* PatchTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PatchTableDataSource.m; path = "Controller Classes/PatchTableDataSource.m"; sourceTree = "<group>"; };
 		F598A8BB0342E64501B9BE79 /* PatchTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PatchTableDataSource.h; path = "Controller Classes/PatchTableDataSource.h"; sourceTree = "<group>"; };
-		F598A8BE0342EE1E01B9BE79 /* Plus.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Plus.tiff; sourceTree = "<group>"; };
 		F5C0AB13033196D6018C91A3 /* PatchbayDocument.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PatchbayDocument.h; path = "Controller Classes/PatchbayDocument.h"; sourceTree = "<group>"; };
 		F5C0AB14033196D6018C91A3 /* PatchbayDocument.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PatchbayDocument.m; path = "Controller Classes/PatchbayDocument.m"; sourceTree = "<group>"; };
 		F5C0AB170331972E018C91A3 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
@@ -184,7 +182,6 @@
 				2A37F4B4FDCFA73011CA2CEA /* PatchbayDocument.nib */,
 				C12C800205AECD9D0066E007 /* Info.plist */,
 				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
-				F598A8BE0342EE1E01B9BE79 /* Plus.tiff */,
 				C152A6E907559AE9004FF49E /* AppIcon.icns */,
 				C1AB8C7B075DAF9B00C4B27B /* DocIcon.icns */,
 			);
@@ -307,7 +304,6 @@
 				C12C7FEA05AECD9D0066E007 /* PatchbayDocument.nib in Resources */,
 				C12C7FEB05AECD9D0066E007 /* InfoPlist.strings in Resources */,
 				C12C7FEC05AECD9D0066E007 /* Credits.html in Resources */,
-				C12C7FEF05AECD9D0066E007 /* Plus.tiff in Resources */,
 				C152A6EA07559AE9004FF49E /* AppIcon.icns in Resources */,
 				C1AB8C7C075DAF9B00C4B27B /* DocIcon.icns in Resources */,
 			);

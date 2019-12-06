@@ -412,29 +412,14 @@
         <window title="Panel" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="26" userLabel="Endpoint Panel" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="642" y="136" width="443" height="411"/>
+            <rect key="contentRect" x="642" y="136" width="406" height="411"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <view key="contentView" id="28">
-                <rect key="frame" x="0.0" y="0.0" width="443" height="411"/>
+                <rect key="frame" x="0.0" y="0.0" width="406" height="411"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button verticalHuggingPriority="750" id="21">
-                        <rect key="frame" x="345" y="12" width="84" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="244">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                            <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
-                        </buttonCell>
-                        <connections>
-                            <action selector="endpointPanelButtonPressed:" target="-2" id="46"/>
-                            <outlet property="nextKeyView" destination="34" id="218"/>
-                        </connections>
-                    </button>
                     <tabView id="34">
-                        <rect key="frame" x="31" y="47" width="380" height="354"/>
+                        <rect key="frame" x="13" y="50" width="380" height="354"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <font key="font" metaFont="message"/>
                         <tabViewItems>
@@ -581,12 +566,27 @@ DQ
                             <outlet property="nextKeyView" destination="21" id="217"/>
                         </connections>
                     </tabView>
+                    <button verticalHuggingPriority="750" id="21">
+                        <rect key="frame" x="308" y="13" width="84" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="244">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="endpointPanelButtonPressed:" target="-2" id="46"/>
+                            <outlet property="nextKeyView" destination="34" id="218"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <connections>
                 <outlet property="initialFirstResponder" destination="34" id="216"/>
             </connections>
-            <point key="canvasLocation" x="659.5" y="1013.5"/>
+            <point key="canvasLocation" x="641" y="1013.5"/>
         </window>
     </objects>
     <resources>

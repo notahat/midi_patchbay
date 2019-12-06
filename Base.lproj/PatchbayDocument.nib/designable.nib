@@ -42,6 +42,8 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <rect key="contentRect" x="820" y="508" width="950" height="438"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+            <value key="minSize" type="size" width="950" height="438"/>
+            <value key="maxSize" type="size" width="950" height="438"/>
             <view key="contentView" autoresizesSubviews="NO" id="6">
                 <rect key="frame" x="0.0" y="0.0" width="950" height="438"/>
                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -502,7 +504,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <clipView key="contentView" id="AEk-dY-XP3">
                                                 <rect key="frame" x="1" y="1" width="324" height="240"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <autoresizingMask key="autoresizingMask"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" id="31" customClass="KeyTableView">
                                                         <rect key="frame" x="0.0" y="0.0" width="324" height="240"/>

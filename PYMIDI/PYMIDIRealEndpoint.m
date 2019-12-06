@@ -10,7 +10,7 @@
     self = [super initWithMIDIEndpointRef:newMIDIEndpointRef];
     
     if (self != nil) {
-        midiPortRef = nil;
+        midiPortRef = 0;
     }
 
     return self;
@@ -22,7 +22,7 @@
     self = [super initWithName:[descriptor name] uniqueID:[descriptor uniqueID]];
     
     if (self != nil) {
-        midiPortRef = nil;
+        midiPortRef = 0;
     }
     
     return self;
@@ -36,7 +36,7 @@
 
 - (BOOL)ioIsRunning
 {
-    return midiPortRef != nil;
+    return !midiPortRef;
 }
 
 

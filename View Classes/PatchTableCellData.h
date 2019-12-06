@@ -10,7 +10,6 @@
 + (PatchTableCellData*)dataWithInputName:(NSString*)newInputName outputName:(NSString*)newOutputName description:(NSString*)newDescription;
 
 - (PatchTableCellData*)initWithInputName:(NSString*)newInputName outputName:(NSString*)newOutputName description:(NSString*)newDescription;
-- (void)dealloc;
 
 - (NSString*)inputName;
 - (NSString*)outputName;

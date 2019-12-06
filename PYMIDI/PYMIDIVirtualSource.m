@@ -17,7 +17,7 @@
     // we're done creating it.
     [manager disableNotifications];
     
-    MIDISourceCreate ([manager midiClientRef], (CFStringRef)newName, &newEndpoint);
+	MIDISourceCreate ([manager midiClientRef], (__bridge CFStringRef)newName, &newEndpoint);
     
     // This code works around a bug in OS X 10.1 that causes
     // new sources/destinations to be created without unique IDs.

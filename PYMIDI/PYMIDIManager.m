@@ -41,7 +41,7 @@ static void midiNotifyProc (const MIDINotification* message, void* refCon);
 {
     notificationsEnabled = NO;
     
-    MIDIClientCreate (CFSTR("PYMIDIManager"), midiNotifyProc, (void*)self, &midiClientRef);
+	MIDIClientCreate (CFSTR("PYMIDIManager"), midiNotifyProc, (__bridge void*)self, &midiClientRef);
 
     realSourceArray = [[NSMutableArray alloc] init];
     realDestinationArray = [[NSMutableArray alloc] init];
@@ -54,17 +54,6 @@ static void midiNotifyProc (const MIDINotification* message, void* refCon);
     notificationsEnabled = YES;
             
     return self;
-}
-
-
-- (void)dealloc
-{
-    [realSourceArray release];
-    [realDestinationArray release];
-    
-    [noteNamesArray release];
-    
-    [super dealloc];
 }
 
 
@@ -112,6 +101,8 @@ static void midiNotifyProc (const MIDINotification* message, void* refCon);
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"PYMIDISetupChanged" object:self];
             }
             break;
+		default:
+			break;
         }
         
         isHandlingNotification = NO;
@@ -122,7 +113,7 @@ static void midiNotifyProc (const MIDINotification* message, void* refCon);
 static void
 midiNotifyProc (const MIDINotification* message, void* refCon)
 {
-    PYMIDIManager* manager = (PYMIDIManager*)refCon;
+	PYMIDIManager* manager = (__bridge PYMIDIManager*)refCon;
     [manager processMIDINotification:message];
 }
 
@@ -143,7 +134,7 @@ midiNotifyProc (const MIDINotification* message, void* refCon)
     
     // Find any non-virtual endpoints that we don't already know about
     int i;
-    int count = MIDIGetNumberOfSources();
+    int count = (int)MIDIGetNumberOfSources();
     for (i = 0; i < count; i++) {
         MIDIEndpointRef midiEndpointRef = MIDIGetSource (i);
         
@@ -152,6 +143,15 @@ midiNotifyProc (const MIDINotification* message, void* refCon)
             [self realSourceWithMIDIEndpointRef:midiEndpointRef] == nil)
         {
             endpoint = [[PYMIDIRealSource alloc] initWithMIDIEndpointRef:midiEndpointRef];
+            int dups;
+            NSArray* filteredArray;
+            NSPredicate *bPredicate = [NSPredicate predicateWithFormat:@"SELF.displayName beginswith[c] %@",endpoint.displayName];
+            filteredArray = [realSourceArray filteredArrayUsingPredicate:bPredicate];
+            dups = (int)[filteredArray count];
+            if(dups>0) {
+                [[endpoint displayName] appendString:[NSString stringWithFormat:@" %d",dups+1]];
+            }
+            
             [realSourceArray addObject:endpoint];
         }
     }
@@ -197,7 +197,6 @@ midiNotifyProc (const MIDINotification* message, void* refCon)
     if (endpoint == nil) {
         endpoint = [[PYMIDIRealSource alloc] initWithDescriptor:descriptor];
         [realSourceArray addObject:endpoint];
-        [endpoint release];
     }
     
     return endpoint;
@@ -220,7 +219,7 @@ midiNotifyProc (const MIDINotification* message, void* refCon)
     
     // Find any non-virtual endpoints that we don't already know about
     int i;
-    int count = MIDIGetNumberOfDestinations();
+    int count = (int)MIDIGetNumberOfDestinations();
     for (i = 0; i < count; i++) {
         MIDIEndpointRef midiEndpointRef = MIDIGetDestination (i);
         
@@ -229,6 +228,15 @@ midiNotifyProc (const MIDINotification* message, void* refCon)
             [self realDestinationWithMIDIEndpointRef:midiEndpointRef] == nil)
         {
             endpoint = [[PYMIDIRealDestination alloc] initWithMIDIEndpointRef:midiEndpointRef];
+            int dups;
+            NSArray* filteredArray;
+            NSPredicate *bPredicate = [NSPredicate predicateWithFormat:@"SELF.displayName beginswith[c] %@",endpoint.displayName];
+            filteredArray = [realDestinationArray filteredArrayUsingPredicate:bPredicate];
+            dups = (int)[filteredArray count];
+            if(dups>0) {
+                [[endpoint displayName] appendString:[NSString stringWithFormat:@" %d",dups+1]];
+            }
+
             [realDestinationArray addObject:endpoint];
         }
     }
@@ -274,7 +282,6 @@ midiNotifyProc (const MIDINotification* message, void* refCon)
     if (endpoint == nil) {
         endpoint = [[PYMIDIRealDestination alloc] initWithDescriptor:descriptor];
         [realDestinationArray addObject:endpoint];
-        [endpoint release];
     }
     
     return endpoint;

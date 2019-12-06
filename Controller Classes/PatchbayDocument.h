@@ -11,7 +11,7 @@
 @class EndpointTableDataSource;
 
 
-@interface PatchbayDocument : NSDocument {
+@interface PatchbayDocument : NSDocument <NSWindowDelegate> {
     IBOutlet NSWindow*			documentWindow;
     
     // Stuff related to the table of patches
@@ -20,10 +20,11 @@
     PatchTableDataSource*		patchTableDataSource;
     
     IBOutlet NSButton*			addPatchButton;
+    IBOutlet NSButton*          removePatchButton;
     
     NSMutableArray*				patchArray;
     Patch*						selectedPatch;
-    
+    int                         selectedIndex;
     
     // Stuff related to editing a patch
     
@@ -89,6 +90,7 @@
 
 - (void)selectedPatchChanged:(NSNotification*)notification;
 - (IBAction)addPatchButtonPressed:(id)sender;
+- (IBAction)removePatchButtonPressed:(id)sender;
 
 - (void)addPatch:(Patch*)patch atIndex:(int)index;
 - (void)addPatchFromArchive:(NSData*)data atIndex:(int)index;
@@ -170,7 +172,7 @@
 
 - (IBAction)endpointPanelButtonPressed:(id)sender;
 
-- (void)endpointPanelDidEnd:(NSWindow*)sheet returnCode:(int)returnCode contextInfo:(void*)contextInfo;
+- (void)endpointPanelDidEnd:(NSWindow*)sheet returnCode:(NSModalResponse)returnCode contextInfo:(void*)contextInfo;
 
 
 @end

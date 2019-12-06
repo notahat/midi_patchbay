@@ -36,7 +36,7 @@
 {
     self = [self init];
     
-    name = [newName retain];
+    name = newName.mutableCopy;
     uniqueID = newUniqueID;
     
     return self;
@@ -57,12 +57,6 @@
 - (void)dealloc
 {
     [self stopIO];
-    [name release];
-    [displayName release];
-    [receivers release];
-    [senders release];
-    
-    [super dealloc];
 }
 
 
@@ -96,7 +90,7 @@
 
 - (void)setPropertiesFromMIDIEndpoint
 {
-    if (midiEndpointRef == NULL) return;
+    if (!midiEndpointRef) return;
     
     [self setUniqueIDFromMIDIEndpoint];
     [self setNameFromMIDIEndpoint];
@@ -112,8 +106,7 @@
 
 - (void)setNameFromMIDIEndpoint
 {
-    [name release];
-    name = [PYMIDIGetEndpointName (midiEndpointRef) retain];
+    name = [PYMIDIGetEndpointName (midiEndpointRef) mutableCopy];
 }
 
 
@@ -121,8 +114,6 @@
 {
     CFDataRef externalIDs;
     OSStatus result;
-
-    [displayName release];
     
     NSMutableArray* names = [NSMutableArray arrayWithCapacity:0];
         
@@ -158,7 +149,7 @@
                         CFStringRef externalName;
                         result = MIDIObjectGetStringProperty (externalDevice, kMIDIPropertyName, &externalName);
                         if (result == noErr) {
-                            [names addObject:[NSString stringWithString:(NSString*)externalName]];
+							[names addObject:[NSString stringWithString:(__bridge NSString*)externalName]];
                             CFRelease (externalName);
                         }
                     }
@@ -177,15 +168,13 @@
     
     // Generate the display name from the info we've gathered
     if ([names count] > 0)
-        displayName = [names componentsJoinedByString:@", "];
+        displayName = [[names componentsJoinedByString:@", "] mutableCopy];
     else {
         if (name != nil)
             displayName = name;
         else
-            displayName = @"UNKNOWN DEVICE";
+            displayName = [@"UNKNOWN DEVICE" mutableCopy];
     }
-    
-    [displayName retain];
 }
 
 
@@ -195,21 +184,20 @@
 }
 
 
-- (BOOL)setName:(NSString*)newName
+- (BOOL)setName:(NSMutableString*)newName
 {	
     PYMIDIManager* manager = [PYMIDIManager sharedInstance];
     OSStatus result;
     
     [manager disableNotifications];
     
-    result = MIDIObjectSetStringProperty (midiEndpointRef, kMIDIPropertyName, (CFStringRef)newName);
+	result = MIDIObjectSetStringProperty (midiEndpointRef, kMIDIPropertyName, (__bridge CFStringRef)newName);
 
     [manager enableNotifications];
     
     if (result == noErr) {
-        [name autorelease];
-        name = [newName retain];
-        displayName = [newName retain];
+        name = newName;
+        displayName = newName;
         return YES;
     }
     else
@@ -217,10 +205,10 @@
 }
 
 
-- (NSString*)displayName
+- (NSMutableString*)displayName
 {
     if ([self isOffline])
-        return [NSString stringWithFormat:@"%@ (offline)", displayName];
+        return [NSMutableString stringWithFormat:@"%@ (offline)", displayName];
     else
         return displayName;
 }
@@ -282,7 +270,7 @@
 
     BOOL isIACBus = 
         driverName != nil &&
-        [@"com.apple.AppleMIDIIACDriver" isEqualToString:(NSString*)driverName];
+	[@"com.apple.AppleMIDIIACDriver" isEqualToString:(__bridge NSString*)driverName];
         
     if (driverName != nil) CFRelease (driverName);
     
@@ -301,7 +289,7 @@
     SInt32 isOffline;
     OSStatus result;
 
-    if (midiEndpointRef == nil) return YES;
+    if (!midiEndpointRef) return YES;
     
     result = MIDIObjectGetIntegerProperty (midiEndpointRef, kMIDIPropertyOffline, &isOffline);
     return result == noErr && isOffline;

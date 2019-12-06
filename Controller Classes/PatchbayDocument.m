@@ -32,7 +32,6 @@
     selectedPatch = [[Patch alloc] initWithInput:input output:output];
     [selectedPatch rescueFromLimbo];
     patchArray = [[NSMutableArray alloc] initWithObjects:selectedPatch, nil];
-    [selectedPatch release];
 
     // Virtual endpoint related initialisation
     virtualSourceArray      = [[NSMutableArray alloc] init];
@@ -41,7 +40,7 @@
     // Uncomment the following line for debugging if you want to
     // disable undo, which makes tracking retain/release issues easier.
     //[self setUndoManager:nil];
-
+    selectedIndex = -1;
     return self;
 }
 
@@ -50,7 +49,7 @@
 {
     NSButtonCell*		buttonCell;
     PatchTableCell*		patchTableCell;
-    
+
     [super windowControllerDidLoadNib:windowController];
 
     // These are so that our window and panel use the correct undo manager
@@ -65,11 +64,9 @@
     [buttonCell setButtonType:NSSwitchButton];
     [buttonCell setTitle:@""];
     [[patchTable tableColumnWithIdentifier:@"enabled"] setDataCell:buttonCell];
-    [buttonCell release];
     
     patchTableCell = [[PatchTableCell alloc] init];
     [[patchTable tableColumnWithIdentifier:@"patch"] setDataCell:patchTableCell];
-    [patchTableCell release];
     
     patchTableDataSource = [[PatchTableDataSource alloc] initWithDocument:self patchArray:patchArray];
     [patchTable setDataSource:patchTableDataSource];
@@ -113,7 +110,6 @@
     // See the comment on tabView:shouldSelectTabViewItem; in EndpointTableDataSource
     [virtualEndpointTabView setDelegate:inputTableDataSource];
     
-    
     [self syncWithLoadedData];
 }
 
@@ -121,17 +117,6 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-
-    [patchTableDataSource release];
-    [patchArray release];
-    
-    [inputTableDataSource release];
-    [outputTableDataSource release];
-    
-    [virtualSourceArray release];
-    [virtualDestinationArray release];
-    
-    [super dealloc];
 }
 
 
@@ -150,7 +135,6 @@
     [archiver encodeObject:patchArray              forKey:@"patchArray"];
     
     [archiver finishEncoding];
-    [archiver release];
     
     return data;
 }
@@ -158,21 +142,16 @@
 
 - (BOOL)loadDataRepresentation:(NSData*)data ofType:(NSString*)type
 {
-    [patchArray release];
-    [virtualDestinationArray release];
-    [virtualSourceArray release];
-
     NSKeyedUnarchiver* unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
     
-    virtualDestinationArray = [[unarchiver decodeObjectForKey:@"virtualDestinationArray"] retain];
+    virtualDestinationArray = [unarchiver decodeObjectForKey:@"virtualDestinationArray"];
     
-    virtualSourceArray = [[unarchiver decodeObjectForKey:@"virtualSourceArray"] retain];
+    virtualSourceArray = [unarchiver decodeObjectForKey:@"virtualSourceArray"];
     
-    patchArray = [[unarchiver decodeObjectForKey:@"patchArray"] retain];
+    patchArray = [unarchiver decodeObjectForKey:@"patchArray"];
     [patchArray makeObjectsPerformSelector:@selector(rescueFromLimbo)];
     
     [unarchiver finishDecoding];
-    [unarchiver release];
     
     // We need to do this to handle redisplay of the new data when a Revert is done
     [self syncWithLoadedData];
@@ -192,7 +171,7 @@
     [patchTable reloadData];
 
     if ([patchArray count] > 0)
-        [patchTable selectRow:0 byExtendingSelection:NO];
+        [patchTable selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
     else
         [patchTable deselectAll:self];
     
@@ -238,7 +217,7 @@
 
 - (void)selectedPatchChanged:(NSNotification*)notification
 {
-    int patchIndex = [patchTable selectedRow];
+    int patchIndex = (int)[patchTable selectedRow];
     
     if (patchIndex != -1)
         selectedPatch = [patchArray objectAtIndex:patchIndex];
@@ -252,15 +231,16 @@
     [self setTransposeControls];
     [self setTransmitClockControls];
     [self setOutputPopUp];
+    
+    selectedIndex = patchIndex;
 }
 
 
-- (IBAction)addPatchButtonPressed:(id)sender
+- (IBAction) addPatchButtonPressed:(id)sender
 {
-    Patch* patch;
-    
     if (selectedPatch != nil) {
-        patch = [[Patch alloc] initFromPatch:selectedPatch];
+        Patch *patch = [[Patch alloc] initFromPatch:selectedPatch];
+        [self addPatch:patch atIndex:(int)[patchArray count]];
     }
     else {
         // Pick a default input and output for a blank patch
@@ -276,14 +256,19 @@
         PYMIDIEndpoint* output;
         do { output = [enumerator nextObject]; } while ([output isIACBus]);
 
-        patch = [[Patch alloc] initWithInput:input output:output];
+        Patch *patch = [[Patch alloc] initWithInput:input output:output];
+        [self addPatch:patch atIndex:(int)[patchArray count]];
     }
-    
-    [self addPatch:patch atIndex:[patchArray count]];
-    
-    [patch release];
+
 }
 
+- (IBAction)removePatchButtonPressed:(id)sender
+{
+    if (selectedIndex >= 0) {
+        [self removePatchAtIndex: selectedIndex];
+    }
+    
+}
 
 - (void)addPatch:(Patch*)patch atIndex:(int)index
 {
@@ -293,7 +278,7 @@
     [patchArray insertObject:patch atIndex:index];
     
     [patchTable reloadData];
-    [patchTable selectRow:index byExtendingSelection:NO];
+    [patchTable selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:NO];
 
     [[undoManager prepareWithInvocationTarget:self]
         removePatchAtIndex:index
@@ -313,7 +298,7 @@
 - (void)removePatchAtIndex:(int)index
 {
     NSUndoManager* undoManager = [self undoManager];
-    Patch* patch = [[patchArray objectAtIndex:index] retain];
+    Patch* patch = [patchArray objectAtIndex:index];
     
     [patch banishToLimbo];
     [patchArray removeObjectAtIndex:index];
@@ -323,8 +308,6 @@
     [[undoManager prepareWithInvocationTarget:self]
         addPatch:patch atIndex:index
     ];
-    
-    [patch release];
 }
 
 
@@ -362,7 +345,6 @@
     [archiver encodeObject:patch forKey:@"patch"];
     
     [archiver finishEncoding];
-    [archiver release];
 
     return data;
 }
@@ -384,7 +366,6 @@
     patch = [unarchiver decodeObjectForKey:@"patch"];
     
     [unarchiver finishDecoding];
-    [unarchiver release];
     
     return patch;
 }
@@ -480,7 +461,6 @@
     [filterChannelMatrix setIntercellSpacing:NSMakeSize(5,4)];
     [filterChannelMatrix setMode:NSTrackModeMatrix];
     [filterChannelMatrix renewRows:2 columns:8];
-    [buttonCell release];
     
     for (i = 0; i < 8; i++) {
         buttonCell = [filterChannelMatrix cellAtRow:0 column:i];
@@ -625,7 +605,7 @@
 
 - (IBAction)remapChannelPopUpChanged:(id)sender
 {
-    [self setRemappingChannel:[remapChannelPopUp indexOfSelectedItem] + 1 forPatch:selectedPatch];
+    [self setRemappingChannel:(int)[remapChannelPopUp indexOfSelectedItem] + 1 forPatch:selectedPatch];
 }
 
 
@@ -1020,14 +1000,10 @@
     [[self undoManager] beginUndoGrouping];
     
     panelWasOpenedToInputs = YES;
-    
-    [[NSApplication sharedApplication]
-        beginSheet:virtualEndpointPanel
-        modalForWindow:documentWindow
-        modalDelegate:self
-        didEndSelector:@selector(endpointPanelDidEnd:returnCode:contextInfo:)
-        contextInfo:nil
-    ];
+
+	[documentWindow beginSheet:virtualEndpointPanel completionHandler:^(NSModalResponse returnCode) {
+		[self endpointPanelDidEnd:self->virtualEndpointPanel returnCode:returnCode contextInfo:nil];
+	}];
 }
 
 
@@ -1041,14 +1017,9 @@
     [[self undoManager] beginUndoGrouping];
 
     panelWasOpenedToInputs = NO;
-    
-    [[NSApplication sharedApplication]
-        beginSheet:virtualEndpointPanel
-        modalForWindow:documentWindow
-        modalDelegate:self
-        didEndSelector:@selector(endpointPanelDidEnd:returnCode:contextInfo:)
-        contextInfo:nil
-    ];
+	[documentWindow beginSheet:virtualEndpointPanel completionHandler:^(NSModalResponse returnCode) {
+		[self endpointPanelDidEnd:self->virtualEndpointPanel returnCode:returnCode contextInfo:nil];
+	}];
 }
 
 
@@ -1058,10 +1029,11 @@
         [[[self displayName] lastPathComponent] stringByDeletingPathExtension]
     ];
     
-    [[inputTable dataSource] tableView:inputTable newEndpointWithName:baseName];
+    [(EndpointTableDataSource *)[inputTable dataSource] tableView:inputTable newEndpointWithName:baseName];
     
     // Set up the newly created endpoint for editing
-    [inputTable selectRow:[inputTable numberOfRows]-1 byExtendingSelection:NO];
+
+    [inputTable selectRowIndexes:[NSIndexSet indexSetWithIndex:[inputTable numberOfRows]-1] byExtendingSelection:NO];
     [inputTable editColumn:0 row:[inputTable selectedRow] withEvent:nil select:YES];
 }
     
@@ -1073,10 +1045,11 @@
         [[[self displayName] lastPathComponent] stringByDeletingPathExtension]
     ];
 
-    [[outputTable dataSource] tableView:outputTable newEndpointWithName:baseName];
+    [(EndpointTableDataSource *)[outputTable dataSource] tableView:outputTable newEndpointWithName:baseName];
 
     // Set up the newly created endpoint for editing
-    [outputTable selectRow:[outputTable numberOfRows]-1 byExtendingSelection:NO];
+    [outputTable selectRowIndexes:[NSIndexSet indexSetWithIndex:[outputTable numberOfRows]-1] byExtendingSelection:NO];
+
     [outputTable editColumn:0 row:[outputTable selectedRow] withEvent:nil select:YES];
 }
 
@@ -1086,25 +1059,29 @@
 {
     if ([virtualEndpointPanel makeFirstResponder:nil]) {        
         [virtualEndpointPanel orderOut:self];
-        [[NSApplication sharedApplication] endSheet:virtualEndpointPanel returnCode:0];
+        [documentWindow endSheet:virtualEndpointPanel returnCode:0];
     }
 }
 
 
-- (void)endpointPanelDidEnd:(NSWindow*)sheet returnCode:(int)returnCode contextInfo:(void*)contextInfo
+- (void)endpointPanelDidEnd:(NSWindow*)sheet returnCode:(NSModalResponse)returnCode contextInfo:(void*)contextInfo
 {
-    int tab = [virtualEndpointTabView indexOfTabViewItem:[virtualEndpointTabView selectedTabViewItem]];
+    int tab = (int)[virtualEndpointTabView indexOfTabViewItem:[virtualEndpointTabView selectedTabViewItem]];
     
     if (panelWasOpenedToInputs) {
         if (tab == 0 && [inputTable selectedRow] != -1) {
             PYMIDIEndpoint* input = [virtualDestinationArray objectAtIndex:[inputTable selectedRow]];
-            [self setInput:input forPatch:selectedPatch];
+			if (selectedPatch.input != input) {
+				[self setInput:input forPatch:selectedPatch];
+			}
         }
     }
     else {
         if (tab == 1 && [outputTable selectedRow] != -1) {
             PYMIDIEndpoint* output = [virtualSourceArray objectAtIndex:[outputTable selectedRow]];
-            [self setOutput:output forPatch:selectedPatch];;
+			if (selectedPatch.output != output) {
+				[self setOutput:output forPatch:selectedPatch];
+			}
         }
     }
 

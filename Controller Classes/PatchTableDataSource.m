@@ -13,32 +13,22 @@
     
     if (self != nil) {
         document = newDocument;
-        patchArray = [newPatchArray retain];
+        patchArray = newPatchArray;
     }
     
     return self;
 }
 
 
-- (void)dealloc
-{
-    [patchArray release];
-    
-    [super dealloc];
-}
-
-
 - (void)setPatchArray:(NSMutableArray*)newPatchArray
 {
-    [newPatchArray retain];
-    [patchArray release];
     patchArray = newPatchArray;
 }
 
 
 - (int)numberOfRowsInTableView:(NSTableView*)tableView
 {
-    return [patchArray count];
+    return (int)[patchArray count];
 }
 
 
@@ -91,7 +81,7 @@
 
 - (void)deleteSelection:(NSTableView*)tableView
 {
-    [document removePatchAtIndex:[tableView selectedRow]];
+    [document removePatchAtIndex:(int)[tableView selectedRow]];
 }
 
 

@@ -257,7 +257,6 @@
 				C12C7FE805AECD9D0066E007 /* Resources */,
 				C12C7FF005AECD9D0066E007 /* Sources */,
 				C12C7FFA05AECD9D0066E007 /* Frameworks */,
-				C14601500D3CB30B002E94E5 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -310,22 +309,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		C14601500D3CB30B002E94E5 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/usr/bin/perl -w";
-			shellScript = "# Xcode auto-versioning script for Subversion\n# by Axel Andersson, modified by Daniel Jalkut to add\n# \"--revision HEAD\" to the svn info line, which allows\n# the latest revision to always be used.\n\n# See http://www.red-sweater.com/blog/23/automatic-build-sub-versioning-in-xcode#finalscript\n\nuse strict;\n\ndie \"$0: Must be run from Xcode\" unless $ENV{\"BUILT_PRODUCTS_DIR\"};\n\n# Get the current subversion revision number and use it to set the CFBundleVersion value\nmy $REV = `/opt/local/bin/svnversion -n ./`;\nmy $INFO = \"$ENV{BUILT_PRODUCTS_DIR}/$ENV{WRAPPER_NAME}/Contents/Info.plist\";\n\nmy $version = $REV;\n\n# (Match the last group of digits and optional letter M/S):\n\n# ugly yet functional (barely) regex by Daniel Jalkut:\n#$version =~ s/([\\d]*:)(\\d+[M|S]*).*/$2/;\n\n# better yet still functional regex via Kevin \"Regex Nerd\" Ballard\n#($version =~ m/\\d+[MS]*$/) && ($version = $&);\n\n# or a custom version that ignores the M and S flags by Pete Yandell\n($version =~ m/(\\d+)[MS]*$/) && ($version = $1);\n\ndie \"$0: No Subversion revision found\" unless $version;\n\nopen(FH, \"$INFO\") or die \"$0: $INFO: $!\";\nmy $info = join(\"\", <FH>);\nclose(FH);\n\n$info =~ s/([\\t ]+<key>CFBundleVersion<\\/key>\\n[\\t ]+<string>).*?(<\\/string>)/$1$version$2/;\n\nopen(FH, \">$INFO\") or die \"$0: $INFO: $!\";\nprint FH $info;\nclose(FH);\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C12C7FF005AECD9D0066E007 /* Sources */ = {

@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C12C7FE905AECD9D0066E007 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
-		C12C7FEA05AECD9D0066E007 /* PatchbayDocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B4FDCFA73011CA2CEA /* PatchbayDocument.nib */; };
+		34D64CE4239C72BE00FD5032 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34D64CE2239C72BE00FD5032 /* MainMenu.xib */; };
+		34D64CE7239C72D400FD5032 /* PatchbayDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34D64CE5239C72D400FD5032 /* PatchbayDocument.xib */; };
 		C12C7FEB05AECD9D0066E007 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
 		C12C7FEC05AECD9D0066E007 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = F5C0AB170331972E018C91A3 /* Credits.html */; };
 		C12C7FEF05AECD9D0066E007 /* Plus.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F598A8BE0342EE1E01B9BE79 /* Plus.tiff */; };
@@ -43,8 +43,8 @@
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		34AC51A1239C6DEB00099156 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		34AC51A2239C6DEB00099156 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/MainMenu.nib; sourceTree = "<group>"; };
-		34AC51A3239C6DEB00099156 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/PatchbayDocument.nib; sourceTree = "<group>"; };
+		34D64CE3239C72BE00FD5032 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		34D64CE6239C72D400FD5032 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PatchbayDocument.xib; sourceTree = "<group>"; };
 		C12C800205AECD9D0066E007 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C12C800305AECD9D0066E007 /* MIDI Patchbay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MIDI Patchbay.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C152A6E907559AE9004FF49E /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
@@ -175,8 +175,8 @@
 			isa = PBXGroup;
 			children = (
 				F5C0AB170331972E018C91A3 /* Credits.html */,
-				2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */,
-				2A37F4B4FDCFA73011CA2CEA /* PatchbayDocument.nib */,
+				34D64CE2239C72BE00FD5032 /* MainMenu.xib */,
+				34D64CE5239C72D400FD5032 /* PatchbayDocument.xib */,
 				C12C800205AECD9D0066E007 /* Info.plist */,
 				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
 				F598A8BE0342EE1E01B9BE79 /* Plus.tiff */,
@@ -298,13 +298,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C12C7FE905AECD9D0066E007 /* MainMenu.nib in Resources */,
-				C12C7FEA05AECD9D0066E007 /* PatchbayDocument.nib in Resources */,
+				34D64CE7239C72D400FD5032 /* PatchbayDocument.xib in Resources */,
 				C12C7FEB05AECD9D0066E007 /* InfoPlist.strings in Resources */,
 				C12C7FEC05AECD9D0066E007 /* Credits.html in Resources */,
 				C12C7FEF05AECD9D0066E007 /* Plus.tiff in Resources */,
 				C152A6EA07559AE9004FF49E /* AppIcon.icns in Resources */,
 				C1AB8C7C075DAF9B00C4B27B /* DocIcon.icns in Resources */,
+				34D64CE4239C72BE00FD5032 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,20 +349,20 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		2A37F4B4FDCFA73011CA2CEA /* PatchbayDocument.nib */ = {
+		34D64CE2239C72BE00FD5032 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				34AC51A3239C6DEB00099156 /* en */,
+				34D64CE3239C72BE00FD5032 /* en */,
 			);
-			name = PatchbayDocument.nib;
+			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
-		2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */ = {
+		34D64CE5239C72D400FD5032 /* PatchbayDocument.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				34AC51A2239C6DEB00099156 /* en */,
+				34D64CE6239C72D400FD5032 /* en */,
 			);
-			name = MainMenu.nib;
+			name = PatchbayDocument.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

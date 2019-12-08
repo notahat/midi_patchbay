@@ -58,7 +58,7 @@ static void midiReadProc (const MIDIPacketList* packetList, void* createRefCon, 
     pool = [[NSAutoreleasePool alloc] init];
     
     enumerator = [receivers objectEnumerator];
-    while (receiver = [[enumerator nextObject] nonretainedObjectValue])
+    while ((receiver = [[enumerator nextObject] nonretainedObjectValue]))
         [receiver processMIDIPacketList:packetList sender:self];
         
     [pool release];

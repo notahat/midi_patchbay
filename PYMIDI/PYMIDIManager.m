@@ -154,8 +154,8 @@ midiNotifyProc (const MIDINotification* message, void* refCon)
         [endpoint syncWithMIDIEndpoint];
     
     // Find any non-virtual endpoints that we don't already know about
-    int i;
-    int count = MIDIGetNumberOfSources();
+    ItemCount i;
+    ItemCount count = MIDIGetNumberOfSources();
     for (i = 0; i < count; i++) {
         MIDIEndpointRef midiEndpointRef = MIDIGetSource (i);
         
@@ -231,8 +231,8 @@ midiNotifyProc (const MIDINotification* message, void* refCon)
         [endpoint syncWithMIDIEndpoint];
     
     // Find any non-virtual endpoints that we don't already know about
-    int i;
-    int count = MIDIGetNumberOfDestinations();
+    ItemCount i;
+    ItemCount count = MIDIGetNumberOfDestinations();
     for (i = 0; i < count; i++) {
         MIDIEndpointRef midiEndpointRef = MIDIGetDestination (i);
         

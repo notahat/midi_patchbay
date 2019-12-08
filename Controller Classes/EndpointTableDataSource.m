@@ -36,13 +36,13 @@
 }
 
 
-- (int)numberOfRowsInTableView:(NSTableView*)tableView
+- (NSUInteger)numberOfRowsInTableView:(NSTableView*)tableView
 {
     return [endpointArray count];
 }
 
 
-- (id)tableView:(NSTableView*)tableView objectValueForTableColumn:(NSTableColumn*)column row:(int)rowIndex
+- (id)tableView:(NSTableView*)tableView objectValueForTableColumn:(NSTableColumn*)column row:(NSUInteger)rowIndex
 {
     PYMIDIVirtualEndpoint* endpoint = [endpointArray objectAtIndex:rowIndex];
     
@@ -135,7 +135,7 @@
 }
 
 
-- (void)tableView:(NSTableView*)tableView addEndpoint:(PYMIDIVirtualEndpoint*)endpoint atIndex:(int)index
+- (void)tableView:(NSTableView*)tableView addEndpoint:(PYMIDIVirtualEndpoint*)endpoint atIndex:(NSUInteger)index
 {
     NSWindow* window = [tableView window];
     if ([window isKeyWindow] && ![window makeFirstResponder:nil]) return;
@@ -152,7 +152,7 @@
 }
 
 
-- (void)tableView:(NSTableView*)tableView removeEndpointAtIndex:(int)index
+- (void)tableView:(NSTableView*)tableView removeEndpointAtIndex:(NSUInteger)index
 {
     NSWindow* window = [tableView window];
     if ([window isKeyWindow] && ![window makeFirstResponder:nil]) return;
@@ -173,7 +173,7 @@
 }
 
 
-- (void)tableView:(NSTableView*)tableView setName:(NSString*)name forEndpointAtIndex:(int)index
+- (void)tableView:(NSTableView*)tableView setName:(NSString*)name forEndpointAtIndex:(NSUInteger)index
 {
     PYMIDIVirtualEndpoint* endpoint = [endpointArray objectAtIndex:index];
     NSString* oldName = [[endpoint name] retain];

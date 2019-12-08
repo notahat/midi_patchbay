@@ -238,7 +238,7 @@
 
 - (void)selectedPatchChanged:(NSNotification*)notification
 {
-    int patchIndex = [patchTable selectedRow];
+    NSInteger patchIndex = [patchTable selectedRow];
     
     if (patchIndex != -1)
         selectedPatch = [patchArray objectAtIndex:patchIndex];
@@ -285,7 +285,7 @@
 }
 
 
-- (void)addPatch:(Patch*)patch atIndex:(int)index
+- (void)addPatch:(Patch*)patch atIndex:(NSUInteger)index
 {
     NSUndoManager* undoManager = [self undoManager];    
 
@@ -301,7 +301,7 @@
 }
 
 
-- (void)addPatchFromArchive:(NSData*)data atIndex:(int)index
+- (void)addPatchFromArchive:(NSData*)data atIndex:(NSUInteger)index
 {
     Patch* patch = [self unarchivePatchFromPasteBoard:data];
     
@@ -310,7 +310,7 @@
 }
 
 
-- (void)removePatchAtIndex:(int)index
+- (void)removePatchAtIndex:(NSUInteger)index
 {
     NSUndoManager* undoManager = [self undoManager];
     Patch* patch = [[patchArray objectAtIndex:index] retain];
@@ -625,7 +625,7 @@
 
 - (IBAction)remapChannelPopUpChanged:(id)sender
 {
-    [self setRemappingChannel:[remapChannelPopUp indexOfSelectedItem] + 1 forPatch:selectedPatch];
+    [self setRemappingChannel:(int)[remapChannelPopUp indexOfSelectedItem] + 1 forPatch:selectedPatch];
 }
 
 
@@ -1093,7 +1093,7 @@
 
 - (void)endpointPanelDidEnd:(NSWindow*)sheet returnCode:(int)returnCode contextInfo:(void*)contextInfo
 {
-    int tab = [virtualEndpointTabView indexOfTabViewItem:[virtualEndpointTabView selectedTabViewItem]];
+    NSInteger tab = [virtualEndpointTabView indexOfTabViewItem:[virtualEndpointTabView selectedTabViewItem]];
     
     if (panelWasOpenedToInputs) {
         if (tab == 0 && [inputTable selectedRow] != -1) {

@@ -95,7 +95,7 @@ PYMIDIGetSourceByUniqueID (SInt32 uniqueIDToMatch)
             return endpoint;
     }
     
-    return NULL;
+    return 0;
 }
 
 
@@ -113,7 +113,7 @@ PYMIDIGetSourceByName (NSString* nameToMatch)
         if (name != nil && [name isEqualToString:nameToMatch]) return endpoint;
     }
     
-    return NULL;
+    return 0;
 }
 
 
@@ -151,7 +151,7 @@ PYMIDIGetDestinationByUniqueID (SInt32 uniqueIDToMatch)
             return endpoint;
     }
     
-    return NULL;
+    return 0;
 }
 
 
@@ -168,15 +168,15 @@ PYMIDIGetDestinationByName (NSString* nameToMatch)
         if (name != nil && [name isEqualToString:nameToMatch]) return endpoint;
     }
     
-    return NULL;
+    return 0;
 }
     
     
 Boolean
 PYMIDIIsUniqueIDInUse (SInt32 uniqueID)
 {
-    int count;
-    int index;
+    ItemCount count;
+    ItemCount index;
     MIDIEndpointRef endpoint;
     SInt32 usedID;
     
@@ -205,7 +205,7 @@ PYMIDIAllocateUniqueID (void)
     static SInt32 sequence = 0;
     
     do {
-        uniqueID = time (NULL) + sequence++;
+        uniqueID = (SInt32)time (NULL) + sequence++;
     } while (PYMIDIIsUniqueIDInUse (uniqueID));
     
     return uniqueID;
@@ -215,8 +215,8 @@ PYMIDIAllocateUniqueID (void)
 Boolean
 PYMIDIIsEndpointNameTaken (NSString* name)
 {
-    return PYMIDIGetSourceByName      (name) != NULL ||
-           PYMIDIGetDestinationByName (name) != NULL;
+    return PYMIDIGetSourceByName      (name) != 0 ||
+           PYMIDIGetDestinationByName (name) != 0;
 }
 
 

@@ -1,7 +1,7 @@
 #import <AppKit/AppKit.h>
 #import <CoreMIDI/CoreMIDI.h>
 
-#import <PYMIDI/PYMIDIEndpoint.h>
+#import "PYMIDI/PYMIDIEndpoint.h"
 
 
 @interface Patch : NSObject <NSCoding> {

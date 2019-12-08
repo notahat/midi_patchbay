@@ -1,4 +1,4 @@
-#import <PYMIDI/PYMIDIEndpointDescriptor.h>
+#import "PYMIDI/PYMIDIEndpointDescriptor.h"
 
 
 @implementation PYMIDIEndpointDescriptor

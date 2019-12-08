@@ -1,5 +1,5 @@
 #import "Patch.h"
-#import <PYMIDI/PYMIDI.h>
+#import "PYMIDI/PYMIDI.h"
 
 
 @interface Patch (private)

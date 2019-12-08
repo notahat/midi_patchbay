@@ -1,7 +1,7 @@
-#import <PYMIDI/PYMIDIRealDestination.h>
-#import <PYMIDI/PYMIDIUtils.h>
-#import <PYMIDI/PYMIDIManager.h>
-#import <PYMIDI/PYMIDIEndpointDescriptor.h>
+#import "PYMIDI/PYMIDIRealDestination.h"
+#import "PYMIDI/PYMIDIUtils.h"
+#import "PYMIDI/PYMIDIManager.h"
+#import "PYMIDI/PYMIDIEndpointDescriptor.h"
 
 
 @implementation PYMIDIRealDestination

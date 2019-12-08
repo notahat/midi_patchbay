@@ -1,5 +1,5 @@
 #import <Cocoa/Cocoa.h>
-#import <PYMIDI/PYMIDI.h>
+#import "PYMIDI/PYMIDI.h"
 
 
 @interface EndpointTableDataSource : NSObject {

@@ -1,5 +1,5 @@
 #import "PatchbayDocument.h"
-#import <PYMIDI/PYMIDI.h>
+#import "PYMIDI/PYMIDI.h"
 #import "Patch.h"
 #import "PatchTableCell.h"
 #import "PatchTableDataSource.h"

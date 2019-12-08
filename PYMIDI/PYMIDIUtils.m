@@ -1,4 +1,4 @@
-#import <PYMIDI/PYMIDIUtils.h>
+#import "PYMIDI/PYMIDIUtils.h"
 
 
 NSString*

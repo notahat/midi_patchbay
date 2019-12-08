@@ -1,5 +1,5 @@
 #import "EndpointTableDataSource.h"
-#import <PYMIDI/PYMIDI.h>
+#import "PYMIDI/PYMIDI.h"
 
 
 @implementation EndpointTableDataSource

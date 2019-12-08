@@ -1,6 +1,6 @@
-#import <PYMIDI/PYMIDIVirtualDestination.h>
-#import <PYMIDI/PYMIDIUtils.h>
-#import <PYMIDI/PYMIDIManager.h>
+#import "PYMIDI/PYMIDIVirtualDestination.h"
+#import "PYMIDI/PYMIDIUtils.h"
+#import "PYMIDI/PYMIDIManager.h"
 
 
 @implementation PYMIDIVirtualDestination

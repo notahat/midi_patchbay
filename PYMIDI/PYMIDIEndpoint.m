@@ -1,7 +1,7 @@
-#import <PYMIDI/PYMIDIEndpoint.h>
-#import <PYMIDI/PYMIDIUtils.h>
-#import <PYMIDI/PYMIDIManager.h>
-#import <PYMIDI/PYMIDIEndpointDescriptor.h>
+#import "PYMIDI/PYMIDIEndpoint.h"
+#import "PYMIDI/PYMIDIUtils.h"
+#import "PYMIDI/PYMIDIManager.h"
+#import "PYMIDI/PYMIDIEndpointDescriptor.h"
 
 
 @interface PYMIDIEndpoint (private)

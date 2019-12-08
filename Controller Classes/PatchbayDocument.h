@@ -1,5 +1,5 @@
 #import <AppKit/AppKit.h>
-#import <PYMIDI/PYMIDI.h>
+#import "PYMIDI/PYMIDI.h"
 
 @class WindowWithUndo;
 

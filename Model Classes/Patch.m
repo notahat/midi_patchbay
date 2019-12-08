@@ -493,7 +493,7 @@ BOOL isStatusByte (Byte b)		{ return b >= 0x80 && b < 0xF8; }
 BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 
 
-unsigned int
+long
 midiPacketListSize (const MIDIPacketList* packetList)
 {
     const MIDIPacket*	packet;

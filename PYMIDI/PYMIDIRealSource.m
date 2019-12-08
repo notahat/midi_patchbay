@@ -54,7 +54,7 @@ static void midiReadProc (const MIDIPacketList* packetList, void* createRefCon, 
 
 - (void)startIO
 {
-    if (midiEndpointRef == nil || midiPortRef != nil) return;
+    if (midiEndpointRef == 0 || midiPortRef != 0) return;
 
     MIDIInputPortCreate (
         [[PYMIDIManager sharedInstance] midiClientRef], CFSTR("PYMIDIRealSource"),

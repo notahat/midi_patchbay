@@ -36,7 +36,7 @@
 
 - (BOOL)ioIsRunning
 {
-    return midiPortRef != nil;
+    return midiPortRef != 0;
 }
 
 

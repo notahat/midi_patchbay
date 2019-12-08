@@ -50,7 +50,7 @@
 
 - (void)startIO
 {
-    if (midiEndpointRef == nil || midiPortRef != nil) return;
+    if (midiEndpointRef == 0 || midiPortRef != 0) return;
 
     MIDIOutputPortCreate (
         [[PYMIDIManager sharedInstance] midiClientRef], CFSTR("PYMIDIRealDestination"),

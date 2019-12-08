@@ -96,7 +96,7 @@
 
 - (void)setPropertiesFromMIDIEndpoint
 {
-    if (midiEndpointRef == NULL) return;
+    if (midiEndpointRef == 0) return;
     
     [self setUniqueIDFromMIDIEndpoint];
     [self setNameFromMIDIEndpoint];
@@ -301,7 +301,7 @@
     SInt32 isOffline;
     OSStatus result;
 
-    if (midiEndpointRef == nil) return YES;
+    if (midiEndpointRef == 0) return YES;
     
     result = MIDIObjectGetIntegerProperty (midiEndpointRef, kMIDIPropertyOffline, &isOffline);
     return result == noErr && isOffline;

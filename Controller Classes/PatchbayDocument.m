@@ -1058,7 +1058,7 @@
         [[[self displayName] lastPathComponent] stringByDeletingPathExtension]
     ];
     
-    [[inputTable dataSource] tableView:inputTable newEndpointWithName:baseName];
+    [inputTableDataSource tableView:inputTable newEndpointWithName:baseName];
     
     // Set up the newly created endpoint for editing
     [inputTable selectRow:[inputTable numberOfRows]-1 byExtendingSelection:NO];

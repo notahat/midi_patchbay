@@ -11,7 +11,7 @@
 @class EndpointTableDataSource;
 
 
-@interface PatchbayDocument : NSDocument {
+@interface PatchbayDocument : NSDocument<NSWindowDelegate> {
     IBOutlet NSWindow*			documentWindow;
     
     // Stuff related to the table of patches

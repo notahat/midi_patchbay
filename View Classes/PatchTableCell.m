@@ -27,15 +27,15 @@
     systemFont = [NSFont systemFontOfSize:[NSFont systemFontSize]];
     smallSystemFont = [NSFont systemFontOfSize:[NSFont smallSystemFontSize]];
     leftAlign = [[NSMutableParagraphStyle alloc] init];
-    [leftAlign setAlignment:NSLeftTextAlignment];
+    [leftAlign setAlignment:NSTextAlignmentLeft];
     [leftAlign setLineBreakMode:NSLineBreakByTruncatingTail];
     
     rightAlign = [[NSMutableParagraphStyle alloc] init];
-    [rightAlign setAlignment:NSRightTextAlignment];
+    [rightAlign setAlignment:NSTextAlignmentRight];
     [rightAlign setLineBreakMode:NSLineBreakByTruncatingTail];
     
     centerAlign = [[NSMutableParagraphStyle alloc] init];
-    [centerAlign setAlignment:NSCenterTextAlignment];
+    [centerAlign setAlignment:NSTextAlignmentCenter];
     [centerAlign setLineBreakMode:NSLineBreakByTruncatingTail];
     
     

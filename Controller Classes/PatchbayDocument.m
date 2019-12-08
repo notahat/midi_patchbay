@@ -62,7 +62,7 @@
     // Set up the patch related stuff
     
     buttonCell = [[NSButtonCell alloc] init];
-    [buttonCell setButtonType:NSSwitchButton];
+    [buttonCell setButtonType:NSButtonTypeSwitch];
     [buttonCell setTitle:@""];
     [[patchTable tableColumnWithIdentifier:@"enabled"] setDataCell:buttonCell];
     [buttonCell release];
@@ -473,7 +473,7 @@
     int i;
     
     buttonCell = [[NSButtonCell alloc] init];
-    [buttonCell setButtonType:NSSwitchButton];
+    [buttonCell setButtonType:NSButtonTypeSwitch];
     [buttonCell setTitle:@"16"];
     [filterChannelMatrix setPrototype:buttonCell];
     [filterChannelMatrix setCellSize:[buttonCell cellSize]];
@@ -506,7 +506,7 @@
         [filterChannelMatrix setEnabled:[selectedPatch shouldFilterChannel]];
         for (i = 0; i < 16; i++) {
             channelIsEnabled = ([selectedPatch channelMask] >> i) & 1;
-            [[filterChannelMatrix cellWithTag:i] setState:channelIsEnabled ? NSOnState : NSOffState];
+            [[filterChannelMatrix cellWithTag:i] setState:channelIsEnabled ? NSControlStateValueOn : NSControlStateValueOff];
         }
     }
     else {
@@ -545,7 +545,7 @@
     unsigned int channelMask = 0;
     
     for (i = 0; i < 16; i++) {
-        if ([[filterChannelMatrix cellWithTag:i] state] == NSOnState)
+        if ([[filterChannelMatrix cellWithTag:i] state] == NSControlStateValueOn)
             channelMask |= 1 << i;
     }
     
@@ -587,13 +587,13 @@
 {
     if (selectedPatch != nil) {
         [remapChannelButton setEnabled:YES];
-        [remapChannelButton setState:[selectedPatch shouldRemapChannel] ? NSOnState : NSOffState];
+        [remapChannelButton setState:[selectedPatch shouldRemapChannel] ? NSControlStateValueOn : NSControlStateValueOff];
         [remapChannelPopUp setEnabled:[selectedPatch shouldRemapChannel]];
         [remapChannelPopUp selectItemAtIndex:[selectedPatch remappingChannel] - 1];
     }
     else {
         [remapChannelButton setEnabled:NO];
-        [remapChannelButton setState:NSOffState];
+        [remapChannelButton setState:NSControlStateValueOff];
         [remapChannelPopUp setEnabled:NO];
         [remapChannelPopUp selectItemAtIndex:-1];
     }
@@ -602,7 +602,7 @@
 
 - (IBAction)remapChannelButtonChanged:(id)sender
 {
-    [self setShouldRemapChannel:[remapChannelButton state] == NSOnState forPatch:selectedPatch];
+    [self setShouldRemapChannel:[remapChannelButton state] == NSControlStateValueOn forPatch:selectedPatch];
 }
 
 
@@ -821,7 +821,7 @@
 {
     if (selectedPatch != nil) {
         [transposeButton setEnabled:[selectedPatch shouldAllowNotes]];
-        [transposeButton setState:[selectedPatch shouldTranspose] ? NSOnState : NSOffState];
+        [transposeButton setState:[selectedPatch shouldTranspose] ? NSControlStateValueOn : NSControlStateValueOff];
         [transposeDistanceSlider
             setEnabled:[selectedPatch shouldAllowNotes] && [selectedPatch shouldTranspose]];
         [transposeDistanceSlider setIntValue:[selectedPatch transposeDistance]];
@@ -835,7 +835,7 @@
     }
     else {
         [transposeButton setEnabled:NO];
-        [transposeButton setState:NSOffState];
+        [transposeButton setState:NSControlStateValueOff];
         [transposeDistanceSlider setEnabled:NO];
         [transposeDistanceSlider setIntValue:0];
         [transposeDistanceField setEnabled:NO];
@@ -847,7 +847,7 @@
 
 - (IBAction)transposeButtonChanged:(id)sender
 {
-    [self setShouldTranspose:[transposeButton state] == NSOnState forPatch:selectedPatch];
+    [self setShouldTranspose:[transposeButton state] == NSControlStateValueOn forPatch:selectedPatch];
 }
 
 
@@ -906,17 +906,17 @@
 {
     if (selectedPatch != nil) {
         [transmitClockButton setEnabled:YES];
-        [transmitClockButton setState:[selectedPatch shouldTransmitClock] ? NSOnState : NSOffState];
+        [transmitClockButton setState:[selectedPatch shouldTransmitClock] ? NSControlStateValueOn : NSControlStateValueOff];
     }
     else {
         [transmitClockButton setEnabled:NO];
-        [transmitClockButton setState:NSOffState];
+        [transmitClockButton setState:NSControlStateValueOff];
     }
 }
 
 - (IBAction)transmitClockButtonChanged:(id)sender
 {
-    [self setShouldTransmitClock:[transmitClockButton state] == NSOnState forPatch:selectedPatch];
+    [self setShouldTransmitClock:[transmitClockButton state] == NSControlStateValueOn forPatch:selectedPatch];
 }
 
 

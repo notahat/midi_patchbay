@@ -50,7 +50,11 @@ Now any notes up to A4 will be sent your synth software's MIDI channel 1 and not
 
 ## Credits
 
-The software was designed and written by [Pete Yandell](mailto:pete@notahat.com)
+The software was designed and written by [Pete Yandell](https://notahat.com/)
+
+Big thanks to Dan Wilcox ([ZKM | Hertz-lab](https://zkm.de/en/about-the-zkm/organisation/hertz-lab)) for his work on 64-bit support.
+
+Thanks to Anthony Lauzon for many fixes.
 
 Thanks to Kevan Staples for generously donating the MIDI Patchbay icon.
 
@@ -59,7 +63,7 @@ Many, many thanks to Kurt Revis both for writing [MIDI Monitor](http://www.snoiz
 
 ## Version History
 
-### Version 1.0.5
+### Version 1.1.0
 
 * Rework of Catalina and 64-bit support, based on Dan Wilcox's 1.0.4 release
 * Dark mode support

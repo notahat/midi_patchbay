@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		342D628C23A4D616003CBFA6 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = F5C0AB170331972E018C91A3 /* Credits.html */; };
 		34D64CE4239C72BE00FD5032 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34D64CE2239C72BE00FD5032 /* MainMenu.xib */; };
 		34D64CE7239C72D400FD5032 /* PatchbayDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34D64CE5239C72D400FD5032 /* PatchbayDocument.xib */; };
 		C12C7FEB05AECD9D0066E007 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
-		C12C7FEC05AECD9D0066E007 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = F5C0AB170331972E018C91A3 /* Credits.html */; };
 		C12C7FEF05AECD9D0066E007 /* Plus.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F598A8BE0342EE1E01B9BE79 /* Plus.tiff */; };
 		C12C7FF105AECD9D0066E007 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		C12C7FF205AECD9D0066E007 /* PatchbayDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C0AB14033196D6018C91A3 /* PatchbayDocument.m */; };
@@ -87,7 +87,7 @@
 		F598A8BE0342EE1E01B9BE79 /* Plus.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Plus.tiff; sourceTree = "<group>"; };
 		F5C0AB13033196D6018C91A3 /* PatchbayDocument.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PatchbayDocument.h; path = "Controller Classes/PatchbayDocument.h"; sourceTree = "<group>"; };
 		F5C0AB14033196D6018C91A3 /* PatchbayDocument.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PatchbayDocument.m; path = "Controller Classes/PatchbayDocument.m"; sourceTree = "<group>"; };
-		F5C0AB170331972E018C91A3 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
+		F5C0AB170331972E018C91A3 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
 		F5C0AB4103319CEA018C91A3 /* EndpointTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = EndpointTableDataSource.h; path = "Controller Classes/EndpointTableDataSource.h"; sourceTree = "<group>"; };
 		F5C0AB4203319CEA018C91A3 /* EndpointTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = EndpointTableDataSource.m; path = "Controller Classes/EndpointTableDataSource.m"; sourceTree = "<group>"; };
 		F5C0AB460331C79F018C91A3 /* KeyTableView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = KeyTableView.m; path = "View Classes/KeyTableView.m"; sourceTree = "<group>"; };
@@ -300,9 +300,9 @@
 			files = (
 				34D64CE7239C72D400FD5032 /* PatchbayDocument.xib in Resources */,
 				C12C7FEB05AECD9D0066E007 /* InfoPlist.strings in Resources */,
-				C12C7FEC05AECD9D0066E007 /* Credits.html in Resources */,
 				C12C7FEF05AECD9D0066E007 /* Plus.tiff in Resources */,
 				C152A6EA07559AE9004FF49E /* AppIcon.icns in Resources */,
+				342D628C23A4D616003CBFA6 /* Credits.html in Resources */,
 				C1AB8C7C075DAF9B00C4B27B /* DocIcon.icns in Resources */,
 				34D64CE4239C72BE00FD5032 /* MainMenu.xib in Resources */,
 			);
@@ -375,6 +375,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -385,6 +386,7 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MARKETING_VERSION = 1.1.0;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.notahat.MIDIPatchBay;
@@ -407,6 +409,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 1;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;
@@ -416,6 +419,7 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MARKETING_VERSION = 1.1.0;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.notahat.MIDIPatchBay;

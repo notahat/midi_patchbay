@@ -6,7 +6,7 @@
 
 - (IBAction)visitWebSite:(id)sender
 {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://notahat.com/midi_patchbay"]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://notahat.com/midi_patchbay"]];
 }
 
 

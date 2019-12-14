@@ -45,8 +45,9 @@
     );
     
     inputNameAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-        systemFont,			NSFontAttributeName,
-        leftAlign,			NSParagraphStyleAttributeName,
+        systemFont,			  NSFontAttributeName,
+        leftAlign,			  NSParagraphStyleAttributeName,
+        [NSColor labelColor], NSForegroundColorAttributeName,
         nil
     ];
     
@@ -59,8 +60,9 @@
     );
 
     outputNameAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-        systemFont,			NSFontAttributeName,
-        rightAlign,			NSParagraphStyleAttributeName,
+        systemFont,			  NSFontAttributeName,
+        rightAlign,			  NSParagraphStyleAttributeName,
+        [NSColor labelColor], NSForegroundColorAttributeName,
         nil
     ];
 
@@ -77,7 +79,8 @@
     [arrow lineToPoint:NSMakePoint (arrowCenter.x, arrowCenter.y - 1)];
     [arrow lineToPoint:NSMakePoint (arrowCenter.x - 15, arrowCenter.y - 1)];
     [arrow closePath];
-    [[NSColor blackColor] set];
+
+    [[NSColor labelColor] set];
     [arrow fill];
     
     
@@ -87,8 +90,9 @@
     );
     
     descriptionAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-        smallSystemFont,	NSFontAttributeName,
-        centerAlign,		NSParagraphStyleAttributeName,
+        smallSystemFont,      NSFontAttributeName,
+        centerAlign,          NSParagraphStyleAttributeName,
+        [NSColor labelColor], NSForegroundColorAttributeName,
         nil
     ];
 

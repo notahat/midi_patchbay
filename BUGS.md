@@ -26,5 +26,3 @@ Closed
 ------
 
 * There *may* be problems when multiple inputs are patched through to a single real output.  If you see issues in this situation, please report them.  This should not happen under OS X 10.1.5 or later.
-
-_$Id: Bugs.html,v 1.2.2.2 2004/11/25 04:38:48 pete Exp $_

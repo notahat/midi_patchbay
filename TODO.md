@@ -32,5 +32,3 @@ Done
 ----
 
 * Rename TrafficTableCell...it's not a cell for the Traffic table! I should rename PatchTableCell while I'm at it.
-
-_$Id: To\040Do.html,v 1.2.2.1 2004/01/12 12:18:01 pete Exp $_

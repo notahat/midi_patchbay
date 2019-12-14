@@ -5,7 +5,4 @@
 
 }
 
-- (IBAction)visitWebSite:(id)sender;
-- (IBAction)sendFeedback:(id)sender;
-
 @end

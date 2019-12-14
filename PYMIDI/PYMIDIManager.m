@@ -1,10 +1,10 @@
 #import "PYMIDI/PYMIDIManager.h"
-#import <PYMIDI/PYMIDIUtils.h>
-#import <PYMIDI/PYMIDIEndpoint.h>
-#import <PYMIDI/PYMIDIEndpointSet.h>
-#import <PYMIDI/PYMIDIRealEndpoint.h>
-#import <PYMIDI/PYMIDIRealSource.h>
-#import <PYMIDI/PYMIDIRealDestination.h>
+#import "PYMIDI/PYMIDIUtils.h"
+#import "PYMIDI/PYMIDIEndpoint.h"
+#import "PYMIDI/PYMIDIEndpointSet.h"
+#import "PYMIDI/PYMIDIRealEndpoint.h"
+#import "PYMIDI/PYMIDIRealSource.h"
+#import "PYMIDI/PYMIDIRealDestination.h"
 
 
 @interface PYMIDIManager(private)
@@ -112,6 +112,18 @@ static void midiNotifyProc (const MIDINotification* message, void* refCon);
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"PYMIDISetupChanged" object:self];
             }
             break;
+            case kMIDIMsgObjectAdded:
+                break;
+            case kMIDIMsgObjectRemoved:
+                break;
+            case kMIDIMsgPropertyChanged:
+                break;
+            case kMIDIMsgThruConnectionsChanged:
+                break;
+            case kMIDIMsgSerialPortOwnerChanged:
+                break;
+            case kMIDIMsgIOError:
+                break;
         }
         
         isHandlingNotification = NO;
@@ -142,8 +154,8 @@ midiNotifyProc (const MIDINotification* message, void* refCon)
         [endpoint syncWithMIDIEndpoint];
     
     // Find any non-virtual endpoints that we don't already know about
-    int i;
-    int count = MIDIGetNumberOfSources();
+    ItemCount i;
+    ItemCount count = MIDIGetNumberOfSources();
     for (i = 0; i < count; i++) {
         MIDIEndpointRef midiEndpointRef = MIDIGetSource (i);
         
@@ -219,8 +231,8 @@ midiNotifyProc (const MIDINotification* message, void* refCon)
         [endpoint syncWithMIDIEndpoint];
     
     // Find any non-virtual endpoints that we don't already know about
-    int i;
-    int count = MIDIGetNumberOfDestinations();
+    ItemCount i;
+    ItemCount count = MIDIGetNumberOfDestinations();
     for (i = 0; i < count; i++) {
         MIDIEndpointRef midiEndpointRef = MIDIGetDestination (i);
         

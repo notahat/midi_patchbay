@@ -1,5 +1,5 @@
-#import <PYMIDI/PYMIDIEndpoint.h>
-#import <PYMIDI/PYMIDIVirtualEndpoint.h>
+#import "PYMIDI/PYMIDIEndpoint.h"
+#import "PYMIDI/PYMIDIVirtualEndpoint.h"
 
 
 @interface PYMIDIVirtualDestination : PYMIDIVirtualEndpoint {

@@ -1,5 +1,5 @@
-#import <PYMIDI/PYMIDIVirtualEndpoint.h>
-#import <PYMIDI/PYMIDIManager.h>
+#import "PYMIDI/PYMIDIVirtualEndpoint.h"
+#import "PYMIDI/PYMIDIManager.h"
 
 
 @implementation PYMIDIVirtualEndpoint

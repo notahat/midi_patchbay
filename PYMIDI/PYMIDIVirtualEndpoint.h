@@ -1,4 +1,4 @@
-#import <PYMIDI/PYMIDIEndpoint.h>
+#import "PYMIDI/PYMIDIEndpoint.h"
 
 
 @interface PYMIDIVirtualEndpoint : PYMIDIEndpoint {

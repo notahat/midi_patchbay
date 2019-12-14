@@ -1,7 +1,7 @@
-#import <PYMIDI/PYMIDIRealSource.h>
-#import <PYMIDI/PYMIDIUtils.h>
-#import <PYMIDI/PYMIDIManager.h>
-#import <PYMIDI/PYMIDIEndpointDescriptor.h>
+#import "PYMIDI/PYMIDIRealSource.h"
+#import "PYMIDI/PYMIDIUtils.h"
+#import "PYMIDI/PYMIDIManager.h"
+#import "PYMIDI/PYMIDIEndpointDescriptor.h"
 
 
 @implementation PYMIDIRealSource
@@ -37,10 +37,10 @@ static void midiReadProc (const MIDIPacketList* packetList, void* createRefCon, 
     if (midiEndpointRef && PYMIDIDoesSourceStillExist (midiEndpointRef))
         newEndpointRef = midiEndpointRef;
     else
-        newEndpointRef = NULL;
+        newEndpointRef = 0;
 
-    if (newEndpointRef == NULL)  newEndpointRef = PYMIDIGetSourceByUniqueID (uniqueID);
-    if (newEndpointRef == NULL)  newEndpointRef = PYMIDIGetSourceByName (name);
+    if (newEndpointRef == 0)  newEndpointRef = PYMIDIGetSourceByUniqueID (uniqueID);
+    if (newEndpointRef == 0)  newEndpointRef = PYMIDIGetSourceByName (name);
 
     if (midiEndpointRef != newEndpointRef) {
         [self stopIO];
@@ -54,7 +54,7 @@ static void midiReadProc (const MIDIPacketList* packetList, void* createRefCon, 
 
 - (void)startIO
 {
-    if (midiEndpointRef == nil || midiPortRef != nil) return;
+    if (midiEndpointRef == 0 || midiPortRef != 0) return;
 
     MIDIInputPortCreate (
         [[PYMIDIManager sharedInstance] midiClientRef], CFSTR("PYMIDIRealSource"),
@@ -66,11 +66,11 @@ static void midiReadProc (const MIDIPacketList* packetList, void* createRefCon, 
 
 - (void)stopIO
 {
-    if (midiPortRef == nil) return;
+    if (midiPortRef == 0) return;
     
     MIDIPortDisconnectSource (midiPortRef, midiEndpointRef);
     MIDIPortDispose (midiPortRef);
-    midiPortRef = nil;
+    midiPortRef = 0;
 }
 
 
@@ -86,7 +86,7 @@ static void midiReadProc (const MIDIPacketList* packetList, void* createRefCon, 
     NSEnumerator* enumerator = [receivers objectEnumerator];
     id receiver;
 
-    while (receiver = [[enumerator nextObject] nonretainedObjectValue])
+    while ((receiver = [[enumerator nextObject] nonretainedObjectValue]))
         [receiver processMIDIPacketList:packetList sender:self];
         
     [pool release];

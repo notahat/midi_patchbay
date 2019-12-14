@@ -25,7 +25,7 @@
 - (void)moveUp:(id)sender
 {
     if ([self selectedRow] > 0) {
-        [self selectRow:[self selectedRow] - 1 byExtendingSelection:NO];
+        [self selectRowIndexes:[NSIndexSet indexSetWithIndex:[self selectedRow] - 1] byExtendingSelection:NO];
     }
 }
 
@@ -33,16 +33,15 @@
 - (void)moveDown:(id)sender
 {
     if ([self selectedRow] != -1 && [self selectedRow] < [self numberOfRows]-1) {
-        [self selectRow:[self selectedRow] + 1 byExtendingSelection:NO];
+        [self selectRowIndexes:[NSIndexSet indexSetWithIndex:[self selectedRow] + 1] byExtendingSelection:NO];
     }
 }
 
 
-- (BOOL)validateMenuItem:(id <NSMenuItem>)menuItem
+- (BOOL)validateUserInterfaceItem:(id <NSValidatedUserInterfaceItem>)item
 {
-    if ([menuItem action] == @selector(clear:))
+    if ([item action] == @selector(clear:))
         return [self numberOfSelectedRows] > 0;
-        
     else
         return YES;
 }

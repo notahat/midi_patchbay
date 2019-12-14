@@ -2,7 +2,8 @@
 #import <CoreMIDI/CoreMIDI.h>
 
 @class PYMIDIEndpointDescriptor;
-@class PYMIDIEndpoint;
+@class PYMIDIRealDestination;
+@class PYMIDIRealSource;
 
 
 @interface PYMIDIManager : NSObject {
@@ -31,13 +32,13 @@
 
 - (NSArray*)realSources;
 - (NSArray*)realSourcesOnlineOrInUse;
-- (PYMIDIEndpoint*)realSourceWithDescriptor:(PYMIDIEndpointDescriptor*)descriptor;
+- (PYMIDIRealSource*)realSourceWithDescriptor:(PYMIDIEndpointDescriptor*)descriptor;
 
 #pragma mark REAL MIDI DESTINATIONS
 
 - (NSArray*)realDestinations;
 - (NSArray*)realDestinationsOnlineOrInUse;
-- (PYMIDIEndpoint*)realDestinationWithDescriptor:(PYMIDIEndpointDescriptor*)descriptor;
+- (PYMIDIRealDestination*)realDestinationWithDescriptor:(PYMIDIEndpointDescriptor*)descriptor;
 
 #pragma mark NOTE NAMES
 

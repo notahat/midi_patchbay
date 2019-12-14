@@ -36,13 +36,13 @@
 }
 
 
-- (int)numberOfRowsInTableView:(NSTableView*)tableView
+- (NSUInteger)numberOfRowsInTableView:(NSTableView*)tableView
 {
     return [patchArray count];
 }
 
 
-- (id)tableView:(NSTableView*)tableView objectValueForTableColumn:(NSTableColumn*)column row:(int)rowIndex
+- (id)tableView:(NSTableView*)tableView objectValueForTableColumn:(NSTableColumn*)column row:(NSUInteger)rowIndex
 {
     Patch* patch = [patchArray objectAtIndex:rowIndex];
     id result = nil;

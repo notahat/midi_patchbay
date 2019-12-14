@@ -1,6 +1,6 @@
-#import <PYMIDI/PYMIDIVirtualSource.h>
-#import <PYMIDI/PYMIDIUtils.h>
-#import <PYMIDI/PYMIDIManager.h>
+#import "PYMIDI/PYMIDIVirtualSource.h"
+#import "PYMIDI/PYMIDIUtils.h"
+#import "PYMIDI/PYMIDIManager.h"
 
 
 @implementation PYMIDIVirtualSource

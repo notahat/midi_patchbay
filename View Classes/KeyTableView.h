@@ -11,7 +11,7 @@
 - (void)moveUp:(id)sender;
 - (void)moveDown:(id)sender;
 
-- (BOOL)validateMenuItem:(id <NSMenuItem>)menuItem;
+- (BOOL)validateUserInterfaceItem:(id <NSValidatedUserInterfaceItem>)item;
 - (void)clear:(id)sender;
 
 - (void)textDidEndEditing:(NSNotification*)notification;

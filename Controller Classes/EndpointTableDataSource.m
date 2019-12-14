@@ -1,5 +1,5 @@
 #import "EndpointTableDataSource.h"
-#import <PYMIDI/PYMIDI.h>
+#import "PYMIDI/PYMIDI.h"
 
 
 @implementation EndpointTableDataSource
@@ -36,13 +36,13 @@
 }
 
 
-- (int)numberOfRowsInTableView:(NSTableView*)tableView
+- (NSUInteger)numberOfRowsInTableView:(NSTableView*)tableView
 {
     return [endpointArray count];
 }
 
 
-- (id)tableView:(NSTableView*)tableView objectValueForTableColumn:(NSTableColumn*)column row:(int)rowIndex
+- (id)tableView:(NSTableView*)tableView objectValueForTableColumn:(NSTableColumn*)column row:(NSUInteger)rowIndex
 {
     PYMIDIVirtualEndpoint* endpoint = [endpointArray objectAtIndex:rowIndex];
     
@@ -54,11 +54,13 @@
 - (BOOL)control:(NSControl*)control isValidObject:(id)value
 {
     if (PYMIDIIsEndpointNameTaken (value)) {
-        NSRunAlertPanel (
-            [NSString stringWithFormat:@"The name \"%@\" is already taken.", value],
-            @"Please choose a different name.",
-            nil, nil, nil
-        );
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"OK"];
+        [alert setMessageText: [NSString stringWithFormat:@"The name \"%@\" is already taken.", value]];
+        [alert setInformativeText:@"Please choose a different name."];
+        [alert setAlertStyle:NSAlertStyleWarning];
+        [alert runModal];
+        [alert release];
         return NO;
     }
     else
@@ -72,11 +74,13 @@
 
     if (![value isEqualToString:@""] && ![value isEqualToString:[endpoint name]]) {
         if (PYMIDIIsEndpointNameTaken (value)) {
-            NSRunAlertPanel (
-                [NSString stringWithFormat:@"The name \"%@\" is already taken.", value],
-                @"Please choose a different name.",
-                nil, nil, nil
-            );
+            NSAlert *alert = [[NSAlert alloc] init];
+            [alert addButtonWithTitle:@"OK"];
+            [alert setMessageText: [NSString stringWithFormat:@"The name \"%@\" is already taken.", value]];
+            [alert setInformativeText:@"Please choose a different name."];
+            [alert setAlertStyle:NSAlertStyleWarning];
+            [alert runModal];
+            [alert release];
         }
         else {
             [self tableView:tableView setName:(NSString*)value forEndpointAtIndex:rowIndex];
@@ -90,11 +94,13 @@
     PYMIDIVirtualEndpoint* endpoint = [endpointArray objectAtIndex:[tableView selectedRow]];
     
     if ([endpoint isInUse]) {
-        NSRunAlertPanel (
-            @"The selection is in use by one or more patches and cannot be deleted.",
-            @"",
-            nil, nil, nil
-        );
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"OK"];
+        [alert setMessageText:@"The selection is in use by one or more patches and cannot be deleted."];
+        [alert setInformativeText:@""];
+        [alert setAlertStyle:NSAlertStyleWarning];
+        [alert runModal];
+        [alert release];
     }
     else {
         [self tableView:tableView removeEndpointAtIndex:[tableView selectedRow]];
@@ -135,7 +141,7 @@
 }
 
 
-- (void)tableView:(NSTableView*)tableView addEndpoint:(PYMIDIVirtualEndpoint*)endpoint atIndex:(int)index
+- (void)tableView:(NSTableView*)tableView addEndpoint:(PYMIDIVirtualEndpoint*)endpoint atIndex:(NSUInteger)index
 {
     NSWindow* window = [tableView window];
     if ([window isKeyWindow] && ![window makeFirstResponder:nil]) return;
@@ -152,7 +158,7 @@
 }
 
 
-- (void)tableView:(NSTableView*)tableView removeEndpointAtIndex:(int)index
+- (void)tableView:(NSTableView*)tableView removeEndpointAtIndex:(NSUInteger)index
 {
     NSWindow* window = [tableView window];
     if ([window isKeyWindow] && ![window makeFirstResponder:nil]) return;
@@ -173,7 +179,7 @@
 }
 
 
-- (void)tableView:(NSTableView*)tableView setName:(NSString*)name forEndpointAtIndex:(int)index
+- (void)tableView:(NSTableView*)tableView setName:(NSString*)name forEndpointAtIndex:(NSUInteger)index
 {
     PYMIDIVirtualEndpoint* endpoint = [endpointArray objectAtIndex:index];
     NSString* oldName = [[endpoint name] retain];

@@ -1,5 +1,5 @@
 #import <AppKit/AppKit.h>
-#import <PYMIDI/PYMIDI.h>
+#import "PYMIDI/PYMIDI.h"
 
 @class WindowWithUndo;
 
@@ -11,7 +11,7 @@
 @class EndpointTableDataSource;
 
 
-@interface PatchbayDocument : NSDocument {
+@interface PatchbayDocument : NSDocument<NSWindowDelegate> {
     IBOutlet NSWindow*			documentWindow;
     
     // Stuff related to the table of patches
@@ -90,9 +90,9 @@
 - (void)selectedPatchChanged:(NSNotification*)notification;
 - (IBAction)addPatchButtonPressed:(id)sender;
 
-- (void)addPatch:(Patch*)patch atIndex:(int)index;
-- (void)addPatchFromArchive:(NSData*)data atIndex:(int)index;
-- (void)removePatchAtIndex:(int)index;
+- (void)addPatch:(Patch*)patch atIndex:(NSUInteger)index;
+- (void)addPatchFromArchive:(NSData*)data atIndex:(NSUInteger)index;
+- (void)removePatchAtIndex:(NSUInteger)index;
 - (void)setIsEnabled:(BOOL)isEnabled forPatch:(Patch*)patch;
 
 - (NSData*)archivePatchForPasteBoard:(Patch*)patch;

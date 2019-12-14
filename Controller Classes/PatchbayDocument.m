@@ -1,5 +1,5 @@
 #import "PatchbayDocument.h"
-#import <PYMIDI/PYMIDI.h>
+#import "PYMIDI/PYMIDI.h"
 #import "Patch.h"
 #import "PatchTableCell.h"
 #import "PatchTableDataSource.h"
@@ -62,7 +62,7 @@
     // Set up the patch related stuff
     
     buttonCell = [[NSButtonCell alloc] init];
-    [buttonCell setButtonType:NSSwitchButton];
+    [buttonCell setButtonType:NSButtonTypeSwitch];
     [buttonCell setTitle:@""];
     [[patchTable tableColumnWithIdentifier:@"enabled"] setDataCell:buttonCell];
     [buttonCell release];
@@ -192,7 +192,7 @@
     [patchTable reloadData];
 
     if ([patchArray count] > 0)
-        [patchTable selectRow:0 byExtendingSelection:NO];
+        [patchTable selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
     else
         [patchTable deselectAll:self];
     
@@ -238,7 +238,7 @@
 
 - (void)selectedPatchChanged:(NSNotification*)notification
 {
-    int patchIndex = [patchTable selectedRow];
+    NSInteger patchIndex = [patchTable selectedRow];
     
     if (patchIndex != -1)
         selectedPatch = [patchArray objectAtIndex:patchIndex];
@@ -285,7 +285,7 @@
 }
 
 
-- (void)addPatch:(Patch*)patch atIndex:(int)index
+- (void)addPatch:(Patch*)patch atIndex:(NSUInteger)index
 {
     NSUndoManager* undoManager = [self undoManager];    
 
@@ -293,7 +293,7 @@
     [patchArray insertObject:patch atIndex:index];
     
     [patchTable reloadData];
-    [patchTable selectRow:index byExtendingSelection:NO];
+    [patchTable selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:NO];
 
     [[undoManager prepareWithInvocationTarget:self]
         removePatchAtIndex:index
@@ -301,7 +301,7 @@
 }
 
 
-- (void)addPatchFromArchive:(NSData*)data atIndex:(int)index
+- (void)addPatchFromArchive:(NSData*)data atIndex:(NSUInteger)index
 {
     Patch* patch = [self unarchivePatchFromPasteBoard:data];
     
@@ -310,7 +310,7 @@
 }
 
 
-- (void)removePatchAtIndex:(int)index
+- (void)removePatchAtIndex:(NSUInteger)index
 {
     NSUndoManager* undoManager = [self undoManager];
     Patch* patch = [[patchArray objectAtIndex:index] retain];
@@ -473,7 +473,7 @@
     int i;
     
     buttonCell = [[NSButtonCell alloc] init];
-    [buttonCell setButtonType:NSSwitchButton];
+    [buttonCell setButtonType:NSButtonTypeSwitch];
     [buttonCell setTitle:@"16"];
     [filterChannelMatrix setPrototype:buttonCell];
     [filterChannelMatrix setCellSize:[buttonCell cellSize]];
@@ -506,7 +506,7 @@
         [filterChannelMatrix setEnabled:[selectedPatch shouldFilterChannel]];
         for (i = 0; i < 16; i++) {
             channelIsEnabled = ([selectedPatch channelMask] >> i) & 1;
-            [[filterChannelMatrix cellWithTag:i] setState:channelIsEnabled ? NSOnState : NSOffState];
+            [[filterChannelMatrix cellWithTag:i] setState:channelIsEnabled ? NSControlStateValueOn : NSControlStateValueOff];
         }
     }
     else {
@@ -545,7 +545,7 @@
     unsigned int channelMask = 0;
     
     for (i = 0; i < 16; i++) {
-        if ([[filterChannelMatrix cellWithTag:i] state] == NSOnState)
+        if ([[filterChannelMatrix cellWithTag:i] state] == NSControlStateValueOn)
             channelMask |= 1 << i;
     }
     
@@ -587,13 +587,13 @@
 {
     if (selectedPatch != nil) {
         [remapChannelButton setEnabled:YES];
-        [remapChannelButton setState:[selectedPatch shouldRemapChannel] ? NSOnState : NSOffState];
+        [remapChannelButton setState:[selectedPatch shouldRemapChannel] ? NSControlStateValueOn : NSControlStateValueOff];
         [remapChannelPopUp setEnabled:[selectedPatch shouldRemapChannel]];
         [remapChannelPopUp selectItemAtIndex:[selectedPatch remappingChannel] - 1];
     }
     else {
         [remapChannelButton setEnabled:NO];
-        [remapChannelButton setState:NSOffState];
+        [remapChannelButton setState:NSControlStateValueOff];
         [remapChannelPopUp setEnabled:NO];
         [remapChannelPopUp selectItemAtIndex:-1];
     }
@@ -602,7 +602,7 @@
 
 - (IBAction)remapChannelButtonChanged:(id)sender
 {
-    [self setShouldRemapChannel:[remapChannelButton state] == NSOnState forPatch:selectedPatch];
+    [self setShouldRemapChannel:[remapChannelButton state] == NSControlStateValueOn forPatch:selectedPatch];
 }
 
 
@@ -625,7 +625,7 @@
 
 - (IBAction)remapChannelPopUpChanged:(id)sender
 {
-    [self setRemappingChannel:[remapChannelPopUp indexOfSelectedItem] + 1 forPatch:selectedPatch];
+    [self setRemappingChannel:(int)[remapChannelPopUp indexOfSelectedItem] + 1 forPatch:selectedPatch];
 }
 
 
@@ -821,7 +821,7 @@
 {
     if (selectedPatch != nil) {
         [transposeButton setEnabled:[selectedPatch shouldAllowNotes]];
-        [transposeButton setState:[selectedPatch shouldTranspose] ? NSOnState : NSOffState];
+        [transposeButton setState:[selectedPatch shouldTranspose] ? NSControlStateValueOn : NSControlStateValueOff];
         [transposeDistanceSlider
             setEnabled:[selectedPatch shouldAllowNotes] && [selectedPatch shouldTranspose]];
         [transposeDistanceSlider setIntValue:[selectedPatch transposeDistance]];
@@ -835,7 +835,7 @@
     }
     else {
         [transposeButton setEnabled:NO];
-        [transposeButton setState:NSOffState];
+        [transposeButton setState:NSControlStateValueOff];
         [transposeDistanceSlider setEnabled:NO];
         [transposeDistanceSlider setIntValue:0];
         [transposeDistanceField setEnabled:NO];
@@ -847,7 +847,7 @@
 
 - (IBAction)transposeButtonChanged:(id)sender
 {
-    [self setShouldTranspose:[transposeButton state] == NSOnState forPatch:selectedPatch];
+    [self setShouldTranspose:[transposeButton state] == NSControlStateValueOn forPatch:selectedPatch];
 }
 
 
@@ -906,17 +906,17 @@
 {
     if (selectedPatch != nil) {
         [transmitClockButton setEnabled:YES];
-        [transmitClockButton setState:[selectedPatch shouldTransmitClock] ? NSOnState : NSOffState];
+        [transmitClockButton setState:[selectedPatch shouldTransmitClock] ? NSControlStateValueOn : NSControlStateValueOff];
     }
     else {
         [transmitClockButton setEnabled:NO];
-        [transmitClockButton setState:NSOffState];
+        [transmitClockButton setState:NSControlStateValueOff];
     }
 }
 
 - (IBAction)transmitClockButtonChanged:(id)sender
 {
-    [self setShouldTransmitClock:[transmitClockButton state] == NSOnState forPatch:selectedPatch];
+    [self setShouldTransmitClock:[transmitClockButton state] == NSControlStateValueOn forPatch:selectedPatch];
 }
 
 
@@ -1058,10 +1058,10 @@
         [[[self displayName] lastPathComponent] stringByDeletingPathExtension]
     ];
     
-    [[inputTable dataSource] tableView:inputTable newEndpointWithName:baseName];
+    [inputTableDataSource tableView:inputTable newEndpointWithName:baseName];
     
     // Set up the newly created endpoint for editing
-    [inputTable selectRow:[inputTable numberOfRows]-1 byExtendingSelection:NO];
+    [inputTable selectRowIndexes:[NSIndexSet indexSetWithIndex:[inputTable numberOfRows]-1] byExtendingSelection:NO];
     [inputTable editColumn:0 row:[inputTable selectedRow] withEvent:nil select:YES];
 }
     
@@ -1073,10 +1073,10 @@
         [[[self displayName] lastPathComponent] stringByDeletingPathExtension]
     ];
 
-    [[outputTable dataSource] tableView:outputTable newEndpointWithName:baseName];
+    [outputTableDataSource tableView:outputTable newEndpointWithName:baseName];
 
     // Set up the newly created endpoint for editing
-    [outputTable selectRow:[outputTable numberOfRows]-1 byExtendingSelection:NO];
+    [outputTable selectRowIndexes:[NSIndexSet indexSetWithIndex:[outputTable numberOfRows]-1] byExtendingSelection:NO];
     [outputTable editColumn:0 row:[outputTable selectedRow] withEvent:nil select:YES];
 }
 
@@ -1093,7 +1093,7 @@
 
 - (void)endpointPanelDidEnd:(NSWindow*)sheet returnCode:(int)returnCode contextInfo:(void*)contextInfo
 {
-    int tab = [virtualEndpointTabView indexOfTabViewItem:[virtualEndpointTabView selectedTabViewItem]];
+    NSInteger tab = [virtualEndpointTabView indexOfTabViewItem:[virtualEndpointTabView selectedTabViewItem]];
     
     if (panelWasOpenedToInputs) {
         if (tab == 0 && [inputTable selectedRow] != -1) {

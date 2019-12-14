@@ -1,5 +1,5 @@
-#import <PYMIDI/PYMIDIEndpoint.h>
-#import <PYMIDI/PYMIDIRealEndpoint.h>
+#import "PYMIDI/PYMIDIEndpoint.h"
+#import "PYMIDI/PYMIDIRealEndpoint.h"
 
 
 @interface PYMIDIRealSource : PYMIDIRealEndpoint {
